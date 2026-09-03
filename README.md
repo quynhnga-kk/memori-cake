@@ -1,4 +1,4 @@
-# may-bakery
+# memori - cake
 Online bakery website
 ## Chức năng 
 - Browse cakes
