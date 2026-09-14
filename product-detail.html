@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết sản phẩm | Memori Cake</title>
+</head>
+
+<body>
+
+<header>
+    <h1>🍰 Memori Cake</h1>
+
+    <nav>
+        <a href="index.html">Trang chủ</a> |
+        <a href="products.html">Sản phẩm</a> |
+        <a href="contact.html">Liên hệ</a> |
+        <a href="login-register.html">Đăng nhập</a> |
+        <a href="cart.html">🛒 Giỏ hàng</a>
+    </nav>
+</header>
+
+<hr>
+
+<main>
+
+    <p>
+        <a href="products.html">← Quay lại sản phẩm</a>
+    </p>
+
+    <section>
+
+        <div>
+            <img src="assets/images/cake1.jpg"
+                 alt="Strawberry Cloud Cake"
+                 width="400">
+        </div>
+
+        <div>
+
+            <h2>Strawberry Cloud Cake</h2>
+
+            <p>
+                <strong>320.000 VNĐ</strong>
+            </p>
+
+            <p>
+                Chiếc bánh dâu tây mềm mịn với lớp kem tươi
+                và những quả dâu tươi, phù hợp cho sinh nhật,
+                kỷ niệm hoặc những buổi gặp gỡ đặc biệt.
+            </p>
+
+            <h3>Thông tin sản phẩm</h3>
+
+            <ul>
+                <li>Thành phần: Bột mì, trứng, sữa, kem tươi, dâu tây</li>
+                <li>Hương vị: Dâu tây</li>
+                <li>Bảo quản: Ngăn mát tủ lạnh</li>
+                <li>Thời hạn sử dụng: 2 ngày</li>
+            </ul>
+
+            <hr>
+
+            <!-- Chọn kích thước -->
+            <label for="size">
+                <strong>Kích thước:</strong>
+            </label>
+
+            <select id="size" name="size">
+                <option value="small">Size S - 12cm</option>
+                <option value="medium">Size M - 16cm</option>
+                <option value="large">Size L - 20cm</option>
+            </select>
+
+            <br><br>
+
+            <!-- Chọn hương vị -->
+            <label for="flavor">
+                <strong>Hương vị:</strong>
+            </label>
+
+            <select id="flavor" name="flavor">
+                <option value="strawberry">Dâu tây</option>
+                <option value="chocolate">Chocolate</option>
+                <option value="vanilla">Vanilla</option>
+                <option value="matcha">Matcha</option>
+            </select>
+
+            <br><br>
+
+            <!-- Số lượng -->
+            <label for="quantity">
+                <strong>Số lượng:</strong>
+            </label>
+
+            <input type="number"
+                   id="quantity"
+                   name="quantity"
+                   value="1"
+                   min="1"
+                   max="10">
+
+            <br><br>
+
+            <button type="button">
+                🛒 Thêm vào giỏ hàng
+            </button>
+
+            <a href="checkout.html">
+                <button type="button">
+                    Mua ngay
+                </button>
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+<hr>
+
+<footer>
+    <p>© 2026 Memori Cake. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

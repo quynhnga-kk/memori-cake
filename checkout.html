@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh toán | Memori Cake</title>
+</head>
+
+<body>
+
+<header>
+    <h1>🍰 Memori Cake</h1>
+
+    <nav>
+        <a href="index.html">Trang chủ</a> |
+        <a href="products.html">Sản phẩm</a> |
+        <a href="cart.html">🛒 Giỏ hàng</a> |
+        <a href="login-register.html">Đăng nhập</a>
+    </nav>
+</header>
+
+<hr>
+
+<main>
+
+    <h2>Thanh toán</h2>
+
+    <!-- Thông tin khách hàng -->
+    <section>
+        <h3>1. Thông tin khách hàng</h3>
+
+        <form>
+
+            <label for="fullname">Họ và tên:</label><br>
+            <input type="text"
+                   id="fullname"
+                   name="fullname"
+                   placeholder="Nguyễn Văn A"
+                   required>
+
+            <br><br>
+
+            <label for="phone">Số điện thoại:</label><br>
+            <input type="tel"
+                   id="phone"
+                   name="phone"
+                   placeholder="09xxxxxxxx"
+                   required>
+
+            <br><br>
+
+            <label for="email">Email:</label><br>
+            <input type="email"
+                   id="email"
+                   name="email"
+                   placeholder="example@gmail.com">
+
+            <br><br>
+
+            <label for="address">Địa chỉ nhận hàng:</label><br>
+            <textarea id="address"
+                      name="address"
+                      rows="4"
+                      cols="40"
+                      placeholder="Nhập địa chỉ nhận hàng..."
+                      required></textarea>
+
+        </form>
+    </section>
+
+    <hr>
+
+    <!-- Sản phẩm -->
+    <section>
+        <h3>2. Đơn hàng</h3>
+
+        <table border="1" cellpadding="10">
+            <thead>
+                <tr>
+                    <th>Sản phẩm</th>
+                    <th>Size</th>
+                    <th>Số lượng</th>
+                    <th>Đơn giá</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Strawberry Cloud Cake</td>
+                    <td>M</td>
+                    <td>1</td>
+                    <td>320.000 VNĐ</td>
+                    <td>320.000 VNĐ</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>Phí vận chuyển: <strong>30.000 VNĐ</strong></p>
+
+        <p>
+            <strong>Tổng thanh toán: 350.000 VNĐ</strong>
+        </p>
+
+    </section>
+
+    <hr>
+
+    <!-- Phương thức thanh toán -->
+    <section>
+
+        <h3>3. Phương thức thanh toán</h3>
+
+        <label>
+            <input type="radio"
+                   name="payment"
+                   value="cod"
+                   checked>
+            Thanh toán khi nhận hàng (COD)
+        </label>
+
+        <br>
+
+        <label>
+            <input type="radio"
+                   name="payment"
+                   value="bank">
+            Chuyển khoản ngân hàng
+        </label>
+
+        <br>
+
+        <label>
+            <input type="radio"
+                   name="payment"
+                   value="momo">
+            Ví điện tử
+        </label>
+
+    </section>
+
+    <hr>
+
+    <!-- Ghi chú -->
+    <section>
+
+        <h3>4. Ghi chú đơn hàng</h3>
+
+        <textarea rows="4"
+                  cols="50"
+                  placeholder="Ví dụ: Giao bánh trước 18h..."></textarea>
+
+    </section>
+
+    <br>
+
+    <button type="submit">
+        💳 Xác nhận đặt hàng
+    </button>
+
+</main>
+
+<hr>
+
+<footer>
+    <p>© 2026 Memori Cake. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

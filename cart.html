@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng - Memori Cake</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #fffaf7;
+            color: #333;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background-color: #ffffff;
+            padding: 20px 60px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #b86b77;
+        }
+
+        .slogan {
+            margin-top: 5px;
+            color: #777;
+            font-size: 14px;
+        }
+
+        .header-links a {
+            text-decoration: none;
+            color: #555;
+            margin-left: 20px;
+        }
+
+        .header-links a:hover {
+            color: #b86b77;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            margin-top: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #b86b77;
+        }
+
+        /* ===== MAIN ===== */
+        main {
+            width: 90%;
+            max-width: 1100px;
+            margin: 50px auto;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .page-title h2 {
+            font-size: 32px;
+            color: #8f4f5b;
+            margin-bottom: 10px;
+        }
+
+        .page-title p {
+            color: #777;
+        }
+
+        /* ===== CART ===== */
+        .cart-container {
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+        }
+
+        .cart-header {
+            display: grid;
+            grid-template-columns: 3fr 1fr 1fr 1fr;
+            padding: 15px;
+            background-color: #fdf0f2;
+            color: #8f4f5b;
+            font-weight: bold;
+            border-radius: 8px;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 3fr 1fr 1fr 1fr;
+            align-items: center;
+            padding: 20px 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .product-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .product-image {
+            width: 80px;
+            height: 80px;
+            background-color: #f8e4e7;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 12px;
+        }
+
+        .product-name {
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .product-detail {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity button {
+            width: 28px;
+            height: 28px;
+            border: 1px solid #ddd;
+            background-color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .quantity button:hover {
+            background-color: #fdf0f2;
+        }
+
+        .price {
+            color: #b86b77;
+            font-weight: bold;
+        }
+
+        .remove {
+            color: #999;
+            text-decoration: none;
+        }
+
+        .remove:hover {
+            color: #d9534f;
+        }
+
+        /* ===== CART BOTTOM ===== */
+        .cart-bottom {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 30px;
+        }
+
+        .continue-shopping {
+            display: inline-block;
+            padding: 12px 22px;
+            border: 1px solid #b86b77;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #b86b77;
+        }
+
+        .continue-shopping:hover {
+            background-color: #fdf0f2;
+        }
+
+        .summary {
+            width: 350px;
+            background-color: #fff7f5;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        .summary h3 {
+            color: #8f4f5b;
+            margin-bottom: 20px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .total {
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #b86b77;
+        }
+
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+            padding: 14px;
+            background-color: #b86b77;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .checkout-btn:hover {
+            background-color: #8f4f5b;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            margin-top: 70px;
+            padding: 30px 60px;
+            background-color: #8f4f5b;
+            color: white;
+            text-align: center;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            header {
+                padding: 20px;
+            }
+
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .cart-header {
+                display: none;
+            }
+
+            .cart-item {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .cart-bottom {
+                flex-direction: column;
+            }
+
+            .summary {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+
+        <div class="header-top">
+
+            <div>
+                <div class="logo">Memori Cake</div>
+                <div class="slogan">
+                    Lưu giữ khoảnh khắc bằng những chiếc bánh ngọt
+                </div>
+            </div>
+
+            <div class="header-links">
+                <a href="login.html">Đăng nhập / Đăng ký</a>
+                <a href="cart.html">🛒 Giỏ hàng</a>
+            </div>
+
+        </div>
+
+        <!-- MENU -->
+        <nav>
+            <ul>
+                <li>
+                    <a href="index.html">Trang chủ</a>
+                </li>
+
+                <li>
+                    <a href="products.html">Sản phẩm</a>
+                </li>
+
+                <li>
+                    <a href="cart.html">Giỏ hàng</a>
+                </li>
+
+                <li>
+                    <a href="contact.html">Liên hệ</a>
+                </li>
+            </ul>
+        </nav>
+
+    </header>
+
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main>
+
+        <div class="page-title">
+            <h2>Giỏ hàng của bạn</h2>
+            <p>Kiểm tra lại những chiếc bánh bạn đã lựa chọn</p>
+        </div>
+
+
+        <div class="cart-container">
+
+            <!-- CART HEADER -->
+            <div class="cart-header">
+
+                <div>Sản phẩm</div>
+                <div>Đơn giá</div>
+                <div>Số lượng</div>
+                <div>Thành tiền</div>
+
+            </div>
+
+
+            <!-- CART ITEM 1 -->
+            <div class="cart-item">
+
+                <div class="product-info">
+
+                    <div class="product-image">
+                        Ảnh bánh
+                    </div>
+
+                    <div>
+                        <div class="product-name">
+                            Strawberry Cake
+                        </div>
+
+                        <div class="product-detail">
+                            Size: 16cm | Vị: Dâu
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="price">
+                    250.000đ
+                </div>
+
+                <div class="quantity">
+                    <button>-</button>
+                    <span>1</span>
+                    <button>+</button>
+                </div>
+
+                <div class="price">
+                    250.000đ
+                </div>
+
+            </div>
+
+
+            <!-- CART ITEM 2 -->
+            <div class="cart-item">
+
+                <div class="product-info">
+
+                    <div class="product-image">
+                        Ảnh bánh
+                    </div>
+
+                    <div>
+                        <div class="product-name">
+                            Chocolate Cake
+                        </div>
+
+                        <div class="product-detail">
+                            Size: 18cm | Vị: Chocolate
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="price">
+                    280.000đ
+                </div>
+
+                <div class="quantity">
+                    <button>-</button>
+                    <span>2</span>
+                    <button>+</button>
+                </div>
+
+                <div class="price">
+                    560.000đ
+                </div>
+
+            </div>
+
+
+            <!-- CART BOTTOM -->
+            <div class="cart-bottom">
+
+                <a href="products.html" class="continue-shopping">
+                    ← Tiếp tục mua hàng
+                </a>
+
+
+                <!-- SUMMARY -->
+                <div class="summary">
+
+                    <h3>Tóm tắt đơn hàng</h3>
+
+                    <div class="summary-row">
+                        <span>Tạm tính</span>
+                        <span>810.000đ</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Phí giao hàng</span>
+                        <span>30.000đ</span>
+                    </div>
+
+                    <div class="summary-row total">
+                        <span>Tổng cộng</span>
+                        <span>840.000đ</span>
+                    </div>
+
+                    <a href="checkout.html" class="checkout-btn">
+                        Tiến hành thanh toán
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+
+        <p>
+            © 2026 Memori Cake
+        </p>
+
+        <p>
+            Lưu giữ khoảnh khắc bằng những chiếc bánh ngọt.
+        </p>
+
+    </footer>
+
+</body>
+</html>
