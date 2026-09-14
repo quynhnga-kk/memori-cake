@@ -1,10 +1,26 @@
-# memori - cake
-Online bakery website
-## Chức năng 
-- Browse cakes
-- Search and filter products
-- View product details
-- Add products to cart
-- Checkout and place orders
-- Customer account
-- Order management
+memori-cake/
+│
+├── index.html
+├── products.html
+├── product-detail.html
+├── cart.html
+├── checkout.html
+├── login-register.html
+├── contact.html
+│
+├── assets/
+│   ├── images/
+│   │   ├── banner.jpg
+│   │   ├── cake-01.jpg
+│   │   ├── cake-02.jpg
+│   │   └── ...
+│   │
+│   └── icons/
+│
+├── README.md
+│
+└── docs/
+    ├── persona/
+    ├── user-story/
+    ├── sitemap/
+    └── wireframe/
