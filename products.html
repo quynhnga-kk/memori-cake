@@ -3,124 +3,625 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sản phẩm | Memori Cake</title>
+    <title>Tất Cả Sản Phẩm | Memori Cake</title>
+    <style>
+        /* ==================== RESET & SETUP ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #faf5f5;
+            color: #4a3e3d;
+            line-height: 1.6;
+        }
+
+        /* ==================== HEADER ==================== */
+        header {
+            background-color: #ffffff;
+            padding: 20px 8%;
+            border-bottom: 1px solid #f0e6e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        header h1 {
+            color: #bd6b78;
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        nav {
+            display: flex;
+            gap: 22px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #4a3e3d;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover, nav a[href="products.html"] {
+            color: #bd6b78;
+            font-weight: 600;
+        }
+
+        .cart-badge {
+            background-color: #bd6b78;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-left: 4px;
+        }
+
+        /* ==================== HERO BANNER ==================== */
+        .products-hero {
+            background: linear-gradient(135deg, #fdf2f4 0%, #f5e1e4 100%);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 1px solid #f0e6e6;
+        }
+
+        .products-hero h2 {
+            color: #9c4856;
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .products-hero p {
+            color: #7a6868;
+            font-size: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ==================== LAYOUT CHÍNH (SIDEBAR + PRODUCTS) ==================== */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 30px;
+        }
+
+        /* SIDEBAR BỘ LỌC */
+        .sidebar {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(189, 107, 120, 0.05);
+            height: fit-content;
+        }
+
+        .filter-group {
+            margin-bottom: 25px;
+            border-bottom: 1px solid #f5ecec;
+            padding-bottom: 20px;
+        }
+
+        .filter-group:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .filter-title {
+            font-size: 16px;
+            color: #8c4350;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .filter-options {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .filter-options label {
+            font-size: 14px;
+            color: #5c4d4c;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-options input[type="checkbox"],
+        .filter-options input[type="radio"] {
+            accent-color: #bd6b78;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #f0d5d9;
+            border-radius: 8px;
+            outline: none;
+            background-color: #fff8f9;
+            font-size: 14px;
+        }
+
+        .search-box:focus {
+            border-color: #bd6b78;
+        }
+
+        /* TOOLBAR SẮP XẾP */
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #ffffff;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(189, 107, 120, 0.03);
+        }
+
+        .result-count {
+            font-size: 14px;
+            color: #7a6868;
+        }
+
+        .sort-select {
+            padding: 8px 12px;
+            border: 1px solid #f0d5d9;
+            border-radius: 6px;
+            outline: none;
+            background: #fff8f9;
+            color: #4a3e3d;
+            font-size: 14px;
+        }
+
+        /* GRID SẢN PHẨM */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: #ffffff;
+            border: 1px solid #f0e6e6;
+            border-radius: 16px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(189, 107, 120, 0.12);
+        }
+
+        /* NHÃN & NÚT TRÊN ẢNH */
+        .badge {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            background-color: #e2586a;
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            z-index: 2;
+        }
+
+        .badge.best-seller {
+            background-color: #e67e22;
+        }
+
+        .badge.new {
+            background-color: #27ae60;
+        }
+
+        .btn-wishlist {
+            position: absolute;
+            top: 22px;
+            right: 25px;
+            background: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            color: #bd6b78;
+            font-size: 14px;
+        }
+
+        .img-placeholder {
+            width: 100%;
+            height: 180px;
+            background-color: #f5e1e4;
+            color: #a8727d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .product-card h3 {
+            font-size: 16px;
+            color: #2c2223;
+            margin-bottom: 4px;
+        }
+
+        .rating {
+            color: #f1c40f;
+            font-size: 12px;
+            margin-bottom: 6px;
+        }
+
+        .rating span {
+            color: #8f7a7a;
+            font-size: 11px;
+        }
+
+        .product-card p.desc {
+            font-size: 12px;
+            color: #7a6868;
+            margin-bottom: 12px;
+            flex-grow: 1;
+        }
+
+        .price-box {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .price-current {
+            font-size: 16px;
+            font-weight: 700;
+            color: #9c4856;
+        }
+
+        .price-old {
+            font-size: 13px;
+            color: #a89696;
+            text-decoration: line-through;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-detail {
+            flex: 1;
+            padding: 8px 0;
+            border: 1px solid #c88a95;
+            color: #8c4350;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+            transition: background 0.2s;
+        }
+
+        .btn-detail:hover {
+            background-color: #fdf2f4;
+        }
+
+        .btn-add-cart {
+            flex: 1;
+            background-color: #bd6b78;
+            color: #ffffff;
+            border: none;
+            padding: 8px 0;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-add-cart:hover {
+            background-color: #9c4856;
+        }
+
+        /* PHÂN TRANG */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 35px;
+        }
+
+        .pagination button {
+            width: 36px;
+            height: 36px;
+            border: 1px solid #f0d5d9;
+            background: white;
+            color: #4a3e3d;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .pagination button.active, .pagination button:hover {
+            background-color: #bd6b78;
+            color: white;
+            border-color: #bd6b78;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #ffffff;
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid #f0e6e6;
+            margin-top: 60px;
+            color: #8f7a7a;
+            font-size: 14px;
+        }
+    </style>
 </head>
 
 <body>
 
-<header>
-    <h1>🍰 Memori Cake</h1>
+    <!-- HEADER -->
+    <header>
+        <h1>🍰 Memori Cake</h1>
+        <nav>
+            <a href="index.html">Trang chủ</a>
+            <a href="products.html">Sản phẩm</a>
+            <a href="contact.html">Liên hệ</a>
+            <a href="login-register.html">Đăng nhập</a>
+            <a href="cart.html">🛒 Giỏ hàng <span class="cart-badge">2</span></a>
+        </nav>
+    </header>
 
-    <nav>
-        <a href="index.html">Trang chủ</a> |
-        <a href="products.html">Sản phẩm</a> |
-        <a href="contact.html">Liên hệ</a> |
-        <a href="login-register.html">Đăng nhập</a> |
-        <a href="cart.html">🛒 Giỏ hàng</a>
-    </nav>
-</header>
+    <!-- HERO BANNER -->
+    <div class="products-hero">
+        <h2>Thế Giới Bánh Ngọt Memori</h2>
+        <p>Từ những chiếc bánh sinh nhật cầu kỳ đến món tráng miệng nhỏ nhắn cho ngày ngọt ngào.</p>
+    </div>
 
-<hr>
+    <!-- MAIN CONTAINER -->
+    <div class="container">
 
-<main>
+        <!-- SIDEBAR BỘ LỌC -->
+        <aside class="sidebar">
+            <div class="filter-group">
+                <div class="filter-title">Tìm kiếm</div>
+                <input type="text" class="search-box" placeholder="Nhập tên bánh...">
+            </div>
 
-    <h2>Danh sách bánh</h2>
-    <p>Khám phá những chiếc bánh ngọt dành cho mọi khoảnh khắc đáng nhớ.</p>
+            <div class="filter-group">
+                <div class="filter-title">Danh Mục Bánh</div>
+                <ul class="filter-options">
+                    <li><label><input type="checkbox" checked> Tất cả bánh</label></li>
+                    <li><label><input type="checkbox"> Bánh sinh nhật (12)</label></li>
+                    <li><label><input type="checkbox"> Bánh Mini / Bento (8)</label></li>
+                    <li><label><input type="checkbox"> Cupcake & Tart (15)</label></li>
+                    <li><label><input type="checkbox"> Bánh Mousse & Cheesecakes (6)</label></li>
+                    <li><label><input type="checkbox"> Bánh Theo Mùa / Tết (4)</label></li>
+                </ul>
+            </div>
 
-    <!-- Bộ lọc -->
-    <section>
-        <h3>Tìm kiếm & lọc sản phẩm</h3>
+            <div class="filter-group">
+                <div class="filter-title">Khoảng Giá</div>
+                <ul class="filter-options">
+                    <li><label><input type="radio" name="price"> Dưới 100.000đ</label></li>
+                    <li><label><input type="radio" name="price"> 100.000đ - 300.000đ</label></li>
+                    <li><label><input type="radio" name="price"> 300.000đ - 500.000đ</label></li>
+                    <li><label><input type="radio" name="price"> Trên 500.000đ</label></li>
+                </ul>
+            </div>
 
-        <form>
-            <label for="search">Tìm kiếm:</label>
-            <input type="text" id="search" name="search"
-                   placeholder="Nhập tên bánh...">
+            <div class="filter-group">
+                <div class="filter-title">Kích Thước (Size)</div>
+                <ul class="filter-options">
+                    <li><label><input type="checkbox"> Mini (10cm)</label></li>
+                    <li><label><input type="checkbox"> Size S (16cm)</label></li>
+                    <li><label><input type="checkbox"> Size M (20cm)</label></li>
+                    <li><label><input type="checkbox"> Size L (24cm)</label></li>
+                </ul>
+            </div>
+        </aside>
 
-            <label for="category">Danh mục:</label>
-            <select id="category" name="category">
-                <option value="">Tất cả</option>
-                <option value="birthday">Bánh sinh nhật</option>
-                <option value="cupcake">Cupcake</option>
-                <option value="tart">Tart</option>
-                <option value="cake">Bánh ngọt</option>
-            </select>
+        <!-- KHU VỰC SẢN PHẨM -->
+        <main>
+            <!-- TOOLBAR -->
+            <div class="toolbar">
+                <div class="result-count">Hiển thị <strong>8</strong> trên <strong>45</strong> sản phẩm</div>
+                <div>
+                    <label for="sort" style="font-size: 14px; color: #7a6868;">Sắp xếp theo: </label>
+                    <select id="sort" class="sort-select">
+                        <option>Nổi bật nhất</option>
+                        <option>Giá: Thấp đến Cao</option>
+                        <option>Giá: Cao đến Thấp</option>
+                        <option>Bán chạy nhất</option>
+                    </select>
+                </div>
+            </div>
 
-            <button type="submit">Tìm kiếm</button>
-        </form>
-    </section>
+            <!-- GRID DƯỚI DẠNG CARD BÁNH -->
+            <div class="products-grid">
 
-    <hr>
+                <!-- CARD 1 -->
+                <div class="product-card">
+                    <span class="badge">-10%</span>
+                    <button class="btn-wishlist">♥</button>
+                    <div class="img-placeholder">Strawberry Cloud Cake</div>
+                    <h3>Strawberry Cloud</h3>
+                    <div class="rating">★★★★★ <span>(24)</span></div>
+                    <p class="desc">Bánh kem dâu tây mềm mịn, lớp kem tươi ít ngọt dịu nhẹ.</p>
+                    <div class="price-box">
+                        <span class="price-current">320.000đ</span>
+                        <span class="price-old">350.000đ</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="product-detail.html" class="btn-detail">Chi tiết</a>
+                        <button class="btn-add-cart">Thêm vào giỏ</button>
+                    </div>
+                </div>
 
-    <!-- Danh sách sản phẩm -->
-    <section>
+                <!-- CARD 2 -->
+                <div class="product-card">
+                    <span class="badge best-seller">Bán Chạy</span>
+                    <button class="btn-wishlist">♥</button>
+                    <div class="img-placeholder">Chocolate Dream Cake</div>
+                    <h3>Chocolate Dream</h3>
+                    <div class="rating">★★★★★ <span>(42)</span></div>
+                    <p class="desc">Bánh chocolate Bỉ đậm đà kết hợp lớp ganache béo ngậy.</p>
+                    <div class="price-box">
+                        <span class="price-current">350.000đ</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="product-detail.html" class="btn-detail">Chi tiết</a>
+                        <button class="btn-add-cart">Thêm vào giỏ</button>
+                    </div>
+                </div>
 
-        <div>
-            <img src="assets/images/cake1.jpg"
-                 alt="Strawberry Cake"
-                 width="250">
+                <!-- CARD 3 -->
+                <div class="product-card">
+                    <span class="badge new">Mới</span>
+                    <button class="btn-wishlist">♥</button>
+                    <div class="img-placeholder">Blueberry Memory Cake</div>
+                    <h3>Blueberry Memory</h3>
+                    <div class="rating">★★★★☆ <span>(18)</span></div>
+                    <p class="desc">Sốt việt quất chua ngọt tự nhiên hòa quyện cốt bánh kem.</p>
+                    <div class="price-box">
+                        <span class="price-current">330.000đ</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="product-detail.html" class="btn-detail">Chi tiết</a>
+                        <button class="btn-add-cart">Thêm vào giỏ</button>
+                    </div>
+                </div>
 
-            <h3>Strawberry Cloud Cake</h3>
-            <p>Bánh kem dâu tây mềm mịn, vị ngọt nhẹ.</p>
-            <p><strong>320.000 VNĐ</strong></p>
+                <!-- CARD 4 -->
+                <div class="product-card">
+                    <button class="btn-wishlist">♥</button>
+                    <div class="img-placeholder">Matcha Love Cake</div>
+                    <h3>Matcha Love</h3>
+                    <div class="rating">★★★★★ <span>(30)</span></div>
+                    <p class="desc">Trà xanh Uji Nhật Bản thanh mát kết hợp đậu đỏ ngọt nhẹ.</p>
+                    <div class="price-box">
+                        <span class="price-current">340.000đ</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="product-detail.html" class="btn-detail">Chi tiết</a>
+                        <button class="btn-add-cart">Thêm vào giỏ</button>
+                    </div>
+                </div>
 
-            <a href="product-detail.html">Xem chi tiết</a>
-            <button>Thêm vào giỏ</button>
-        </div>
+                <!-- CARD 5 -->
+                <div class="product-card">
+                    <span class="badge">-15%</span>
+                    <button class="btn-wishlist">♥</button>
+                    <div class="img-placeholder">Mango Passion Bento</div>
+                    <h3>Mango Bento Cake</h3>
+                    <div class="rating">★★★★☆ <span>(15)</span></div>
+                    <p class="desc">Bánh mini size 10cm vị xoài chanh dây tươi mát thích hợp làm quà.</p>
+                    <div class="price-box">
+                        <span class="price-current">145.000đ</span>
+                        <span class="price-old">170.000đ</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="product-detail.html" class="btn-detail">Chi tiết</a>
+                        <button class="btn-add-cart">Thêm vào giỏ</button>
+                    </div>
+                </div>
 
-        <hr>
+                <!-- CARD 6 -->
+                <div class="product-card">
+                    <button class="btn-wishlist">♥</button>
+                    <div class="img-placeholder">Red Velvet Cupcake</div>
+                    <h3>Red Velvet Set (4)</h3>
+                    <div class="rating">★★★★★ <span>(50)</span></div>
+                    <p class="desc">Set 4 bánh cupcake nhung đỏ kết hợp kem phô mai béo ngậy.</p>
+                    <div class="price-box">
+                        <span class="price-current">160.000đ</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="product-detail.html" class="btn-detail">Chi tiết</a>
+                        <button class="btn-add-cart">Thêm vào giỏ</button>
+                    </div>
+                </div>
 
-        <div>
-            <img src="assets/images/cake2.jpg"
-                 alt="Chocolate Cake"
-                 width="250">
+                <!-- CARD 7 -->
+                <div class="product-card">
+                    <span class="badge best-seller">Bán Chạy</span>
+                    <button class="btn-wishlist">♥</button>
+                    <div class="img-placeholder">Tiramisu Classic</div>
+                    <h3>Tiramisu Classic</h3>
+                    <div class="rating">★★★★★ <span>(65)</span></div>
+                    <p class="desc">Hương vị cà phê Espresso thơm lừng cùng phô mai Mascapone.</p>
+                    <div class="price-box">
+                        <span class="price-current">290.000đ</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="product-detail.html" class="btn-detail">Chi tiết</a>
+                        <button class="btn-add-cart">Thêm vào giỏ</button>
+                    </div>
+                </div>
 
-            <h3>Chocolate Dream Cake</h3>
-            <p>Bánh chocolate dành cho những tín đồ yêu vị đậm đà.</p>
-            <p><strong>350.000 VNĐ</strong></p>
+                <!-- CARD 8 -->
+                <div class="product-card">
+                    <span class="badge new">Mới</span>
+                    <button class="btn-wishlist">♥</button>
+                    <div class="img-placeholder">Fruit Tart Box</div>
+                    <h3>Peach & Fruit Tart</h3>
+                    <div class="rating">★★★★☆ <span>(9)</span></div>
+                    <p class="desc">Đế tart giòn rụm phủ đầy trái cây tươi theo mùa ngọt thanh.</p>
+                    <div class="price-box">
+                        <span class="price-current">220.000đ</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="product-detail.html" class="btn-detail">Chi tiết</a>
+                        <button class="btn-add-cart">Thêm vào giỏ</button>
+                    </div>
+                </div>
 
-            <a href="product-detail.html">Xem chi tiết</a>
-            <button>Thêm vào giỏ</button>
-        </div>
+            </div>
 
-        <hr>
+            <!-- PHÂN TRANG -->
+            <div class="pagination">
+                <button class="active">1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>&raquo;</button>
+            </div>
+        </main>
 
-        <div>
-            <img src="assets/images/cake3.jpg"
-                 alt="Blueberry Cake"
-                 width="250">
+    </div>
 
-            <h3>Blueberry Memory Cake</h3>
-            <p>Bánh việt quất với hương vị thanh nhẹ.</p>
-            <p><strong>330.000 VNĐ</strong></p>
-
-            <a href="product-detail.html">Xem chi tiết</a>
-            <button>Thêm vào giỏ</button>
-        </div>
-
-        <hr>
-
-        <div>
-            <img src="assets/images/cake4.jpg"
-                 alt="Matcha Cake"
-                 width="250">
-
-            <h3>Matcha Love Cake</h3>
-            <p>Bánh matcha thơm nhẹ, phù hợp làm quà tặng.</p>
-            <p><strong>340.000 VNĐ</strong></p>
-
-            <a href="product-detail.html">Xem chi tiết</a>
-            <button>Thêm vào giỏ</button>
-        </div>
-
-    </section>
-
-</main>
-
-<hr>
-
-<footer>
-    <p>© 2026 Memori Cake. All rights reserved.</p>
-</footer>
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Memori Cake. All rights reserved.</p>
+    </footer>
 
 </body>
 </html>
