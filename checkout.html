@@ -1,170 +1,1232 @@
 <!DOCTYPE html>
+
 <html lang="vi">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Thanh toán | Memori Cake</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #fffaf8;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            background-color: #ffffff;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            padding: 15px 27px 17px;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .logo-area h1 {
+            margin: 0;
+            color: #a9535e;
+            font-size: 26px;
+        }
+
+        .slogan {
+            margin: 3px 0 0;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .account-area {
+            padding-top: 4px;
+            font-size: 14px;
+        }
+
+        .account-area a {
+            color: #333;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        nav {
+            margin-top: 15px;
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            margin-right: 27px;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #b95f6a;
+        }
+
+
+        /* ================= PHẦN CHÍNH ================= */
+
+        main {
+            width: 1000px;
+            max-width: 94%;
+            margin: 40px auto;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .page-title h2 {
+            margin: 0;
+            color: #934b57;
+            font-size: 30px;
+        }
+
+        .page-title p {
+            margin-top: 6px;
+            color: #888;
+            font-size: 14px;
+        }
+
+
+        /* ================= TIẾN TRÌNH ================= */
+
+        .steps {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            color: #c46b76;
+            font-size: 13px;
+        }
+
+        .step-number {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 1px solid #e5b4bb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 8px;
+            background-color: white;
+        }
+
+        .step.active .step-number {
+            background-color: #c05d69;
+            color: white;
+            border-color: #c05d69;
+        }
+
+        .step-line {
+            width: 55px;
+            height: 1px;
+            background-color: #e2a9b0;
+            margin: 0 12px;
+        }
+
+
+        /* ================= LAYOUT 2 CỘT ================= */
+
+        .checkout-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+
+        /* ================= KHUNG BÊN TRÁI ================= */
+
+        .left-column {
+            background-color: white;
+            border: 1px solid #f1dfe1;
+            border-radius: 10px;
+            padding: 18px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .section-title {
+            background-color: #fff0f2;
+            color: #a44e5b;
+            padding: 10px 12px;
+            border-radius: 7px;
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 13px;
+        }
+
+        .form-section {
+            margin-bottom: 20px;
+        }
+
+
+        /* ================= FORM ================= */
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            margin-bottom: 5px;
+            color: #444;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 9px 11px;
+            font-size: 12px;
+            font-family: Arial, sans-serif;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #d28a94;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+
+        /* ================= PHƯƠNG THỨC THANH TOÁN ================= */
+
+        .payment-list {
+            border: 1px solid #eadfe0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+
+        .payment-option:last-child {
+            border-bottom: none;
+        }
+
+        .payment-option input {
+            margin-right: 12px;
+            accent-color: #c05d69;
+        }
+
+        .payment-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #fff0f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        }
+
+        .payment-text strong {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 3px;
+        }
+
+        .payment-text span {
+            font-size: 11px;
+            color: #999;
+        }
+
+
+        /* ================= QR ================= */
+
+        .qr-box {
+            display: none;
+            margin-top: 10px;
+            padding: 12px;
+            background-color: #fff6f6;
+            border: 1px solid #f1d9dc;
+            border-radius: 9px;
+        }
+
+        .qr-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .qr-image {
+            width: 115px;
+            height: 115px;
+            object-fit: contain;
+            background-color: white;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        .qr-info {
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .qr-info strong {
+            color: #a54f5b;
+        }
+
+
+        /* ================= GHI CHÚ ================= */
+
+        .note-section {
+            margin-top: 5px;
+        }
+
+
+        /* ================= NÚT ================= */
+
+        .confirm-button {
+            width: 100%;
+            border: none;
+            background-color: #bd6570;
+            color: white;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .confirm-button:hover {
+            background-color: #a95460;
+        }
+
+
+        /* ================= BÊN PHẢI ================= */
+
+        .right-column {
+            background-color: white;
+            border: 1px solid #f1dfe1;
+            border-radius: 10px;
+            padding: 8px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .right-title {
+            background-color: #fff0f2;
+            color: #a44e5b;
+            padding: 10px 12px;
+            border-radius: 7px;
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+
+        /* ================= SẢN PHẨM ================= */
+
+        .product-item {
+            display: flex;
+            gap: 10px;
+            padding: 12px 8px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .product-image {
+            width: 62px;
+            height: 62px;
+            background-color: #f9e5e8;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            flex: 1;
+        }
+
+        .product-name {
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .product-detail {
+            color: #888;
+            font-size: 11px;
+            margin-bottom: 7px;
+        }
+
+        .quantity {
+            font-size: 11px;
+            color: #555;
+        }
+
+        .product-price {
+            font-size: 12px;
+            font-weight: bold;
+            color: #bd5966;
+            white-space: nowrap;
+        }
+
+
+        /* ================= TÓM TẮT ================= */
+
+        .summary {
+            margin-top: 14px;
+            padding: 12px;
+            background-color: #fff7f5;
+            border-radius: 8px;
+        }
+
+        .summary-title {
+            color: #a44e5b;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .summary-row.discount span:last-child {
+            color: #bd5966;
+        }
+
+        .total-row {
+            border-top: 1px solid #e6d6d7;
+            padding-top: 12px;
+            margin-top: 5px;
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            color: #a44e5b;
+            font-size: 17px;
+        }
+
+
+        /* ================= MÃ GIẢM GIÁ ================= */
+
+        .coupon {
+            margin-top: 14px;
+            padding: 12px;
+            background-color: #fff7f5;
+            border-radius: 8px;
+        }
+
+        .coupon-title {
+            color: #a44e5b;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .coupon-form {
+            display: flex;
+            gap: 6px;
+        }
+
+        .coupon-form input {
+            flex: 1;
+        }
+
+        .coupon-form button {
+            border: none;
+            background-color: #bd6570;
+            color: white;
+            border-radius: 6px;
+            padding: 0 12px;
+            cursor: pointer;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #999;
+            font-size: 12px;
+            border-top: 1px solid #eee;
+            margin-top: 40px;
+        }
+
+
+        /* ================= ĐIỆN THOẠI ================= */
+
+        @media (max-width: 800px) {
+
+            .checkout-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .account-area {
+                display: none;
+            }
+
+            main {
+                max-width: 92%;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
+
 <header>
-    <h1>🍰 Memori Cake</h1>
+
+    <div class="header-top">
+
+        <div class="logo-area">
+
+            <h1>Memori Cake</h1>
+
+            <p class="slogan">
+                Lưu giữ khoảnh khắc bằng những chiếc bánh ngọt
+            </p>
+
+        </div>
+
+        <div class="account-area">
+
+            <a href="login-register.html">Đăng nhập / Đăng ký</a>
+
+            <a href="cart.html">🛒 Giỏ hàng</a>
+
+        </div>
+
+    </div>
+
 
     <nav>
-        <a href="index.html">Trang chủ</a> |
-        <a href="products.html">Sản phẩm</a> |
-        <a href="cart.html">🛒 Giỏ hàng</a> |
-        <a href="login-register.html">Đăng nhập</a>
+
+        <a href="index.html">Trang chủ</a>
+
+        <a href="products.html">Sản phẩm</a>
+
+        <a href="cart.html">Giỏ hàng</a>
+
+        <a href="contact.html">Liên hệ</a>
+
     </nav>
+
 </header>
 
-<hr>
+
 
 <main>
 
-    <h2>Thanh toán</h2>
 
-    <!-- Thông tin khách hàng -->
-    <section>
-        <h3>1. Thông tin khách hàng</h3>
+    <!-- TIÊU ĐỀ -->
 
-        <form>
+    <div class="page-title">
 
-            <label for="fullname">Họ và tên:</label><br>
-            <input type="text"
-                   id="fullname"
-                   name="fullname"
-                   placeholder="Nguyễn Văn A"
-                   required>
+        <h2>Thanh toán</h2>
 
-            <br><br>
+        <p>Vui lòng điền thông tin để hoàn tất đơn hàng</p>
 
-            <label for="phone">Số điện thoại:</label><br>
-            <input type="tel"
-                   id="phone"
-                   name="phone"
-                   placeholder="09xxxxxxxx"
-                   required>
+    </div>
 
-            <br><br>
 
-            <label for="email">Email:</label><br>
-            <input type="email"
-                   id="email"
-                   name="email"
-                   placeholder="example@gmail.com">
 
-            <br><br>
+    <!-- TIẾN TRÌNH -->
 
-            <label for="address">Địa chỉ nhận hàng:</label><br>
-            <textarea id="address"
-                      name="address"
-                      rows="4"
-                      cols="40"
-                      placeholder="Nhập địa chỉ nhận hàng..."
-                      required></textarea>
+    <div class="steps">
 
-        </form>
-    </section>
+        <div class="step active">
 
-    <hr>
+            <div class="step-number">✓</div>
 
-    <!-- Sản phẩm -->
-    <section>
-        <h3>2. Đơn hàng</h3>
+            <span>Giỏ hàng</span>
 
-        <table border="1" cellpadding="10">
-            <thead>
-                <tr>
-                    <th>Sản phẩm</th>
-                    <th>Size</th>
-                    <th>Số lượng</th>
-                    <th>Đơn giá</th>
-                    <th>Thành tiền</th>
-                </tr>
-            </thead>
+        </div>
 
-            <tbody>
-                <tr>
-                    <td>Strawberry Cloud Cake</td>
-                    <td>M</td>
-                    <td>1</td>
-                    <td>320.000 VNĐ</td>
-                    <td>320.000 VNĐ</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="step-line"></div>
 
-        <p>Phí vận chuyển: <strong>30.000 VNĐ</strong></p>
 
-        <p>
-            <strong>Tổng thanh toán: 350.000 VNĐ</strong>
-        </p>
+        <div class="step active">
 
-    </section>
+            <div class="step-number">2</div>
 
-    <hr>
+            <span>Thông tin giao hàng</span>
 
-    <!-- Phương thức thanh toán -->
-    <section>
+        </div>
 
-        <h3>3. Phương thức thanh toán</h3>
+        <div class="step-line"></div>
 
-        <label>
-            <input type="radio"
-                   name="payment"
-                   value="cod"
-                   checked>
-            Thanh toán khi nhận hàng (COD)
-        </label>
 
-        <br>
+        <div class="step">
 
-        <label>
-            <input type="radio"
-                   name="payment"
-                   value="bank">
-            Chuyển khoản ngân hàng
-        </label>
+            <div class="step-number">3</div>
 
-        <br>
+            <span>Thanh toán</span>
 
-        <label>
-            <input type="radio"
-                   name="payment"
-                   value="momo">
-            Ví điện tử
-        </label>
+        </div>
 
-    </section>
+        <div class="step-line"></div>
 
-    <hr>
 
-    <!-- Ghi chú -->
-    <section>
+        <div class="step">
 
-        <h3>4. Ghi chú đơn hàng</h3>
+            <div class="step-number">4</div>
 
-        <textarea rows="4"
-                  cols="50"
-                  placeholder="Ví dụ: Giao bánh trước 18h..."></textarea>
+            <span>Xác nhận</span>
 
-    </section>
+        </div>
 
-    <br>
+    </div>
 
-    <button type="submit">
-        💳 Xác nhận đặt hàng
-    </button>
+
+
+    <div class="checkout-layout">
+
+
+        <!-- ================= CỘT TRÁI ================= -->
+
+        <div class="left-column">
+
+
+            <!-- THÔNG TIN KHÁCH HÀNG -->
+
+            <section class="form-section">
+
+                <div class="section-title">
+                    Thông tin người nhận
+                </div>
+
+
+                <form>
+
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="fullname">
+                                Họ và tên
+                            </label>
+
+                            <input
+                                type="text"
+                                id="fullname"
+                                name="fullname"
+                                placeholder="Nguyễn Văn A"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="phone">
+                                Số điện thoại
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                placeholder="09xxxxxxxx"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="address">
+                            Địa chỉ giao hàng
+                        </label>
+
+                        <input
+                            type="text"
+                            id="address"
+                            name="address"
+                            placeholder="Số nhà, tên đường, phường/xã, quận/huyện, thành phố"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="district">
+                                Quận / Huyện
+                            </label>
+
+                            <select id="district" name="district">
+
+                                <option value="">
+                                    Chọn quận / huyện
+                                </option>
+
+                                <option>
+                                    Hoàn Kiếm
+                                </option>
+
+                                <option>
+                                    Ba Đình
+                                </option>
+
+                                <option>
+                                    Đống Đa
+                                </option>
+
+                                <option>
+                                    Cầu Giấy
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="date">
+                                Ngày nhận bánh
+                            </label>
+
+                            <input
+                                type="date"
+                                id="date"
+                                name="date"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="time">
+                                Khung giờ nhận
+                            </label>
+
+                            <select id="time" name="time">
+
+                                <option>
+                                    9:00 - 12:00
+                                </option>
+
+                                <option>
+                                    12:00 - 15:00
+                                </option>
+
+                                <option>
+                                    15:00 - 18:00
+                                </option>
+
+                                <option>
+                                    18:00 - 21:00
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="email">
+                                Email nhận hóa đơn
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="example@gmail.com"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                </form>
+
+            </section>
+
+
+
+            <!-- PHƯƠNG THỨC THANH TOÁN -->
+
+            <section class="form-section">
+
+                <div class="section-title">
+                    Phương thức thanh toán
+                </div>
+
+
+                <div class="payment-list">
+
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="bank"
+                            checked
+                            onchange="showQR()"
+                        >
+
+                        <div class="payment-icon">
+                            💳
+                        </div>
+
+                        <div class="payment-text">
+
+                            <strong>
+                                Chuyển khoản ngân hàng
+                            </strong>
+
+                            <span>
+                                Thanh toán qua QR Code hoặc tài khoản ngân hàng
+                            </span>
+
+                        </div>
+
+                    </label>
+
+
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="card"
+                            onchange="showQR()"
+                        >
+
+                        <div class="payment-icon">
+                            💳
+                        </div>
+
+                        <div class="payment-text">
+
+                            <strong>
+                                Thẻ tín dụng / ghi nợ
+                            </strong>
+
+                            <span>
+                                Visa, Mastercard, JCB
+                            </span>
+
+                        </div>
+
+                    </label>
+
+
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="momo"
+                            onchange="showQR()"
+                        >
+
+                        <div class="payment-icon">
+                            💰
+                        </div>
+
+                        <div class="payment-text">
+
+                            <strong>
+                                Ví điện tử
+                            </strong>
+
+                            <span>
+                                MoMo, ZaloPay, VNPay
+                            </span>
+
+                        </div>
+
+                    </label>
+
+
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="cod"
+                            onchange="showQR()"
+                        >
+
+                        <div class="payment-icon">
+                            💵
+                        </div>
+
+                        <div class="payment-text">
+
+                            <strong>
+                                Thanh toán khi nhận hàng
+                            </strong>
+
+                            <span>
+                                COD – chỉ áp dụng nội thành Hà Nội
+                            </span>
+
+                        </div>
+
+                    </label>
+
+
+                </div>
+
+
+
+                <!-- QR -->
+
+                <div class="qr-box" id="qrBox">
+
+                    <div class="qr-content">
+
+                        <img
+                            src="images/qr-thanh-toan.png"
+                            alt="Mã QR thanh toán"
+                            class="qr-image"
+                        >
+
+                        <div class="qr-info">
+
+                            <strong>
+                                Quét mã QR để thanh toán
+                            </strong>
+
+                            <br>
+
+                            Ngân hàng: <strong>MB Bank</strong>
+
+                            <br>
+
+                            Tên TK: <strong>MEMORI CAKE</strong>
+
+                            <br>
+
+                            Số TK: <strong>1234 5678 910</strong>
+
+                            <br>
+
+                            Nội dung: <strong>MEMORI + SĐT</strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- GHI CHÚ -->
+
+            <section class="form-section note-section">
+
+                <div class="section-title">
+                    Ghi chú cho tiệm
+                </div>
+
+                <textarea
+                    rows="3"
+                    placeholder="Ví dụ: Giao trước 16h, ghi lời chúc khi giao,..."
+                ></textarea>
+
+            </section>
+
+
+
+            <!-- NÚT -->
+
+            <button
+                type="button"
+                class="confirm-button"
+            >
+                Xác nhận thông tin
+            </button>
+
+
+        </div>
+
+
+
+        <!-- ================= CỘT PHẢI ================= -->
+
+        <div class="right-column">
+
+
+            <div class="right-title">
+                Đơn hàng của bạn
+            </div>
+
+
+
+            <!-- SẢN PHẨM 1 -->
+
+            <div class="product-item">
+
+                <div class="product-image">
+                    <!-- Có thể thay bằng ảnh bánh thật -->
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-name">
+                        Strawberry Cake
+                    </div>
+
+                    <div class="product-detail">
+                        Size: 16cm | Vị: Dâu
+                    </div>
+
+                    <div class="quantity">
+                        Số lượng: 1
+                    </div>
+
+                </div>
+
+                <div class="product-price">
+                    250.000đ
+                </div>
+
+            </div>
+
+
+
+            <!-- SẢN PHẨM 2 -->
+
+            <div class="product-item">
+
+                <div class="product-image">
+                    <!-- Có thể thay bằng ảnh bánh thật -->
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-name">
+                        Chocolate Cake
+                    </div>
+
+                    <div class="product-detail">
+                        Size: 18cm | Vị: Chocolate
+                    </div>
+
+                    <div class="quantity">
+                        Số lượng: 2
+                    </div>
+
+                </div>
+
+                <div class="product-price">
+                    560.000đ
+                </div>
+
+            </div>
+
+
+
+            <!-- TÓM TẮT -->
+
+            <div class="summary">
+
+                <div class="summary-title">
+                    Tóm tắt đơn hàng
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Tạm tính
+                    </span>
+
+                    <span>
+                        810.000đ
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Phí giao hàng
+                    </span>
+
+                    <span>
+                        30.000đ
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row discount">
+
+                    <span>
+                        Giảm giá
+                    </span>
+
+                    <span>
+                        -90.000đ
+                    </span>
+
+                </div>
+
+
+                <div class="total-row">
+
+                    <span>
+                        Tổng cộng
+                    </span>
+
+                    <span>
+                        750.000đ
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MÃ GIẢM GIÁ -->
+
+            <div class="coupon">
+
+                <div class="coupon-title">
+                    Mã giảm giá
+                </div>
+
+
+                <div class="coupon-form">
+
+                    <input
+                        type="text"
+                        placeholder="Nhập mã giảm giá..."
+                    >
+
+                    <button type="button">
+                        Áp dụng
+                    </button>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
 
 </main>
 
-<hr>
+
 
 <footer>
-    <p>© 2026 Memori Cake. All rights reserved.</p>
+
+    © 2026 Memori Cake. All rights reserved.
+
 </footer>
 
+
+
+<script>
+
+    function showQR() {
+
+        var payment = document.querySelector(
+            'input[name="payment"]:checked'
+        ).value;
+
+        var qrBox = document.getElementById("qrBox");
+
+
+        if (payment === "bank") {
+
+            qrBox.style.display = "block";
+
+        } else {
+
+            qrBox.style.display = "none";
+
+        }
+
+    }
+
+
+    // Hiển thị QR ngay khi mở trang
+    showQR();
+
+</script>
+
+
 </body>
+
 </html>
