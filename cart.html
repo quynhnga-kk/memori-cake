@@ -204,6 +204,82 @@
             background-color: #fdf0f2;
         }
 
+        /* ===== DELIVERY METHOD ===== */
+        .cart-left {
+            flex: 1;
+        }
+
+        .delivery-method {
+            margin-bottom: 25px;
+        }
+
+        .delivery-method h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .delivery-options {
+            display: flex;
+            gap: 15px;
+        }
+
+        .delivery-option {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            background-color: white;
+        }
+
+        .delivery-option:hover {
+            border-color: #b86b77;
+            background-color: #fdf0f2;
+        }
+
+        .delivery-option input {
+            accent-color: #b86b77;
+        }
+
+        .delivery-option strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .delivery-option span {
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* ===== NOTE ===== */
+        .shop-note {
+            margin-bottom: 25px;
+        }
+
+        .shop-note label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .shop-note textarea {
+            width: 100%;
+            min-height: 90px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            resize: vertical;
+            font-family: Arial, sans-serif;
+        }
+
+        .shop-note textarea:focus {
+            outline: none;
+            border-color: #b86b77;
+        }
+
         .summary {
             width: 350px;
             background-color: #fff7f5;
@@ -281,6 +357,10 @@
             }
 
             .cart-bottom {
+                flex-direction: column;
+            }
+
+            .delivery-options {
                 flex-direction: column;
             }
 
@@ -437,10 +517,42 @@
             <!-- CART BOTTOM -->
             <div class="cart-bottom">
 
-                <a href="products.html" class="continue-shopping">
-                    ← Tiếp tục mua hàng
-                </a>
+                <div class="cart-left">
 
+                    <!-- DELIVERY METHOD -->
+                    <div class="delivery-method">
+                        <h3>Phương thức nhận hàng</h3>
+
+                        <div class="delivery-options">
+                            <label class="delivery-option">
+                                <input type="radio" name="delivery" value="delivery" checked>
+                                <div>
+                                    <strong>Giao tận nơi</strong>
+                                    <span>Nội thành Hà Nội · 30.000đ</span>
+                                </div>
+                            </label>
+
+                            <label class="delivery-option">
+                                <input type="radio" name="delivery" value="pickup">
+                                <div>
+                                    <strong>Đến lấy tại tiệm</strong>
+                                    <span>Miễn phí</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- NOTE -->
+                    <div class="shop-note">
+                        <label for="shop-note">Ghi chú cho tiệm</label>
+                        <textarea id="shop-note" name="shop-note" placeholder="Thêm ghi chú (tùy chọn)..."></textarea>
+                    </div>
+
+                    <a href="products.html" class="continue-shopping">
+                        ← Tiếp tục mua hàng
+                    </a>
+
+                </div>
 
                 <!-- SUMMARY -->
                 <div class="summary">
@@ -460,6 +572,11 @@
                     <div class="summary-row total">
                         <span>Tổng cộng</span>
                         <span>840.000đ</span>
+                    </div>
+                    <!-- MÃ GIẢM GIÁ -->
+                    <div class="coupon">
+                    <input type="text" placeholder="Nhập mã giảm giá">
+                    <button type="button">Áp dụng</button>
                     </div>
 
                     <a href="checkout.html" class="checkout-btn">
