@@ -4,222 +4,492 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memori Cake - Lưu giữ khoảnh khắc bằng vị ngọt</title>
+    <style>
+        /* ==================== RESET & CHUẨN HÓA ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #faf5f5;
+            color: #4a3e3d;
+            line-height: 1.6;
+        }
+
+        /* ==================== HEADER ==================== */
+        header {
+            background-color: #ffffff;
+            padding: 25px 8%;
+            border-bottom: 1px solid #f0e6e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            height: 65px;
+            width: auto;
+            display: block;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #4a3e3d;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover, 
+        nav a[aria-current="page"] {
+            color: #bd6b78;
+            font-weight: 600;
+        }
+
+        /* ==================== MAIN & SECTIONS ==================== */
+        main {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        section {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 4px 20px rgba(189, 107, 120, 0.05);
+        }
+
+        h2 {
+            color: #9c4856;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Nút bấm chung */
+        .btn {
+            display: inline-block;
+            background-color: #bd6b78;
+            color: #ffffff;
+            padding: 10px 22px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: background 0.2s;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            background-color: #9c4856;
+        }
+
+        /* ==================== BANNER SECTION ==================== */
+        .banner-section {
+            text-align: center;
+        }
+
+        .banner-placeholder {
+            width: 100%;
+            height: 280px;
+            background-color: #f5e1e4;
+            color: #a8727d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            margin: 20px 0;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .banner-section p {
+            color: #6e5d5c;
+            max-width: 700px;
+            margin: 5px auto;
+        }
+
+        /* ==================== DANH MỤC BÁNH ==================== */
+        .category-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .category-list li a {
+            display: block;
+            background-color: #fff8f9;
+            border: 1px solid #f2dcdc;
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #8c4350;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .category-list li a:hover {
+            background-color: #fdf2f4;
+            border-color: #bd6b78;
+        }
+
+        /* ==================== SẢN PHẨM NỔI BẬT ==================== */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        article.product-card {
+            border: 1px solid #f0e6e6;
+            border-radius: 12px;
+            padding: 20px;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .img-placeholder {
+            width: 100%;
+            height: 180px;
+            background-color: #f5e1e4;
+            color: #a8727d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        article.product-card h3 {
+            font-size: 18px;
+            color: #2c2223;
+            margin-bottom: 8px;
+        }
+
+        article.product-card p.desc {
+            font-size: 13px;
+            color: #7a6868;
+            margin-bottom: 12px;
+            flex-grow: 1;
+        }
+
+        article.product-card p.price {
+            font-size: 16px;
+            font-weight: 700;
+            color: #9c4856;
+            margin-bottom: 10px;
+        }
+
+        /* ==================== LÝ DO CHỌN ==================== */
+        .features-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .features-list li {
+            background: #fff8f9;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        .features-list strong {
+            display: block;
+            color: #8c4350;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        /* ==================== CTA ==================== */
+        .cta-section {
+            text-align: center;
+            background-color: #fff8f9;
+            border: 1px dashed #e0b1b8;
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            background-color: #ffffff;
+            border-top: 1px solid #f0e6e6;
+            margin-top: 60px;
+            padding-top: 40px;
+            color: #6e5d5c;
+            font-size: 14px;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-col h3 {
+            color: #bd6b78;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .footer-col h4 {
+            color: #9c4856;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .footer-col p {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col a {
+            text-decoration: none;
+            color: #6e5d5c;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: #bd6b78;
+        }
+
+        .social {
+            margin-top: 12px;
+        }
+
+        .social a {
+            color: #bd6b78;
+            font-weight: 500;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #f0e6e6;
+            text-align: center;
+            padding: 18px 20px;
+            font-size: 13px;
+            color: #8f7a7a;
+        }
+    </style>
 </head>
 
 <body>
 
     <!-- HEADER -->
     <header>
-        <h1>Memori Cake</h1>
-        <p>Lưu giữ khoảnh khắc bằng những chiếc bánh ngọt</p>
+        <div class="brand">
+            <a href="index.html">
+                <img src="images/Images/logo_memoricake.png" alt="Memori Cake Logo" class="logo">
+            </a>
+        </div>
 
-        <!-- MENU ĐIỀU HƯỚNG -->
         <nav>
             <ul>
-                <li>
-                    <a href="index.html" aria-current="page">Trang chủ</a>
-                </li>
-                <li>
-                    <a href="products.html">Sản phẩm</a>
-                </li>
-                <li>
-                    <a href="cart.html">Giỏ hàng</a>
-                </li>
-                <li>
-                    <a href="login.html">Đăng nhập / Đăng ký</a>
-                </li>
-                <li>
-                    <a href="contact.html">Liên hệ</a>
-                </li>
+                <li><a href="index.html" aria-current="page">Trang chủ</a></li>
+                <li><a href="products.html">Sản phẩm</a></li>
+                <li><a href="cart.html">Giỏ hàng</a></li>
+                <li><a href="login.html">Đăng nhập / Đăng ký</a></li>
+                <li><a href="contact.html">Liên hệ</a></li>
             </ul>
         </nav>
     </header>
-
 
     <!-- NỘI DUNG CHÍNH -->
     <main>
 
         <!-- BANNER -->
-        <section>
+        <section class="banner-section">
             <h2>Mỗi chiếc bánh, một kỷ niệm</h2>
 
-            <img 
-                src="assets/images/banner.jpg" 
-                alt="Banner giới thiệu Memori Cake"
-                width="1200"
-            >
+            <div>
+                 <img src="images/Images/banner-ngang.png"
+                 alt="Banner memoricake"
+                 width="860">
+            </div>
 
-            <p>
-                Memori Cake mang đến những chiếc bánh ngọt dành cho
-                những khoảnh khắc đáng nhớ trong cuộc sống.
-            </p>
+            <p>Memori Cake mang đến những chiếc bánh ngọt dành cho những khoảnh khắc đáng nhớ trong cuộc sống.</p>
+            <p>Từ sinh nhật, kỷ niệm, lễ tốt nghiệp đến những món quà nhỏ dành cho người thân và bạn bè.</p>
 
-            <p>
-                Từ sinh nhật, kỷ niệm, lễ tốt nghiệp đến những món quà
-                nhỏ dành cho người thân và bạn bè.
-            </p>
-
-            <a href="products.html">Khám phá sản phẩm</a>
+            <a href="products.html" class="btn">Khám phá sản phẩm</a>
         </section>
-
 
         <!-- GIỚI THIỆU -->
         <section>
             <h2>Về Memori Cake</h2>
-
-            <p>
-                "Memori" được lấy cảm hứng từ "Memory" - những kỷ niệm
-                và khoảnh khắc đáng nhớ trong cuộc sống.
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 10px;">
+                "Memori" được lấy cảm hứng từ "Memory" - những kỷ niệm và khoảnh khắc đáng nhớ trong cuộc sống.
             </p>
-
-            <p>
-                Chúng tôi tin rằng một chiếc bánh không chỉ đơn giản
-                là một món ăn mà còn có thể trở thành món quà gửi gắm
-                tình cảm và lưu giữ những khoảnh khắc đặc biệt.
+            <p style="text-align: center; max-width: 800px; margin: 0 auto;">
+                Chúng tôi tin rằng một chiếc bánh không chỉ đơn giản là một món ăn mà còn có thể trở thành món quà gửi gắm tình cảm và lưu giữ những khoảnh khắc đặc biệt.
             </p>
         </section>
-
 
         <!-- DANH MỤC SẢN PHẨM -->
         <section>
             <h2>Danh mục bánh</h2>
-
-            <ul>
-                <li>
-                    <a href="products.html">Bánh sinh nhật</a>
-                </li>
-                <li>
-                    <a href="products.html">Bánh mini</a>
-                </li>
-                <li>
-                    <a href="products.html">Bánh theo mùa</a>
-                </li>
-                <li>
-                    <a href="products.html">Bánh làm quà</a>
-                </li>
+            <ul class="category-list">
+                <li><a href="products.html">Bánh sinh nhật</a></li>
+                <li><a href="products.html">Bánh mini</a></li>
+                <li><a href="products.html">Bánh theo mùa</a></li>
+                <li><a href="products.html">Bánh làm quà</a></li>
             </ul>
         </section>
-
 
         <!-- SẢN PHẨM NỔI BẬT -->
         <section>
             <h2>Sản phẩm nổi bật</h2>
 
-            <article>
-                <img 
-                    src="assets/images/cake-01.jpg" 
-                    alt="Bánh kem dâu tây"
-                    width="250"
-                >
+            <div class="products-grid">
+                <article class="product-card">
+                    <div class="banhdau">
+                     <img src="images/Images/bánh dâu.jpg"
+                      alt="Bánh dâu tây"
+                      width="250">   </div>
+                    <h3>Bánh kem dâu tây</h3>
+                    <p class="desc">Bánh kem mềm kết hợp cùng dâu tây tươi, phù hợp cho sinh nhật và các dịp kỷ niệm.</p>
+                    <p class="price">Giá: 250.000 VNĐ</p>
+                    <a href="product-detail.html" class="btn">Xem chi tiết</a>
+                </article>
 
-                <h3>Bánh kem dâu tây</h3>
+                <article class="product-card">
+                    <div class="banhchocolate">
+                        <img src="images/Images/bánh socola.jpg"
+                      alt="Bánh Chocolate"
+                      width="300">  
+                    </div>
+                    <h3>Bánh chocolate</h3>
+                    <p class="desc">Hương vị chocolate đậm đà, phù hợp với những người yêu thích vị ngọt đặc trưng.</p>
+                    <p class="price">Giá: 280.000 VNĐ</p>
+                    <a href="product-detail.html" class="btn">Xem chi tiết</a>
+                </article>
 
-                <p>
-                    Bánh kem mềm kết hợp cùng dâu tây tươi,
-                    phù hợp cho sinh nhật và các dịp kỷ niệm.
-                </p>
-
-                <p>Giá: 250.000 VNĐ</p>
-
-                <a href="product-detail.html">Xem chi tiết</a>
-            </article>
-
-
-            <article>
-                <img 
-                    src="assets/images/cake-02.jpg" 
-                    alt="Bánh chocolate"
-                    width="250"
-                >
-
-                <h3>Bánh chocolate</h3>
-
-                <p>
-                    Hương vị chocolate đậm đà, phù hợp với
-                    những người yêu thích vị ngọt đặc trưng.
-                </p>
-
-                <p>Giá: 280.000 VNĐ</p>
-
-                <a href="product-detail.html">Xem chi tiết</a>
-            </article>
-
-
-            <article>
-                <img 
-                    src="assets/images/cake-03.jpg" 
-                    alt="Bánh kem matcha"
-                    width="250"
-                >
-
-                <h3>Bánh kem matcha</h3>
-
-                <p>
-                    Vị matcha nhẹ nhàng kết hợp với lớp kem
-                    mềm mịn, mang đến trải nghiệm mới mẻ.
-                </p>
-
-                <p>Giá: 270.000 VNĐ</p>
-
-                <a href="product-detail.html">Xem chi tiết</a>
-            </article>
-
+                <article class="product-card">
+                    <div class="banhmatcha">
+                        <img src="images/Images/bánh matcha.jpg"
+                      alt="Bánh Matcha"
+                      width="225">  
+                    </div>
+                    <h3>Bánh matcha</h3>
+                    <p class="desc">Vị matcha thanh nhẹ, kết hợp kem tươi béo nhẹ, thích hợp cho những ai yêu thích hương vị dịu dàng.</p>
+                    <p class="price">Giá: 270.000 VNĐ</p>
+                    <a href="product-detail.html" class="btn">Xem chi tiết</a>
+                </article>
+            </div>
         </section>
 
-
-        <!-- ĐIỂM NỔI BẬT -->
+        <!-- LÝ DO CHỌN -->
         <section>
             <h2>Tại sao chọn Memori Cake?</h2>
-
-            <ul>
+            <ul class="features-list">
                 <li>
-                    <strong>Sản phẩm đa dạng:</strong>
-                    Nhiều loại bánh phù hợp với các dịp khác nhau.
+                    <strong>Nguyên liệu tươi ngon</strong>
+                    Chúng tôi chỉ sử dụng nguyên liệu chất lượng cao, đảm bảo hương vị thơm ngon và an toàn.
                 </li>
-
                 <li>
-                    <strong>Cá nhân hóa:</strong>
-                    Lựa chọn kích thước và hương vị theo nhu cầu.
+                    <strong>Thiết kế tinh tế</strong>
+                    Mỗi chiếc bánh được trang trí tỉ mỉ, mang đậm dấu ấn cá nhân và câu chuyện của bạn.
                 </li>
-
                 <li>
-                    <strong>Đặt hàng trực tuyến:</strong>
-                    Dễ dàng lựa chọn sản phẩm và đặt bánh online.
-                </li>
-
-                <li>
-                    <strong>Thanh toán tiện lợi:</strong>
-                    Hỗ trợ nhiều phương thức thanh toán trực tuyến.
+                    <strong>Giao hàng đúng hẹn</strong>
+                    Cam kết giao bánh tươi ngon đúng thời gian bạn mong muốn.
                 </li>
             </ul>
         </section>
 
-
         <!-- CTA -->
-        <section>
-            <h2>Sẵn sàng tạo nên một kỷ niệm ngọt ngào?</h2>
-
-            <p>
-                Hãy lựa chọn chiếc bánh phù hợp cho khoảnh khắc
-                đặc biệt của bạn.
-            </p>
-
-            <a href="products.html">Mua bánh ngay</a>
+        <section class="cta-section">
+            <h2>Sẵn sàng lưu giữ khoảnh khắc?</h2>
+            <p>Hãy để Memori Cake đồng hành cùng những ngày đặc biệt của bạn.</p>
+            <a href="products.html" class="btn">Đặt bánh ngay</a>
         </section>
 
     </main>
 
-
     <!-- FOOTER -->
     <footer>
-        <h2>Memori Cake</h2>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Memori Cake</h3>
+                <p>Lưu giữ khoảnh khắc bằng những chiếc bánh ngọt.</p>
+                <p>Mỗi chiếc bánh là một kỷ niệm đáng nhớ.</p>
+            </div>
 
-        <p>Lưu giữ khoảnh khắc bằng vị ngọt.</p>
+            <div class="footer-col">
+                <h4>Liên kết nhanh</h4>
+                <ul>
+                    <li><a href="index1.html">Trang chủ</a></li>
+                    <li><a href="products.html">Sản phẩm</a></li>
+                    <li><a href="cart.html">Giỏ hàng</a></li>
+                    <li><a href="contact.html">Liên hệ</a></li>
+                </ul>
+            </div>
 
-        <p>Email: memori.cake@example.com</p>
-        <p>Điện thoại: 0123 456 789</p>
+            <div class="footer-col">
+                <h4>Hỗ trợ</h4>
+                <ul>
+                    <li><a href="#">Chính sách giao hàng</a></li>
+                    <li><a href="#">Hướng dẫn đặt bánh</a></li>
+                    <li><a href="#">Chính sách đổi trả</a></li>
+                    <li><a href="login.html">Tài khoản</a></li>
+                </ul>
+            </div>
 
-        <p>&copy; 2026 Memori Cake. All rights reserved.</p>
+            <div class="footer-col">
+                <h4>Liên hệ</h4>
+                <p>📍 120 Chùa Bộc, Phường Kim Liên, TP.Hà Nội</p>
+                <p>📞 0901 234 567</p>
+                <p>✉️ tiembanh@memoricake.vn</p>
+                <div class="social">
+                    <a href="https://web.facebook.com/profile.php?id=61584459725669">Facebook</a> · 
+                    <a href="#">Instagram</a> · 
+                    <a href="#">TikTok</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Memori Cake. All rights reserved.</p>
+        </div>
     </footer>
 
 </body>
