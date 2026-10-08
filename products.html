@@ -254,18 +254,21 @@
         }
 
         .img-placeholder {
-            width: 100%;
-            height: 180px;
-            background-color: #f5e1e4;
-            color: #a8727d;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-            margin-bottom: 12px;
-            font-size: 13px;
-            font-weight: 500;
-        }
+  width: 100%;
+  height: 180px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  overflow: hidden;          /* cắt phần thừa của ảnh */
+  background-color: #f5e1e4; /* vẫn giữ màu nền nếu ảnh load chậm */
+}
+
+.img-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;         /* ảnh vừa khung, không méo */
+  object-position: center;
+  display: block;
+}
 
         .product-card h3 {
             font-size: 16px;
@@ -463,7 +466,7 @@
             <a href="index.html">Trang chủ</a>
             <a href="products.html">Sản phẩm</a>
             <a href="contact.html">Liên hệ</a>
-            <a href="login-register.html">Đăng nhập</a>
+            <a href="login.html">Đăng nhập</a>
             <a href="cart.html">🛒 Giỏ hàng <span class="cart-badge">2</span></a>
         </nav>
     </header>
@@ -540,7 +543,8 @@
                 <div class="product-card">
                     <span class="badge">-10%</span>
                     <button class="btn-wishlist">♥</button>
-                    <div class="img-placeholder">Strawberry Cloud Cake</div>
+                    <div class="img-placeholder"> <img src="images/Images/strawberrycloud.jpg"
+                        alt="Strawberry Cloud Cake"> </div>
                     <h3>Strawberry Cloud</h3>
                     <div class="rating">★★★★★ <span>(24)</span></div>
                     <p class="desc">Bánh kem dâu tây mềm mịn, lớp kem tươi ít ngọt dịu nhẹ.</p>
@@ -558,7 +562,8 @@
                 <div class="product-card">
                     <span class="badge best-seller">Bán Chạy</span>
                     <button class="btn-wishlist">♥</button>
-                    <div class="img-placeholder">Chocolate Dream Cake</div>
+                    <div class="img-placeholder"> <img src="images/Images/chocolate dream.jpg"
+                        alt="Chocolate Dream Cake" ></div>
                     <h3>Chocolate Dream</h3>
                     <div class="rating">★★★★★ <span>(42)</span></div>
                     <p class="desc">Bánh chocolate Bỉ đậm đà kết hợp lớp ganache béo ngậy.</p>
@@ -575,7 +580,8 @@
                 <div class="product-card">
                     <span class="badge new">Mới</span>
                     <button class="btn-wishlist">♥</button>
-                    <div class="img-placeholder">Blueberry Memory Cake</div>
+                    <div class="img-placeholder"> <img src="images/Images/blueberry memory.jpg"
+                        alt="Blueberry Memory Cake"> </div>
                     <h3>Blueberry Memory</h3>
                     <div class="rating">★★★★☆ <span>(18)</span></div>
                     <p class="desc">Sốt việt quất chua ngọt tự nhiên hòa quyện cốt bánh kem.</p>
@@ -591,7 +597,8 @@
                 <!-- CARD 4 -->
                 <div class="product-card">
                     <button class="btn-wishlist">♥</button>
-                    <div class="img-placeholder">Matcha Love Cake</div>
+                    <div class="img-placeholder"> <img src="images/Images/matcha love.jpg"
+                        alt="Matcha Love Cake" > </div>
                     <h3>Matcha Love</h3>
                     <div class="rating">★★★★★ <span>(30)</span></div>
                     <p class="desc">Trà xanh Uji Nhật Bản thanh mát kết hợp đậu đỏ ngọt nhẹ.</p>
@@ -608,7 +615,8 @@
                 <div class="product-card">
                     <span class="badge">-15%</span>
                     <button class="btn-wishlist">♥</button>
-                    <div class="img-placeholder">Mango Passion Bento</div>
+                    <div class="img-placeholder"> <img src="images/Images/mango bento.jpg"
+                        alt="Mango Passion Bento"> </div>
                     <h3>Mango Bento Cake</h3>
                     <div class="rating">★★★★☆ <span>(15)</span></div>
                     <p class="desc">Bánh mini size 10cm vị xoài chanh dây tươi mát thích hợp làm quà.</p>
@@ -625,7 +633,8 @@
                 <!-- CARD 6 -->
                 <div class="product-card">
                     <button class="btn-wishlist">♥</button>
-                    <div class="img-placeholder">Red Velvet Cupcake</div>
+                    <div class="img-placeholder"> <img src="images/Images/redvelvet.jpg"
+                        alt="Red Velvet Cupcake"> </div>
                     <h3>Red Velvet Set (4)</h3>
                     <div class="rating">★★★★★ <span>(50)</span></div>
                     <p class="desc">Set 4 bánh cupcake nhung đỏ kết hợp kem phô mai béo ngậy.</p>
@@ -642,7 +651,8 @@
                 <div class="product-card">
                     <span class="badge best-seller">Bán Chạy</span>
                     <button class="btn-wishlist">♥</button>
-                    <div class="img-placeholder">Tiramisu Classic</div>
+                    <div class="img-placeholder"> <img src="images/Images/tiramisu.jpg"
+                        alt="Tiramisu Classic"></div>
                     <h3>Tiramisu Classic</h3>
                     <div class="rating">★★★★★ <span>(65)</span></div>
                     <p class="desc">Hương vị cà phê Espresso thơm lừng cùng phô mai Mascapone.</p>
@@ -659,8 +669,9 @@
                 <div class="product-card">
                     <span class="badge new">Mới</span>
                     <button class="btn-wishlist">♥</button>
-                    <div class="img-placeholder">Fruit Tart Box</div>
-                    <h3>Peach & Fruit Tart</h3>
+                    <div class="img-placeholder"><img src="images/Images/fruit tart.jpg"
+                        alt="Fruit Tart Box"></div>
+                    <h3> Fruit Tart</h3>
                     <div class="rating">★★★★☆ <span>(9)</span></div>
                     <p class="desc">Đế tart giòn rụm phủ đầy trái cây tươi theo mùa ngọt thanh.</p>
                     <div class="price-box">
