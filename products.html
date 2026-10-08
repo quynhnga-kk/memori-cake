@@ -374,15 +374,82 @@
             border-color: #bd6b78;
         }
 
-        /* FOOTER */
+         /* ==================== CTA ==================== */
+        .cta-section {
+            text-align: center;
+            background-color: #fff8f9;
+            border: 1px dashed #e0b1b8;
+        }
+
+        /* ==================== FOOTER ==================== */
         footer {
             background-color: #ffffff;
-            text-align: center;
-            padding: 30px 20px;
             border-top: 1px solid #f0e6e6;
             margin-top: 60px;
-            color: #8f7a7a;
+            padding-top: 40px;
+            color: #6e5d5c;
             font-size: 14px;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-col h3 {
+            color: #bd6b78;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .footer-col h4 {
+            color: #9c4856;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .footer-col p {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col a {
+            text-decoration: none;
+            color: #6e5d5c;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: #bd6b78;
+        }
+
+        .social {
+            margin-top: 12px;
+        }
+
+        .social a {
+            color: #bd6b78;
+            font-weight: 500;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #f0e6e6;
+            text-align: center;
+            padding: 18px 20px;
+            font-size: 13px;
+            color: #8f7a7a;
         }
     </style>
 </head>
@@ -620,7 +687,49 @@
 
     <!-- FOOTER -->
     <footer>
-        <p>© 2026 Memori Cake. All rights reserved.</p>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Memori Cake</h3>
+                <p>Lưu giữ khoảnh khắc bằng những chiếc bánh ngọt.</p>
+                <p>Mỗi chiếc bánh là một kỷ niệm đáng nhớ.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Liên kết nhanh</h4>
+                <ul>
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="products.html">Sản phẩm</a></li>
+                    <li><a href="cart.html">Giỏ hàng</a></li>
+                    <li><a href="contact.html">Liên hệ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Hỗ trợ</h4>
+                <ul>
+                    <li><a href="#">Chính sách giao hàng</a></li>
+                    <li><a href="#">Hướng dẫn đặt bánh</a></li>
+                    <li><a href="#">Chính sách đổi trả</a></li>
+                    <li><a href="login.html">Tài khoản</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Liên hệ</h4>
+                <p>📍 120 Chùa Bộc, Phường Kim Liên, TP.Hà Nội</p>
+                <p>📞 0901 234 567</p>
+                <p>✉️ tiembanh@memoricake.vn</p>
+                <div class="social">
+                    <a href="https://web.facebook.com/profile.php?id=61584459725669">Facebook</a> · 
+                    <a href="#">Instagram</a> · 
+                    <a href="#">TikTok</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Memori Cake. All rights reserved.</p>
+        </div>
     </footer>
 
 </body>

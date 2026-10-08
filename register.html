@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng nhập | Memori Cake</title>
+    <title>Đăng ký | Memori Cake</title>
     <style>
         * {
             margin: 0;
@@ -17,16 +17,17 @@
             align-items: center;
             justify-content: center;
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            /* ===== ẢNH NỀN ===== */
+            /* ===== ẢNH NỀN (tên khác với trang đăng nhập) ===== */
             background: url('images/Images/nền\ đăng\ nhập.jpg') center/cover no-repeat fixed;
             position: relative;
         }
+
         .login-card {
             position: relative;
             z-index: 1;
-            width: 900px;
+            width: 920px;
             max-width: 95%;
-            height: 540px;
+            min-height: 580px;
             background: #fff;
             border-radius: 20px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
@@ -34,31 +35,30 @@
             overflow: hidden;
         }
 
-        /* ===== CỘT TRÁI - FORM ĐĂNG NHẬP ===== */
+        /* ===== CỘT TRÁI - FORM ĐĂNG KÝ ===== */
         .left-panel {
-            flex: 1;
-            padding: 48px 40px;
+            flex: 1.15;
+            padding: 40px 36px;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
         .left-panel h1 {
-            font-size: 32px;
+            font-size: 30px;
             font-weight: 700;
             color: #1a1a1a;
-            margin-bottom: 32px;
+            margin-bottom: 28px;
             text-align: center;
         }
 
         .form-group {
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
 
-        .form-group input[type="email"],
-        .form-group input[type="password"] {
+        .form-group input {
             width: 100%;
-            padding: 14px 18px;
+            padding: 13px 16px;
             border: none;
             border-radius: 12px;
             background: #f0f0f0;
@@ -77,50 +77,26 @@
         }
 
         .password-wrapper input {
-            padding-right: 48px;
+            padding-right: 46px;
         }
 
         .toggle-password {
             position: absolute;
-            right: 16px;
+            right: 14px;
             top: 50%;
             transform: translateY(-50%);
             background: none;
             border: none;
             cursor: pointer;
             color: #888;
-            font-size: 18px;
+            font-size: 17px;
             padding: 0;
         }
 
-        .options-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 12px 0 24px;
-            font-size: 14px;
-        }
-
-        .options-row label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #444;
-            cursor: pointer;
-        }
-
-        .options-row a {
-            color: #666;
-            text-decoration: none;
-        }
-
-        .options-row a:hover {
-            text-decoration: underline;
-        }
-
-        .btn-login {
+        .btn-register {
             width: 100%;
             padding: 14px;
+            margin-top: 10px;
             background: #9b1c1c;
             color: white;
             border: none;
@@ -131,101 +107,79 @@
             transition: background 0.2s;
         }
 
-        .btn-login:hover {
+        .btn-register:hover {
             background: #7f1616;
         }
 
-        .social-section {
-            margin-top: 28px;
+        .login-link {
             text-align: center;
-        }
-
-        .social-section p {
+            margin-top: 20px;
             font-size: 14px;
             color: #555;
-            margin-bottom: 16px;
         }
 
-        .social-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
+        .login-link a {
+            color: #9b1c1c;
+            font-weight: 600;
+            text-decoration: none;
         }
 
-        .social-btn {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            border: 1px solid #ddd;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            font-weight: 700;
-            color: #333;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .social-btn:hover {
-            background: #f5f5f5;
-            border-color: #bbb;
+        .login-link a:hover {
+            text-decoration: underline;
         }
 
         /* ===== CỘT PHẢI - PROMO ===== */
         .right-panel {
-            flex: 1;
-            /* ===== ẢNH NỀN CỘT PHẢI ===== */
-            background: linear-gradient(135deg, #ff81e4 0%, #c02b62 50%, #e73cbc 100%);
-            background: url('images/Images/ảnh\ login.png') center/cover; 
+            flex: 0.85;
+            /* ===== ẢNH NỀN CỘT PHẢI (tên khác) ===== */
+            background: url('images/Images/ảnh\ login.png') center/cover;
             color: #700751;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 40px 32px;
+            padding: 40px 28px;
             position: relative;
         }
 
         .right-panel h2 {
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 8px;
+            line-height: 1.25;
+            margin-bottom: 12px;
             color: #720531;
             position: relative;
         }
 
         .right-panel h2 span {
             display: block;
-            font-size: 42px;
+            font-size: 38px;
             letter-spacing: 1px;
         }
 
         .right-panel p {
             font-size: 15px;
-            margin: 20px 0 32px;
+            margin: 18px 0 28px;
             opacity: 0.9;
-            max-width: 260px;
+            max-width: 240px;
             line-height: 1.5;
         }
 
-        .btn-register {
-            padding: 12px 40px;
+        .btn-login-side {
+            padding: 12px 36px;
             background: transparent;
             border: 2px solid #68042f;
             color: #63023a;
             border-radius: 30px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.25s;
             position: relative;
         }
 
-        .btn-register:hover {
+        .btn-login-side:hover {
             background: white;
             color: #8b1a1a;
         }
@@ -240,19 +194,19 @@
 
             .left-panel,
             .right-panel {
-                padding: 36px 28px;
+                padding: 32px 24px;
             }
 
             .right-panel {
-                order: -1; /* đưa phần promo lên trên trên mobile */
+                order: -1;
             }
 
             .right-panel h2 {
-                font-size: 28px;
+                font-size: 26px;
             }
 
             .right-panel h2 span {
-                font-size: 32px;
+                font-size: 30px;
             }
         }
     </style>
@@ -260,66 +214,77 @@
 <body>
 
     <div class="login-card">
-        <!-- Cột trái: Form đăng nhập -->
+        <!-- Cột trái: Form đăng ký -->
         <div class="left-panel">
-            <h1>Đăng nhập</h1>
+            <h1>Đăng ký tài khoản</h1>
 
             <form action="#" method="post">
                 <div class="form-group">
+                    <input type="text" 
+                           name="name" 
+                           placeholder="Họ và tên" 
+                           required>
+                </div>
+
+                <div class="form-group">
                     <input type="email" 
                            name="email" 
-                           placeholder="example@email.com" 
+                           placeholder="Email" 
                            required>
+                </div>
+
+                <div class="form-group">
+                    <input type="tel" 
+                           name="phone" 
+                           placeholder="Số điện thoại (09xxxxxxxx)">
                 </div>
 
                 <div class="form-group password-wrapper">
                     <input type="password" 
                            id="password" 
                            name="password" 
-                           placeholder="Nhập mật khẩu" 
+                           placeholder="Mật khẩu" 
                            required>
-                    <button type="button" class="toggle-password" onclick="togglePassword()">
+                    <button type="button" class="toggle-password" onclick="togglePassword('password', this)">
                         👁
                     </button>
                 </div>
 
-                <div class="options-row">
-                    <label>
-                        <input type="checkbox" name="remember">
-                        Lưu mật khẩu
-                    </label>
-                    <a href="#">Quên mật khẩu?</a>
+                <div class="form-group password-wrapper">
+                    <input type="password" 
+                           id="confirm-password" 
+                           name="confirm-password" 
+                           placeholder="Xác nhận mật khẩu" 
+                           required>
+                    <button type="button" class="toggle-password" onclick="togglePassword('confirm-password', this)">
+                        👁
+                    </button>
                 </div>
 
-                <button type="submit" class="btn-login">Đăng Nhập</button>
+                <button type="submit" class="btn-register">Đăng Ký</button>
             </form>
 
-            <div class="social-section">
-                <p>hoặc sử dụng tài khoản của bạn</p>
-                <div class="social-buttons">
-                    <button type="button" class="social-btn" title="Facebook">f</button>
-                    <button type="button" class="social-btn" title="Google">G</button>
-                </div>
+            <div class="login-link">
+                Đã có tài khoản? <a href="login.html">Đăng nhập ngay</a>
             </div>
         </div>
 
-        <!-- Cột phải: Promo đăng ký -->
+        <!-- Cột phải: Promo -->
         <div class="right-panel">
             <h2>
-                Bắt Đầu Cùng
+                Chào mừng đến
                 <span>Memori Cake</span>
             </h2>
-            <p>Nếu bạn chưa có tài khoản<br>đăng ký ngay nào</p>
-            <button type="button" class="btn-register" onclick="location.href='register.html'">
-                Đăng Ký
+            <p>Tạo tài khoản để trải nghiệm những sản phẩm tuyệt vời nhất</p>
+            <button type="button" class="btn-login-side" onclick="location.href='login.html'">
+                Đăng Nhập
             </button>
         </div>
     </div>
 
     <script>
-        function togglePassword() {
-            const input = document.getElementById('password');
-            const btn = document.querySelector('.toggle-password');
+        function togglePassword(id, btn) {
+            const input = document.getElementById(id);
             if (input.type === 'password') {
                 input.type = 'text';
                 btn.textContent = '🙈';

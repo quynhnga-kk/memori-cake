@@ -16,6 +16,9 @@
         body {
             background-color: #fffaf7;
             color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         /* ===== HEADER ===== */
@@ -70,7 +73,8 @@
             font-weight: 500;
         }
 
-        nav a:hover {
+        nav a:hover,
+        nav a.active {
             color: #b86b77;
         }
 
@@ -79,6 +83,7 @@
             width: 90%;
             max-width: 1100px;
             margin: 50px auto;
+            flex: 1;
         }
 
         .page-title {
@@ -106,7 +111,7 @@
 
         .cart-header {
             display: grid;
-            grid-template-columns: 3fr 1fr 1fr 1fr;
+            grid-template-columns: 3fr 1fr 1fr 1fr 0.6fr;
             padding: 15px;
             background-color: #fdf0f2;
             color: #8f4f5b;
@@ -116,7 +121,7 @@
 
         .cart-item {
             display: grid;
-            grid-template-columns: 3fr 1fr 1fr 1fr;
+            grid-template-columns: 3fr 1fr 1fr 1fr 0.6fr;
             align-items: center;
             padding: 20px 15px;
             border-bottom: 1px solid #eee;
@@ -138,6 +143,14 @@
             justify-content: center;
             color: #999;
             font-size: 12px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .product-name {
@@ -163,10 +176,13 @@
             background-color: white;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
+            line-height: 1;
         }
 
         .quantity button:hover {
             background-color: #fdf0f2;
+            border-color: #b86b77;
         }
 
         .price {
@@ -174,13 +190,46 @@
             font-weight: bold;
         }
 
-        .remove {
+        .remove-btn {
+            background: none;
+            border: none;
             color: #999;
-            text-decoration: none;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 4px 8px;
+            border-radius: 4px;
         }
 
-        .remove:hover {
+        .remove-btn:hover {
             color: #d9534f;
+            background: #fff0f0;
+        }
+
+        /* Empty cart */
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+            color: #888;
+        }
+
+        .empty-cart h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: #8f4f5b;
+        }
+
+        .empty-cart a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background: #b86b77;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .empty-cart a:hover {
+            background: #8f4f5b;
         }
 
         /* ===== CART BOTTOM ===== */
@@ -204,7 +253,6 @@
             background-color: #fdf0f2;
         }
 
-        /* ===== DELIVERY METHOD ===== */
         .cart-left {
             flex: 1;
         }
@@ -233,9 +281,11 @@
             border-radius: 8px;
             cursor: pointer;
             background-color: white;
+            transition: 0.2s;
         }
 
-        .delivery-option:hover {
+        .delivery-option:hover,
+        .delivery-option.active {
             border-color: #b86b77;
             background-color: #fdf0f2;
         }
@@ -254,7 +304,6 @@
             font-size: 14px;
         }
 
-        /* ===== NOTE ===== */
         .shop-note {
             margin-bottom: 25px;
         }
@@ -285,6 +334,7 @@
             background-color: #fff7f5;
             padding: 25px;
             border-radius: 10px;
+            height: fit-content;
         }
 
         .summary h3 {
@@ -306,31 +356,131 @@
             color: #b86b77;
         }
 
+        .coupon {
+            display: flex;
+            gap: 8px;
+            margin: 18px 0;
+        }
+
+        .coupon input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            outline: none;
+        }
+
+        .coupon input:focus {
+            border-color: #b86b77;
+        }
+
+        .coupon button {
+            padding: 10px 16px;
+            background: #b86b77;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .coupon button:hover {
+            background: #8f4f5b;
+        }
+
         .checkout-btn {
             display: block;
             width: 100%;
             text-align: center;
-            margin-top: 20px;
+            margin-top: 10px;
             padding: 14px;
             background-color: #b86b77;
             color: white;
             text-decoration: none;
             border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
         }
 
         .checkout-btn:hover {
             background-color: #8f4f5b;
         }
 
-        /* ===== FOOTER ===== */
-        footer {
-            margin-top: 70px;
-            padding: 30px 60px;
-            background-color: #8f4f5b;
-            color: white;
-            text-align: center;
+        .checkout-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
         }
 
+        /* ==================== FOOTER ==================== */
+        footer {
+            background-color: #ffffff;
+            border-top: 1px solid #f0e6e6;
+            margin-top: 60px;
+            padding-top: 40px;
+            color: #6e5d5c;
+            font-size: 14px;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-col h3 {
+            color: #bd6b78;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .footer-col h4 {
+            color: #9c4856;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .footer-col p {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col a {
+            text-decoration: none;
+            color: #6e5d5c;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: #bd6b78;
+        }
+
+        .social {
+            margin-top: 12px;
+        }
+
+        .social a {
+            color: #bd6b78;
+            font-weight: 500;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #f0e6e6;
+            text-align: center;
+            padding: 18px 20px;
+            font-size: 13px;
+            color: #8f7a7a;
+        }
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             header {
@@ -353,7 +503,7 @@
 
             .cart-item {
                 grid-template-columns: 1fr;
-                gap: 15px;
+                gap: 12px;
             }
 
             .cart-bottom {
@@ -367,6 +517,15 @@
             .summary {
                 width: 100%;
             }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            footer {
+                padding: 30px 20px 20px;
+            }
         }
     </style>
 </head>
@@ -375,165 +534,73 @@
 
     <!-- ===== HEADER ===== -->
     <header>
-
         <div class="header-top">
-
             <div>
                 <div class="logo">Memori Cake</div>
-                <div class="slogan">
-                    Lưu giữ khoảnh khắc bằng những chiếc bánh ngọt
-                </div>
+                <div class="slogan">Lưu giữ khoảnh khắc bằng những chiếc bánh ngọt</div>
             </div>
-
             <div class="header-links">
                 <a href="login.html">Đăng nhập / Đăng ký</a>
-                <a href="cart.html">🛒 Giỏ hàng</a>
+                <a href="cart.html">🛒 Giỏ hàng (<span id="cart-count">0</span>)</a>
             </div>
-
         </div>
 
-        <!-- MENU -->
         <nav>
             <ul>
-                <li>
-                    <a href="index.html">Trang chủ</a>
-                </li>
-
-                <li>
-                    <a href="products.html">Sản phẩm</a>
-                </li>
-
-                <li>
-                    <a href="cart.html">Giỏ hàng</a>
-                </li>
-
-                <li>
-                    <a href="contact.html">Liên hệ</a>
-                </li>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="products.html">Sản phẩm</a></li>
+                <li><a href="cart.html" class="active">Giỏ hàng</a></li>
+                <li><a href="contact.html">Liên hệ</a></li>
             </ul>
         </nav>
-
     </header>
 
 
-    <!-- ===== MAIN CONTENT ===== -->
+    <!-- ===== MAIN ===== -->
     <main>
-
         <div class="page-title">
             <h2>Giỏ hàng của bạn</h2>
             <p>Kiểm tra lại những chiếc bánh bạn đã lựa chọn</p>
         </div>
 
-
         <div class="cart-container">
 
-            <!-- CART HEADER -->
-            <div class="cart-header">
-
+            <!-- Header cột -->
+            <div class="cart-header" id="cart-header">
                 <div>Sản phẩm</div>
                 <div>Đơn giá</div>
                 <div>Số lượng</div>
                 <div>Thành tiền</div>
-
+                <div></div>
             </div>
 
+            <!-- Danh sách sản phẩm (JS sẽ render) -->
+            <div id="cart-items"></div>
 
-            <!-- CART ITEM 1 -->
-            <div class="cart-item">
-
-                <div class="product-info">
-
-                    <div class="product-image">
-                        Ảnh bánh
-                    </div>
-
-                    <div>
-                        <div class="product-name">
-                            Strawberry Cake
-                        </div>
-
-                        <div class="product-detail">
-                            Size: 16cm | Vị: Dâu
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="price">
-                    250.000đ
-                </div>
-
-                <div class="quantity">
-                    <button>-</button>
-                    <span>1</span>
-                    <button>+</button>
-                </div>
-
-                <div class="price">
-                    250.000đ
-                </div>
-
+            <!-- Trạng thái trống -->
+            <div class="empty-cart" id="empty-cart" style="display: none;">
+                <h3>Giỏ hàng đang trống</h3>
+                <p>Hãy chọn những chiếc bánh yêu thích của bạn nhé!</p>
+                <a href="products.html">← Xem sản phẩm</a>
             </div>
 
-
-            <!-- CART ITEM 2 -->
-            <div class="cart-item">
-
-                <div class="product-info">
-
-                    <div class="product-image">
-                        Ảnh bánh
-                    </div>
-
-                    <div>
-                        <div class="product-name">
-                            Chocolate Cake
-                        </div>
-
-                        <div class="product-detail">
-                            Size: 18cm | Vị: Chocolate
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="price">
-                    280.000đ
-                </div>
-
-                <div class="quantity">
-                    <button>-</button>
-                    <span>2</span>
-                    <button>+</button>
-                </div>
-
-                <div class="price">
-                    560.000đ
-                </div>
-
-            </div>
-
-
-            <!-- CART BOTTOM -->
-            <div class="cart-bottom">
-
+            <!-- Phần dưới -->
+            <div class="cart-bottom" id="cart-bottom">
                 <div class="cart-left">
-
-                    <!-- DELIVERY METHOD -->
+                    <!-- Phương thức nhận hàng -->
                     <div class="delivery-method">
                         <h3>Phương thức nhận hàng</h3>
-
                         <div class="delivery-options">
-                            <label class="delivery-option">
-                                <input type="radio" name="delivery" value="delivery" checked>
+                            <label class="delivery-option active" id="opt-delivery">
+                                <input type="radio" name="delivery" value="delivery" checked onchange="updateShipping()">
                                 <div>
                                     <strong>Giao tận nơi</strong>
                                     <span>Nội thành Hà Nội · 30.000đ</span>
                                 </div>
                             </label>
 
-                            <label class="delivery-option">
-                                <input type="radio" name="delivery" value="pickup">
+                            <label class="delivery-option" id="opt-pickup">
+                                <input type="radio" name="delivery" value="pickup" onchange="updateShipping()">
                                 <div>
                                     <strong>Đến lấy tại tiệm</strong>
                                     <span>Miễn phí</span>
@@ -542,68 +609,302 @@
                         </div>
                     </div>
 
-                    <!-- NOTE -->
+                    <!-- Ghi chú -->
                     <div class="shop-note">
                         <label for="shop-note">Ghi chú cho tiệm</label>
-                        <textarea id="shop-note" name="shop-note" placeholder="Thêm ghi chú (tùy chọn)..."></textarea>
+                        <textarea id="shop-note" placeholder="Thêm ghi chú (tùy chọn)..."></textarea>
                     </div>
 
-                    <a href="products.html" class="continue-shopping">
-                        ← Tiếp tục mua hàng
-                    </a>
-
+                    <a href="products.html" class="continue-shopping">← Tiếp tục mua hàng</a>
                 </div>
 
-                <!-- SUMMARY -->
+                <!-- Tóm tắt -->
                 <div class="summary">
-
                     <h3>Tóm tắt đơn hàng</h3>
 
                     <div class="summary-row">
                         <span>Tạm tính</span>
-                        <span>810.000đ</span>
+                        <span id="subtotal">0đ</span>
                     </div>
 
                     <div class="summary-row">
                         <span>Phí giao hàng</span>
-                        <span>30.000đ</span>
+                        <span id="shipping">30.000đ</span>
                     </div>
 
                     <div class="summary-row total">
                         <span>Tổng cộng</span>
-                        <span>840.000đ</span>
+                        <span id="total">0đ</span>
                     </div>
-                    <!-- MÃ GIẢM GIÁ -->
+
                     <div class="coupon">
-                    <input type="text" placeholder="Nhập mã giảm giá">
-                    <button type="button">Áp dụng</button>
+                        <input type="text" id="coupon-code" placeholder="Nhập mã giảm giá">
+                        <button type="button" onclick="applyCoupon()">Áp dụng</button>
                     </div>
 
-                    <a href="checkout.html" class="checkout-btn">
+                    <button class="checkout-btn" id="checkout-btn" onclick="goCheckout()">
                         Tiến hành thanh toán
-                    </a>
-
+                    </button>
                 </div>
-
+            </div>
+        </div>
+    </main>
+   <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Memori Cake</h3>
+                <p>Lưu giữ khoảnh khắc bằng những chiếc bánh ngọt.</p>
+                <p>Mỗi chiếc bánh là một kỷ niệm đáng nhớ.</p>
             </div>
 
+            <div class="footer-col">
+                <h4>Liên kết nhanh</h4>
+                <ul>
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="products.html">Sản phẩm</a></li>
+                    <li><a href="cart.html">Giỏ hàng</a></li>
+                    <li><a href="contact.html">Liên hệ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Hỗ trợ</h4>
+                <ul>
+                    <li><a href="#">Chính sách giao hàng</a></li>
+                    <li><a href="#">Hướng dẫn đặt bánh</a></li>
+                    <li><a href="#">Chính sách đổi trả</a></li>
+                    <li><a href="login.html">Tài khoản</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Liên hệ</h4>
+                <p>📍 120 Chùa Bộc, Phường Kim Liên, TP.Hà Nội</p>
+                <p>📞 0901 234 567</p>
+                <p>✉️ tiembanh@memoricake.vn</p>
+                <div class="social">
+                    <a href="https://web.facebook.com/profile.php?id=61584459725669">Facebook</a> · 
+                    <a href="#">Instagram</a> · 
+                    <a href="#">TikTok</a>
+                </div>
+            </div>
         </div>
 
-    </main>
-
-
-    <!-- ===== FOOTER ===== -->
-    <footer>
-
-        <p>
-            © 2026 Memori Cake
-        </p>
-
-        <p>
-            Lưu giữ khoảnh khắc bằng những chiếc bánh ngọt.
-        </p>
-
+        <div class="footer-bottom">
+            <p>© 2026 Memori Cake. All rights reserved.</p>
+        </div>
     </footer>
 
+    
+    <script>
+        // ==================== CART LOGIC ====================
+        // Dữ liệu mẫu (khi chưa có gì trong localStorage)
+        const sampleProducts = [
+            {
+                id: 1,
+                name: "Strawberry Cake",
+                detail: "Size: 16cm | Vị: Dâu",
+                price: 250000,
+                quantity: 1,
+                image: ""          // để trống hoặc điền link ảnh
+            },
+            {
+                id: 2,
+                name: "Chocolate Cake",
+                detail: "Size: 18cm | Vị: Chocolate",
+                price: 280000,
+                quantity: 2,
+                image: ""
+            }
+        ];
+
+        // Lấy giỏ hàng từ localStorage
+        function getCart() {
+            const cart = localStorage.getItem("memoriCart");
+            if (cart) {
+                return JSON.parse(cart);
+            }
+            // Nếu chưa có thì dùng dữ liệu mẫu + lưu lại
+            localStorage.setItem("memoriCart", JSON.stringify(sampleProducts));
+            return sampleProducts;
+        }
+
+        // Lưu giỏ hàng
+        function saveCart(cart) {
+            localStorage.setItem("memoriCart", JSON.stringify(cart));
+        }
+
+        // Format tiền
+        function formatPrice(num) {
+            return num.toLocaleString("vi-VN") + "đ";
+        }
+
+        // Render lại toàn bộ giỏ hàng
+        function renderCart() {
+            const cart = getCart();
+            const container = document.getElementById("cart-items");
+            const emptyEl = document.getElementById("empty-cart");
+            const headerEl = document.getElementById("cart-header");
+            const bottomEl = document.getElementById("cart-bottom");
+            const countEl = document.getElementById("cart-count");
+
+            // Cập nhật số lượng trên header
+            const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
+            countEl.textContent = totalQty;
+
+            if (cart.length === 0) {
+                container.innerHTML = "";
+                emptyEl.style.display = "block";
+                headerEl.style.display = "none";
+                bottomEl.style.display = "none";
+                return;
+            }
+
+            emptyEl.style.display = "none";
+            headerEl.style.display = "grid";
+            bottomEl.style.display = "flex";
+
+            container.innerHTML = cart.map(item => `
+                <div class="cart-item" data-id="${item.id}">
+                    <div class="product-info">
+                        <div class="product-image">
+                            ${item.image 
+                                ? `<img src="${item.image}" alt="${item.name}">` 
+                                : "Ảnh bánh"}
+                        </div>
+                        <div>
+                            <div class="product-name">${item.name}</div>
+                            <div class="product-detail">${item.detail}</div>
+                        </div>
+                    </div>
+
+                    <div class="price">${formatPrice(item.price)}</div>
+
+                    <div class="quantity">
+                        <button onclick="changeQty(${item.id}, -1)">−</button>
+                        <span>${item.quantity}</span>
+                        <button onclick="changeQty(${item.id}, 1)">+</button>
+                    </div>
+
+                    <div class="price">${formatPrice(item.price * item.quantity)}</div>
+
+                    <button class="remove-btn" onclick="removeItem(${item.id})">Xóa</button>
+                </div>
+            `).join("");
+
+            updateSummary();
+        }
+
+        // Thay đổi số lượng
+        function changeQty(id, delta) {
+            let cart = getCart();
+            const item = cart.find(p => p.id === id);
+            if (!item) return;
+
+            item.quantity += delta;
+            if (item.quantity < 1) item.quantity = 1;
+
+            saveCart(cart);
+            renderCart();
+        }
+
+        // Xóa sản phẩm
+        function removeItem(id) {
+            let cart = getCart();
+            cart = cart.filter(p => p.id !== id);
+            saveCart(cart);
+            renderCart();
+        }
+
+        // Tính tổng + phí ship
+        let shippingFee = 30000;
+
+        function updateShipping() {
+            const delivery = document.querySelector('input[name="delivery"]:checked').value;
+            shippingFee = delivery === "delivery" ? 30000 : 0;
+
+            // Active class
+            document.getElementById("opt-delivery").classList.toggle("active", delivery === "delivery");
+            document.getElementById("opt-pickup").classList.toggle("active", delivery === "pickup");
+
+            updateSummary();
+        }
+
+        function updateSummary() {
+            const cart = getCart();
+            const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+            const total = subtotal + shippingFee;
+
+            document.getElementById("subtotal").textContent = formatPrice(subtotal);
+            document.getElementById("shipping").textContent = shippingFee === 0 ? "Miễn phí" : formatPrice(shippingFee);
+            document.getElementById("total").textContent = formatPrice(total);
+
+            // Disable nút thanh toán nếu giỏ trống
+            document.getElementById("checkout-btn").disabled = cart.length === 0;
+        }
+
+        // Mã giảm giá (demo)
+        function applyCoupon() {
+            const code = document.getElementById("coupon-code").value.trim().toUpperCase();
+            if (code === "MEMORI10") {
+                alert("Áp dụng thành công mã giảm 10%!");
+                // Bạn có thể mở rộng logic giảm giá ở đây
+            } else if (code) {
+                alert("Mã giảm giá không hợp lệ!");
+            }
+        }
+
+        // Chuyển sang trang thanh toán
+        function goCheckout() {
+            const cart = getCart();
+            if (cart.length === 0) return;
+
+            // Lưu thêm ghi chú + phương thức nhận hàng
+            const note = document.getElementById("shop-note").value;
+            const delivery = document.querySelector('input[name="delivery"]:checked').value;
+
+            localStorage.setItem("memoriCheckout", JSON.stringify({
+                note,
+                delivery,
+                shippingFee
+            }));
+
+            window.location.href = "checkout.html";
+        }
+
+        // ==================== HÀM DÙNG CHO TRANG SẢN PHẨM ====================
+        // Gọi hàm này từ products.html khi bấm "Thêm vào giỏ"
+        function addToCart(product) {
+            /*
+                product = {
+                    id: số,
+                    name: "Tên bánh",
+                    detail: "Size: ... | Vị: ...",
+                    price: 250000,
+                    image: "đường dẫn ảnh (có thể để trống)"
+                }
+            */
+            let cart = getCart();
+            const existing = cart.find(p => p.id === product.id);
+
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            saveCart(cart);
+            // Nếu đang ở trang giỏ hàng thì render lại
+            if (document.getElementById("cart-items")) {
+                renderCart();
+            }
+        }
+
+        // Khởi tạo khi load trang
+        document.addEventListener("DOMContentLoaded", () => {
+            renderCart();
+        });
+    </script>
 </body>
 </html>

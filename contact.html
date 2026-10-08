@@ -4,105 +4,394 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liên hệ | Memori Cake</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fffafb;
+            color: #4a3f3e;
+            line-height: 1.6;
+        }
+
+        /* ==================== HEADER ==================== */
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #f0e6e6;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            color: #bd6b78;
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #6e5d5c;
+            margin: 0 10px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #bd6b78;
+        }
+
+        /* ==================== MAIN ==================== */
+        main {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        main h2 {
+            text-align: center;
+            color: #bd6b78;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #6e5d5c;
+            margin-bottom: 40px;
+        }
+
+        section {
+            background-color: #ffffff;
+            border: 1px solid #f0e6e6;
+            border-radius: 12px;
+            padding: 28px 30px;
+            margin-bottom: 28px;
+            box-shadow: 0 2px 10px rgba(189, 107, 120, 0.06);
+        }
+
+        section h3 {
+            color: #9c4856;
+            font-size: 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px dashed #e0b1b8;
+            padding-bottom: 10px;
+        }
+
+        .info-item {
+            margin-bottom: 12px;
+            color: #6e5d5c;
+            font-size: 15px;
+        }
+
+        /* ==================== FORM ==================== */
+        form label {
+            display: block;
+            margin-bottom: 6px;
+            color: #9c4856;
+            font-weight: 500;
+        }
+
+        form input,
+        form select,
+        form textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #e0b1b8;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #4a3f3e;
+            background-color: #fff8f9;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            margin-bottom: 18px;
+        }
+
+        form input:focus,
+        form select:focus,
+        form textarea:focus {
+            outline: none;
+            border-color: #bd6b78;
+            box-shadow: 0 0 0 3px rgba(189, 107, 120, 0.15);
+            background-color: #ffffff;
+        }
+
+        form textarea {
+            resize: vertical;
+            min-height: 130px;
+        }
+
+        form button {
+            background-color: #bd6b78;
+            color: #ffffff;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        form button:hover {
+            background-color: #9c4856;
+            transform: translateY(-1px);
+        }
+
+        /* ==================== HƯỚNG DẪN ĐẶT BÁNH ==================== */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 18px;
+            margin-top: 10px;
+        }
+
+        .step {
+            background: #fff8f9;
+            border: 1px dashed #e0b1b8;
+            border-radius: 10px;
+            padding: 18px 14px;
+            text-align: center;
+        }
+
+        .step-number {
+            width: 36px;
+            height: 36px;
+            background: #bd6b78;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .step p {
+            font-size: 14px;
+            color: #6e5d5c;
+        }
+
+        /* ==================== FAQ ==================== */
+        .faq-item {
+            border-bottom: 1px solid #f0e6e6;
+            padding: 14px 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: #9c4856;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 15px;
+        }
+
+        .faq-question::after {
+            content: "+";
+            font-size: 20px;
+            color: #bd6b78;
+            transition: transform 0.2s;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: "−";
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: #6e5d5c;
+            font-size: 14px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding-top: 10px;
+        }
+
+        /* ==================== MAP ==================== */
+        .map-container {
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #f0e6e6;
+            margin-top: 10px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 320px;
+            border: 0;
+            display: block;
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            background-color: #ffffff;
+            border-top: 1px solid #f0e6e6;
+            margin-top: 60px;
+            padding-top: 40px;
+            color: #6e5d5c;
+            font-size: 14px;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-col h3 {
+            color: #bd6b78;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .footer-col h4 {
+            color: #9c4856;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .footer-col p {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col a {
+            text-decoration: none;
+            color: #6e5d5c;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: #bd6b78;
+        }
+
+        .social {
+            margin-top: 12px;
+        }
+
+        .social a {
+            color: #bd6b78;
+            font-weight: 500;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #f0e6e6;
+            text-align: center;
+            padding: 18px 20px;
+            font-size: 13px;
+            color: #8f7a7a;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 24px;
+            }
+            nav a {
+                display: inline-block;
+                margin: 4px 6px;
+            }
+            section {
+                padding: 20px;
+            }
+            .steps {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
 <header>
     <h1>🍰 Memori Cake</h1>
-
     <nav>
         <a href="index.html">Trang chủ</a> |
         <a href="products.html">Sản phẩm</a> |
         <a href="contact.html">Liên hệ</a> |
-        <a href="login-register.html">Đăng nhập</a> |
+        <a href="login.html">Đăng nhập</a> |
         <a href="cart.html">🛒 Giỏ hàng</a>
     </nav>
 </header>
 
-<hr>
-
 <main>
-
     <h2>Liên hệ với Memori Cake</h2>
+    <p class="subtitle">Có câu hỏi hoặc cần hỗ trợ? Hãy gửi tin nhắn cho chúng mình nhé!</p>
 
-    <p>
-        Có câu hỏi hoặc cần hỗ trợ? Hãy gửi tin nhắn cho chúng mình.
-    </p>
-
+    <!-- 1. Thông tin cửa hàng -->
     <section>
-
         <h3>Thông tin cửa hàng</h3>
-
-        <p>
-            📍 Địa chỉ: Học viện Ngân hàng, Hà Nội
-        </p>
-
-        <p>
-            ☎️ Hotline: 0988 123 456
-        </p>
-
-        <p>
-            📧 Email: memoricake@gmail.com
-        </p>
-
-        <p>
-            🕐 Thời gian hoạt động: 08:00 - 22:00
-        </p>
-
+        <div class="info-item">📍 Địa chỉ: 120 Chùa Bộc, Phường Kim Liên, TP. Hà Nội</div>
+        <div class="info-item">📞 Hotline: 0901 234 567</div>
+        <div class="info-item">✉️ Email: tiembanh@memoricake.vn</div>
+        <div class="info-item">🕐 Thời gian hoạt động: 08:00 – 22:00 (Thứ 2 – Chủ nhật)</div>
+        <div class="info-item">📅 Nghỉ các ngày lễ lớn theo quy định</div>
     </section>
 
-    <hr>
-
+    <!-- 2. Hướng dẫn đặt bánh -->
     <section>
+        <h3>Hướng dẫn đặt bánh nhanh</h3>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <p>Chọn bánh yêu thích trên trang Sản phẩm</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <p>Thêm vào giỏ hàng & kiểm tra số lượng</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <p>Điền thông tin giao hàng & ghi chú</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <p>Chọn hình thức thanh toán</p>
+            </div>
+            <div class="step">
+                <div class="step-number">5</div>
+                <p>Nhận bánh đúng hẹn tại nhà hoặc cửa hàng</p>
+            </div>
+        </div>
+    </section>
 
+    <!-- 3. Form liên hệ -->
+    <section>
         <h3>Gửi tin nhắn cho chúng tôi</h3>
+        <form action="#" method="post">
+            <label for="name">Họ và tên:</label>
+            <input type="text" id="name" name="name" placeholder="Nhập họ và tên của bạn" required>
 
-        <form>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
 
-            <label for="name">
-                Họ và tên:
-            </label>
-            <br>
+            <label for="phone">Số điện thoại:</label>
+            <input type="tel" id="phone" name="phone" placeholder="09xxxxxxxx">
 
-            <input type="text"
-                   id="name"
-                   name="name"
-                   placeholder="Nhập họ và tên"
-                   required>
-
-            <br><br>
-
-            <label for="email">
-                Email:
-            </label>
-            <br>
-
-            <input type="email"
-                   id="email"
-                   name="email"
-                   placeholder="example@gmail.com"
-                   required>
-
-            <br><br>
-
-            <label for="phone">
-                Số điện thoại:
-            </label>
-            <br>
-
-            <input type="tel"
-                   id="phone"
-                   name="phone"
-                   placeholder="09xxxxxxxx">
-
-            <br><br>
-
-            <label for="subject">
-                Chủ đề:
-            </label>
-            <br>
-
+            <label for="subject">Chủ đề:</label>
             <select id="subject" name="subject">
                 <option value="product">Hỏi về sản phẩm</option>
                 <option value="order">Hỏi về đơn hàng</option>
@@ -110,37 +399,124 @@
                 <option value="other">Khác</option>
             </select>
 
-            <br><br>
+            <label for="message">Nội dung:</label>
+            <textarea id="message" name="message" rows="5" placeholder="Nhập nội dung cần hỗ trợ..." required></textarea>
 
-            <label for="message">
-                Nội dung:
-            </label>
-            <br>
-
-            <textarea id="message"
-                      name="message"
-                      rows="6"
-                      cols="50"
-                      placeholder="Nhập nội dung cần hỗ trợ..."
-                      required></textarea>
-
-            <br><br>
-
-            <button type="submit">
-                📩 Gửi liên hệ
-            </button>
-
+            <button type="submit">📩 Gửi liên hệ</button>
         </form>
-
     </section>
 
+    <!-- 4. FAQ - Câu hỏi thường gặp -->
+    <section>
+        <h3>Câu hỏi thường gặp (FAQ)</h3>
+
+        <div class="faq-item">
+            <div class="faq-question">Đặt bánh trước bao lâu thì nhận được?</div>
+            <div class="faq-answer">
+                Với bánh có sẵn: giao trong ngày hoặc ngày hôm sau. Với bánh custom theo yêu cầu: vui lòng đặt trước ít nhất 2–3 ngày để chúng mình chuẩn bị tốt nhất.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Cửa hàng có giao hàng tận nơi không?</div>
+            <div class="faq-answer">
+                Có ạ! Memori Cake hỗ trợ giao hàng nội thành Hà Nội. Phí ship từ 20.000đ – 40.000đ tùy khoảng cách. Đơn từ 500.000đ được miễn phí ship trong bán kính 5km.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Có nhận đặt bánh theo yêu cầu riêng không?</div>
+            <div class="faq-answer">
+                Có! Bạn có thể gửi hình ảnh hoặc mô tả ý tưởng (chữ viết, màu sắc, chủ đề…). Chúng mình sẽ tư vấn và làm theo yêu cầu của bạn.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Thanh toán bằng những hình thức nào?</div>
+            <div class="faq-answer">
+                Hiện tại hỗ trợ: Tiền mặt khi nhận hàng (COD), chuyển khoản ngân hàng, và thanh toán qua ví MoMo / ZaloPay.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Tôi có thể hủy hoặc đổi đơn hàng không?</div>
+            <div class="faq-answer">
+                Bạn có thể hủy/đổi đơn trước khi bánh được bắt đầu làm (thường trước 12–18 giờ). Vui lòng liên hệ hotline càng sớm càng tốt để được hỗ trợ.
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Bản đồ Google Maps -->
+    <section>
+        <h3>Bản đồ chỉ đường đến cửa hàng</h3>
+        <p style="margin-bottom: 12px; color: #6e5d5c; font-size: 14px;">
+            📍 120 Chùa Bộc, Phường Kim Liên, TP. Hà Nội
+        </p>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d14897.783808370627!2d105.81554282857293!3d21.01483512073566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e6!4m3!3m2!1d21.022786!2d105.8171263!4m5!1s0x3135ac81c52e2e41%3A0x3fc10bf2673e8be2!2zMTIwIFAuIENow7lhIELhu5ljLCBLaW0gTGnDqm4sIEjDoCBO4buZaSwgVmlldG5hbQ!3m2!1d21.0091121!2d105.8252278!5e0!3m2!1sen!2s!4v1791484732899!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <p style="margin-top: 12px; font-size: 13px; color: #8f7a7a;">
+          
+        </p>
+    </section>
 </main>
 
-<hr>
-
+<!-- FOOTER -->
 <footer>
-    <p>© 2026 Memori Cake. All rights reserved.</p>
+    <div class="footer-content">
+        <div class="footer-col">
+            <h3>Memori Cake</h3>
+            <p>Lưu giữ khoảnh khắc bằng những chiếc bánh ngọt.</p>
+            <p>Mỗi chiếc bánh là một kỷ niệm đáng nhớ.</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Liên kết nhanh</h4>
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="products.html">Sản phẩm</a></li>
+                <li><a href="cart.html">Giỏ hàng</a></li>
+                <li><a href="contact.html">Liên hệ</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Hỗ trợ</h4>
+            <ul>
+                <li><a href="#">Chính sách giao hàng</a></li>
+                <li><a href="#">Hướng dẫn đặt bánh</a></li>
+                <li><a href="#">Chính sách đổi trả</a></li>
+                <li><a href="login.html">Tài khoản</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Liên hệ</h4>
+            <p>📍 120 Chùa Bộc, Phường Kim Liên, TP.Hà Nội</p>
+            <p>📞 0901 234 567</p>
+            <p>✉️ tiembanh@memoricake.vn</p>
+            <div class="social">
+                <a href="https://web.facebook.com/profile.php?id=61584459725669">Facebook</a> · 
+                <a href="#">Instagram</a> · 
+                <a href="#">TikTok</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 Memori Cake. All rights reserved.</p>
+    </div>
 </footer>
+
+<script>
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const item = question.parentElement;
+            item.classList.toggle('active');
+        });
+    });
+</script>
 
 </body>
 </html>

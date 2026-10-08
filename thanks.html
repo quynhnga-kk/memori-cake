@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cảm ơn bạn | Memori Cake</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fffaf8;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #eee;
+            padding: 18px 40px;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .logo-area h1 {
+            margin: 0;
+            color: #a9535e;
+            font-size: 26px;
+        }
+
+        .slogan {
+            margin: 4px 0 0;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .account-area a {
+            color: #333;
+            text-decoration: none;
+            margin-left: 18px;
+            font-size: 14px;
+        }
+
+        .account-area a:hover {
+            color: #b95f6a;
+        }
+
+        nav {
+            margin-top: 16px;
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            margin-right: 26px;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #b95f6a;
+        }
+
+        /* ===== MAIN ===== */
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .thankyou-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            max-width: 620px;
+            width: 100%;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .success-icon {
+            width: 90px;
+            height: 90px;
+            background: #e8f8ef;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 42px;
+        }
+
+        .thankyou-card h1 {
+            color: #8f4f5b;
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .thankyou-card .subtitle {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* Thông tin đơn hàng */
+        .order-info {
+            background: #fff7f5;
+            border-radius: 12px;
+            padding: 22px;
+            text-align: left;
+            margin-bottom: 28px;
+        }
+
+        .order-info h3 {
+            color: #a44e5b;
+            font-size: 16px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed #f0dfe1;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .info-row .label {
+            color: #777;
+        }
+
+        .info-row .value {
+            font-weight: 600;
+            color: #333;
+            text-align: right;
+            max-width: 60%;
+        }
+
+        .order-items {
+            margin-top: 16px;
+            padding-top: 12px;
+            border-top: 1px solid #f0dfe1;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .total-line {
+            display: flex;
+            justify-content: space-between;
+            font-size: 16px;
+            font-weight: bold;
+            color: #a44e5b;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #e6d6d7;
+        }
+
+        /* Nút hành động */
+        .actions {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .btn-primary {
+            background: #bd6570;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #a95460;
+        }
+
+        .btn-outline {
+            background: white;
+            color: #bd6570;
+            border: 1.5px solid #bd6570;
+        }
+
+        .btn-outline:hover {
+            background: #fff0f2;
+        }
+
+        .note {
+            margin-top: 28px;
+            font-size: 13px;
+            color: #888;
+            line-height: 1.5;
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            background-color: #ffffff;
+            border-top: 1px solid #f0e6e6;
+            margin-top: 60px;
+            padding-top: 40px;
+            color: #6e5d5c;
+            font-size: 14px;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-col h3 {
+            color: #bd6b78;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .footer-col h4 {
+            color: #9c4856;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .footer-col p {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col a {
+            text-decoration: none;
+            color: #6e5d5c;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: #bd6b78;
+        }
+
+        .social {
+            margin-top: 12px;
+        }
+
+        .social a {
+            color: #bd6b78;
+            font-weight: 500;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #f0e6e6;
+            text-align: center;
+            padding: 18px 20px;
+            font-size: 13px;
+            color: #8f7a7a;
+        }
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 600px) {
+            .thankyou-card {
+                padding: 35px 22px;
+            }
+
+            .thankyou-card h1 {
+                font-size: 24px;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            header {
+                padding: 15px 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-top">
+        <div class="logo-area">
+            <h1>Memori Cake</h1>
+            <p class="slogan">Lưu giữ khoảnh khắc bằng những chiếc bánh ngọt</p>
+        </div>
+        <div class="account-area">
+            <a href="login.html">Đăng nhập / Đăng ký</a>
+            <a href="cart.html">🛒 Giỏ hàng</a>
+        </div>
+    </div>
+
+    <nav>
+        <a href="index.html">Trang chủ</a>
+        <a href="products.html">Sản phẩm</a>
+        <a href="cart.html">Giỏ hàng</a>
+        <a href="contact.html">Liên hệ</a>
+    </nav>
+</header>
+
+<main>
+    <div class="thankyou-card">
+        <div class="success-icon">🎉</div>
+
+        <h1>Cảm ơn bạn đã đặt hàng!</h1>
+        <p class="subtitle">
+            Đơn hàng của bạn đã được ghi nhận thành công.<br>
+            Chúng tôi sẽ liên hệ xác nhận trong thời gian sớm nhất.
+        </p>
+
+        <!-- Thông tin đơn hàng (JS sẽ điền) -->
+        <div class="order-info" id="order-info">
+            <h3>Thông tin đơn hàng</h3>
+            <div id="order-details">
+                <!-- Nội dung được render bằng JS -->
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="index.html" class="btn btn-primary">Về trang chủ</a>
+            <a href="products.html" class="btn btn-outline">Tiếp tục mua sắm</a>
+        </div>
+
+        <p class="note">
+            Nếu bạn có bất kỳ thắc mắc nào, vui lòng liên hệ<br>
+            📞 09xx xxx xxx hoặc ✉️ hello@memoricake.vn
+        </p>
+    </div>
+</main>
+
+<!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Memori Cake</h3>
+                <p>Lưu giữ khoảnh khắc bằng những chiếc bánh ngọt.</p>
+                <p>Mỗi chiếc bánh là một kỷ niệm đáng nhớ.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Liên kết nhanh</h4>
+                <ul>
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="products.html">Sản phẩm</a></li>
+                    <li><a href="cart.html">Giỏ hàng</a></li>
+                    <li><a href="contact.html">Liên hệ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Hỗ trợ</h4>
+                <ul>
+                    <li><a href="#">Chính sách giao hàng</a></li>
+                    <li><a href="#">Hướng dẫn đặt bánh</a></li>
+                    <li><a href="#">Chính sách đổi trả</a></li>
+                    <li><a href="login.html">Tài khoản</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Liên hệ</h4>
+                <p>📍 120 Chùa Bộc, Phường Kim Liên, TP.Hà Nội</p>
+                <p>📞 0901 234 567</p>
+                <p>✉️ tiembanh@memoricake.vn</p>
+                <div class="social">
+                    <a href="https://web.facebook.com/profile.php?id=61584459725669">Facebook</a> · 
+                    <a href="#">Instagram</a> · 
+                    <a href="#">TikTok</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Memori Cake. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+<script>
+    function formatPrice(num) {
+        return num.toLocaleString("vi-VN") + "đ";
+    }
+
+    function formatDate(dateStr) {
+        if (!dateStr) return "—";
+        const d = new Date(dateStr);
+        return d.toLocaleDateString("vi-VN");
+    }
+
+    function renderOrderInfo() {
+        const orderData = localStorage.getItem("memoriLastOrder");
+        const container = document.getElementById("order-details");
+        const orderInfoBox = document.getElementById("order-info");
+
+        if (!orderData) {
+            // Không có đơn hàng → ẩn phần chi tiết
+            orderInfoBox.style.display = "none";
+            return;
+        }
+
+        const order = JSON.parse(orderData);
+        const customer = order.customer || {};
+        const cart = order.cart || [];
+        const checkoutInfo = order.checkoutInfo || {};
+        const discountPercent = order.discountPercent || 0;
+
+        // Tính toán
+        const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        const shipping = checkoutInfo.shippingFee || 0;
+        const discountAmount = Math.round(subtotal * discountPercent / 100);
+        const total = subtotal + shipping - discountAmount;
+
+        // Phương thức thanh toán
+        const paymentMap = {
+            bank: "Chuyển khoản ngân hàng",
+            card: "Thẻ tín dụng / ghi nợ",
+            momo: "Ví điện tử",
+            cod: "Thanh toán khi nhận hàng (COD)"
+        };
+
+        let itemsHtml = cart.map(item => `
+            <div class="order-item">
+                <span>${item.name} × ${item.quantity}</span>
+                <span>${formatPrice(item.price * item.quantity)}</span>
+            </div>
+        `).join("");
+
+        container.innerHTML = `
+            <div class="info-row">
+                <span class="label">Người nhận</span>
+                <span class="value">${customer.fullname || "—"}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Số điện thoại</span>
+                <span class="value">${customer.phone || "—"}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Địa chỉ</span>
+                <span class="value">${customer.address || "—"}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Ngày nhận</span>
+                <span class="value">${customer.date || "—"} • ${customer.time || ""}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Thanh toán</span>
+                <span class="value">${paymentMap[order.payment] || order.payment}</span>
+            </div>
+
+            <div class="order-items">
+                ${itemsHtml}
+            </div>
+
+            <div class="total-line">
+                <span>Tổng cộng</span>
+                <span>${formatPrice(total)}</span>
+            </div>
+        `;
+    }
+
+    document.addEventListener("DOMContentLoaded", renderOrderInfo);
+</script>
+
+</body>
+</html>
