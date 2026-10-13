@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tất Cả Sản Phẩm | Memori Cake</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+</head>
+<link rel="stylesheet" href="products.css">
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="wrap header-inner">
+            <a href="../index.html" aria-label="Memori Cake - Trang chủ">
+                <img src="../images/Images/logo_memoricake.png" alt="Memori Cake Logo" class="logo">
+            </a>
+
+            <nav aria-label="Menu chính">
+                <ul>
+                    <li><a href="../index.html">Trang chủ</a></li>
+                    <li><a href="products.html" aria-current="page">Sản phẩm</a></li>
+                    <li><a href="../cart/cart.html">Liên hệ</a></li>
+                    <li><a href="../login-register/login.html">Đăng nhập</a></li>
+                    <li><a href="../cart/cart.html">🛒 Giỏ hàng <span class="cart-badge">2</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- TIÊU ĐỀ TRANG -->
+    <section class="products-hero">
+        <div class="wrap">
+            <p class="breadcrumb"><a href="../index.html">Trang chủ</a> / Sản phẩm</p>
+            <h2>Thế giới bánh ngọt <em>Memori</em></h2>
+            <p>Từ những chiếc bánh sinh nhật cầu kỳ đến món tráng miệng nhỏ nhắn cho ngày ngọt ngào.</p>
+        </div>
+    </section>
+
+    <!-- NỘI DUNG CHÍNH -->
+    <div class="wrap container">
+
+        <!-- SIDEBAR BỘ LỌC -->
+        <aside class="sidebar" aria-label="Bộ lọc sản phẩm">
+            <div class="filter-group">
+                <label class="filter-title" for="search">Tìm kiếm</label>
+                <input type="text" id="search" class="search-box" placeholder="Nhập tên bánh...">
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-title">Danh mục bánh</div>
+                <ul class="filter-options">
+                    <li><label><input type="checkbox" checked> Tất cả bánh</label></li>
+                    <li><label><input type="checkbox"> Bánh sinh nhật (12)</label></li>
+                    <li><label><input type="checkbox"> Bánh Mini / Bento (10)</label></li>
+                    <li><label><input type="checkbox"> Cupcake &amp; Tart (10)</label></li>
+                    <li><label><input type="checkbox"> Bánh Mousse &amp; Cheesecakes (10)</label></li>
+                    <li><label><input type="checkbox"> Bánh Theo Mùa / Tết (4)</label></li>
+                    <li><label><input type="checkbox"> Cookies &amp; Gift (10)</label></li>
+                    <li><label><input type="checkbox"> Slice Cake (10)</label></li>
+                    <li><label><input type="checkbox"> Bread &amp; Pastry (10)</label></li>
+                </ul>
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-title">Khoảng giá</div>
+                <ul class="filter-options">
+                    <li><label><input type="radio" name="price"> Dưới 100.000đ</label></li>
+                    <li><label><input type="radio" name="price"> 100.000đ - 300.000đ</label></li>
+                    <li><label><input type="radio" name="price"> 300.000đ - 500.000đ</label></li>
+                    <li><label><input type="radio" name="price"> Trên 500.000đ</label></li>
+                </ul>
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-title">Kích thước (Size)</div>
+                <ul class="filter-options">
+                    <li><label><input type="checkbox"> Mini (10cm)</label></li>
+                    <li><label><input type="checkbox"> Size S (16cm)</label></li>
+                    <li><label><input type="checkbox"> Size M (20cm)</label></li>
+                    <li><label><input type="checkbox"> Size L (24cm)</label></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- KHU VỰC SẢN PHẨM -->
+        <main>
+            <div class="toolbar">
+                <div class="result-count">Hiển thị <strong>8</strong> trên <strong>45</strong> sản phẩm</div>
+                <div class="sort-wrap">
+                    <label for="sort">Sắp xếp theo</label>
+                    <select id="sort" class="sort-select">
+                        <option>Nổi bật nhất</option>
+                        <option>Giá: Thấp đến Cao</option>
+                        <option>Giá: Cao đến Thấp</option>
+                        <option>Bán chạy nhất</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="products-grid">
+
+                <!-- CARD 1 -->
+                <article class="product-card">
+                    <span class="badge">-10%</span>
+                    <button class="btn-wishlist" aria-label="Yêu thích">♥</button>
+                    <div class="img-placeholder">
+                        <img src="../images/Images/strawberrycloud.jpg" alt="Strawberry Cloud Cake">
+                    </div>
+                    <div class="card-body">
+                        <h3>Strawberry Cloud</h3>
+                        <div class="rating">★★★★★ <span>(24)</span></div>
+                        <p class="desc">Bánh kem dâu tây mềm mịn, lớp kem tươi ít ngọt dịu nhẹ.</p>
+                        <div class="price-box">
+                            <span class="price-current">320.000đ</span>
+                            <span class="price-old">350.000đ</span>
+                        </div>
+                        <div class="card-actions">
+                        <a href="../product-detail/product-detail.html" class="btn-detail">Chi tiết</a>                           
+                        <button class="btn-add-cart">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- CARD 2 -->
+                <article class="product-card">
+                    <span class="badge best-seller">Bán chạy</span>
+                    <button class="btn-wishlist" aria-label="Yêu thích">♥</button>
+                    <div class="img-placeholder">
+                        <img src="../images/Images/chocolate dream.jpg" alt="Chocolate Dream Cake">
+                    </div>
+                    <div class="card-body">
+                        <h3>Chocolate Dream</h3>
+                        <div class="rating">★★★★★ <span>(42)</span></div>
+                        <p class="desc">Bánh chocolate Bỉ đậm đà kết hợp lớp ganache béo ngậy.</p>
+                        <div class="price-box">
+                            <span class="price-current">350.000đ</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="../product-detail/product-detail.html" class="btn-detail">Chi tiết</a>
+                            <button class="btn-add-cart">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- CARD 3 -->
+                <article class="product-card">
+                    <span class="badge new">Mới</span>
+                    <button class="btn-wishlist" aria-label="Yêu thích">♥</button>
+                    <div class="img-placeholder">
+                        <img src="../images/Images/blueberry memory.jpg" alt="Blueberry Memory Cake">
+                    </div>
+                    <div class="card-body">
+                        <h3>Blueberry Memory</h3>
+                        <div class="rating">★★★★☆ <span>(18)</span></div>
+                        <p class="desc">Sốt việt quất chua ngọt tự nhiên hòa quyện cốt bánh kem.</p>
+                        <div class="price-box">
+                            <span class="price-current">330.000đ</span>
+                        </div>
+                        <div class="card-actions">
+                        <a href="../product-detail/product-detail.html" class="btn-detail">Chi tiết</a>                          
+                        <button class="btn-add-cart">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- CARD 4 -->
+                <article class="product-card">
+                    <button class="btn-wishlist" aria-label="Yêu thích">♥</button>
+                    <div class="img-placeholder">
+                        <img src="../images/Images/matcha love.jpg" alt="Matcha Love Cake">
+                    </div>
+                    <div class="card-body">
+                        <h3>Matcha Love</h3>
+                        <div class="rating">★★★★★ <span>(30)</span></div>
+                        <p class="desc">Trà xanh Uji Nhật Bản thanh mát kết hợp đậu đỏ ngọt nhẹ.</p>
+                        <div class="price-box">
+                            <span class="price-current">340.000đ</span>
+                        </div>
+                        <div class="card-actions">
+                           <a href="../product-detail/product-detail.html" class="btn-detail">Chi tiết</a>
+                            <button class="btn-add-cart">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- CARD 5 -->
+                <article class="product-card">
+                    <span class="badge">-15%</span>
+                    <button class="btn-wishlist" aria-label="Yêu thích">♥</button>
+                    <div class="img-placeholder">
+                        <img src="../images/Images/mango bento.jpg" alt="Mango Passion Bento">
+                    </div>
+                    <div class="card-body">
+                        <h3>Mango Bento Cake</h3>
+                        <div class="rating">★★★★☆ <span>(15)</span></div>
+                        <p class="desc">Bánh mini size 10cm vị xoài chanh dây tươi mát thích hợp làm quà.</p>
+                        <div class="price-box">
+                            <span class="price-current">145.000đ</span>
+                            <span class="price-old">170.000đ</span>
+                        </div>
+                        <div class="card-actions">
+                           <a href="../product-detail/product-detail.html" class="btn-detail">Chi tiết</a>
+                            <button class="btn-add-cart">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- CARD 6 -->
+                <article class="product-card">
+                    <button class="btn-wishlist" aria-label="Yêu thích">♥</button>
+                    <div class="img-placeholder">
+                        <img src="../images/Images/redvelvet.jpg" alt="Red Velvet Cupcake">
+                    </div>
+                    <div class="card-body">
+                        <h3>Red Velvet Set (4)</h3>
+                        <div class="rating">★★★★★ <span>(50)</span></div>
+                        <p class="desc">Set 4 bánh cupcake nhung đỏ kết hợp kem phô mai béo ngậy.</p>
+                        <div class="price-box">
+                            <span class="price-current">160.000đ</span>
+                        </div>
+                        <div class="card-actions">
+                           <a href="../product-detail/product-detail.html" class="btn-detail">Chi tiết</a>
+                            <button class="btn-add-cart">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- CARD 7 -->
+                <article class="product-card">
+                    <span class="badge best-seller">Bán chạy</span>
+                    <button class="btn-wishlist" aria-label="Yêu thích">♥</button>
+                    <div class="img-placeholder">
+                        <img src="../images/Images/tiramisu.jpg" alt="Tiramisu Classic">
+                    </div>
+                    <div class="card-body">
+                        <h3>Tiramisu Classic</h3>
+                        <div class="rating">★★★★★ <span>(65)</span></div>
+                        <p class="desc">Hương vị cà phê Espresso thơm lừng cùng phô mai Mascapone.</p>
+                        <div class="price-box">
+                            <span class="price-current">290.000đ</span>
+                        </div>
+                        <div class="card-actions">
+                           <a href="../product-detail/product-detail.html" class="btn-detail">Chi tiết</a>
+                            <button class="btn-add-cart">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- CARD 8 -->
+                <article class="product-card">
+                    <span class="badge new">Mới</span>
+                    <button class="btn-wishlist" aria-label="Yêu thích">♥</button>
+                    <div class="img-placeholder">
+                        <img src="../images/Images/fruit tart.jpg" alt="Fruit Tart Box">
+                    </div>
+                    <div class="card-body">
+                        <h3>Fruit Tart</h3>
+                        <div class="rating">★★★★☆ <span>(9)</span></div>
+                        <p class="desc">Đế tart giòn rụm phủ đầy trái cây tươi theo mùa ngọt thanh.</p>
+                        <div class="price-box">
+                            <span class="price-current">220.000đ</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="../product-detail/product-detail.html" class="btn-detail">Chi tiết</a>
+                            <button class="btn-add-cart">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- PHÂN TRANG -->
+            <div class="pagination" aria-label="Phân trang">
+                <button class="active">1</button>
+                <button>2</button>
+                <button>3</button>
+                <button aria-label="Trang sau">&raquo;</button>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Memori Cake</h3>
+                <p>Lưu giữ khoảnh khắc bằng những chiếc bánh ngọt.</p>
+                <p>Mỗi chiếc bánh là một kỷ niệm đáng nhớ.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Liên kết nhanh</h4>
+                <ul>
+                    <li><a href="../index.html">Trang chủ</a></li>
+                    <li><a href="products.html">Sản phẩm</a></li>
+                    <li><a href="../cart/cart.html">Giỏ hàng</a></li>
+                    <li><a href="../cart/cart.html">Liên hệ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Hỗ trợ</h4>
+                <ul>
+                    <li><a href="#">Chính sách giao hàng</a></li>
+                    <li><a href="#">Hướng dẫn đặt bánh</a></li>
+                    <li><a href="#">Chính sách đổi trả</a></li>
+                    <li><a href="../login-register/login.html">Tài khoản</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Liên hệ</h4>
+                <p>📍 120 Chùa Bộc, Phường Kim Liên, TP.Hà Nội</p>
+                <p>📞 0901 234 567</p>
+                <p>✉️ tiembanh@memoricake.vn</p>
+                <div class="social">
+                    <a href="https://web.facebook.com/profile.php?id=61584459725669">Facebook</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">TikTok</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Memori Cake. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
