@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng - Memori Cake</title>
+
+   <link rel="stylesheet" href="cart.css">
+</head>
+
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="header-top">
+            <div>
+                <div class="logo">Memori Cake</div>
+                <div class="slogan">Lưu giữ khoảnh khắc bằng những chiếc bánh ngọt</div>
+            </div>
+            <div class="header-links">
+                <a href="../login-register/register.html">Đăng nhập / Đăng ký</a>
+                <a href="cart.html">🛒 Giỏ hàng (<span id="cart-count">0</span>)</a>
+            </div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="../index.html">Trang chủ</a></li>
+                <li><a href="../products/products.html">Sản phẩm</a></li>
+                <li><a href="../cart.html" class="active">Giỏ hàng</a></li>
+                <li><a href="../contact/contact.html">Liên hệ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <!-- ===== MAIN ===== -->
+    <main>
+        <div class="page-title">
+            <h2>Giỏ hàng của bạn</h2>
+            <p>Kiểm tra lại những chiếc bánh bạn đã lựa chọn</p>
+        </div>
+
+        <div class="cart-container">
+
+            <!-- Header cột -->
+            <div class="cart-header" id="cart-header">
+                <div>Sản phẩm</div>
+                <div>Đơn giá</div>
+                <div>Số lượng</div>
+                <div>Thành tiền</div>
+                <div></div>
+            </div>
+
+            <!-- Danh sách sản phẩm (JS sẽ render) -->
+            <div id="cart-items"></div>
+
+            <!-- Trạng thái trống -->
+            <div class="empty-cart" id="empty-cart" style="display: none;">
+                <h3>Giỏ hàng đang trống</h3>
+                <p>Hãy chọn những chiếc bánh yêu thích của bạn nhé!</p>
+                <a href="../products/products.html">← Xem sản phẩm</a>
+            </div>
+
+            <!-- Phần dưới -->
+            <div class="cart-bottom" id="cart-bottom">
+                <div class="cart-left">
+                    <!-- Phương thức nhận hàng -->
+                    <div class="delivery-method">
+                        <h3>Phương thức nhận hàng</h3>
+                        <div class="delivery-options">
+                            <label class="delivery-option active" id="opt-delivery">
+                                <input type="radio" name="delivery" value="delivery" checked onchange="updateShipping()">
+                                <div>
+                                    <strong>Giao tận nơi</strong>
+                                    <span>Nội thành Hà Nội · 30.000đ</span>
+                                </div>
+                            </label>
+
+                            <label class="delivery-option" id="opt-pickup">
+                                <input type="radio" name="delivery" value="pickup" onchange="updateShipping()">
+                                <div>
+                                    <strong>Đến lấy tại tiệm</strong>
+                                    <span>Miễn phí</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Ghi chú -->
+                    <div class="shop-note">
+                        <label for="shop-note">Ghi chú cho tiệm</label>
+                        <textarea id="shop-note" placeholder="Thêm ghi chú (tùy chọn)..."></textarea>
+                    </div>
+
+                    <a href="../products/products.html" class="continue-shopping">← Tiếp tục mua hàng</a>
+                </div>
+
+                <!-- Tóm tắt -->
+                <div class="summary">
+                    <h3>Tóm tắt đơn hàng</h3>
+
+                    <div class="summary-row">
+                        <span>Tạm tính</span>
+                        <span id="subtotal">0đ</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Phí giao hàng</span>
+                        <span id="shipping">30.000đ</span>
+                    </div>
+
+                    <div class="summary-row total">
+                        <span>Tổng cộng</span>
+                        <span id="total">0đ</span>
+                    </div>
+
+                    <div class="coupon">
+                        <input type="text" id="coupon-code" placeholder="Nhập mã giảm giá">
+                        <button type="button" onclick="applyCoupon()">Áp dụng</button>
+                    </div>
+
+                    <button class="checkout-btn" id="checkout-btn" onclick="goCheckout()">
+                        Tiến hành thanh toán
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+   <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Memori Cake</h3>
+                <p>Lưu giữ khoảnh khắc bằng những chiếc bánh ngọt.</p>
+                <p>Mỗi chiếc bánh là một kỷ niệm đáng nhớ.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Liên kết nhanh</h4>
+                <ul>
+                    <li><a href="../index.html">Trang chủ</a></li>
+                    <li><a href="../products/products.html">Sản phẩm</a></li>
+                    <li><a href="../cart.html">Giỏ hàng</a></li>
+                    <li><a href="../contact/contact.html">Liên hệ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Hỗ trợ</h4>
+                <ul>
+                    <li><a href="#">Chính sách giao hàng</a></li>
+                    <li><a href="#">Hướng dẫn đặt bánh</a></li>
+                    <li><a href="#">Chính sách đổi trả</a></li>
+                    <li><a href="../login-register/register.html">Tài khoản</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Liên hệ</h4>
+                <p>📍 120 Chùa Bộc, Phường Kim Liên, TP.Hà Nội</p>
+                <p>📞 0901 234 567</p>
+                <p>✉️ tiembanh@memoricake.vn</p>
+                <div class="social">
+                    <a href="https://web.facebook.com/profile.php?id=61584459725669">Facebook</a> · 
+                    <a href="#">Instagram</a> · 
+                    <a href="#">TikTok</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Memori Cake. All rights reserved.</p>
+        </div>
+    </footer>
+  <script src="cart.js"></script>
+</body>
+</html>
