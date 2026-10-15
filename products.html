@@ -347,27 +347,36 @@
         }
         .btn-add-cart:hover { background: var(--rose-dark); border-color: var(--rose-dark); }
 
-        /* ==================== PHÂN TRANG ==================== */
-        .pagination { display: flex; justify-content: center; gap: 10px; margin-top: 48px; }
-        .pagination button {
-            width: 44px;
-            height: 44px;
-            border: 1.5px solid var(--line);
-            background: #fff;
-            color: var(--cocoa);
-            border-radius: 50%;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 15px;
-            transition: background .2s, color .2s, border-color .2s;
-        }
-        .pagination button.active,
-        .pagination button:hover {
-            background: var(--rose);
-            color: #fff;
-            border-color: var(--rose);
-        }
+        .pagination { 
+    display: flex; 
+    justify-content: center; 
+    gap: 10px; 
+    margin-top: 48px; 
+}
 
+.pagination a {
+    width: 44px;
+    height: 44px;
+    border: 1.5px solid var(--line);
+    background: #fff;
+    color: var(--cocoa);
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: background .2s, color .2s, border-color .2s;
+}
+
+.pagination a.active,
+.pagination a:hover {
+    background: var(--rose);
+    color: #fff;
+    border-color: var(--rose);
+}
         /* ==================== FOOTER ==================== */
         footer {
             background: var(--cocoa);
@@ -690,14 +699,15 @@
 
             </div>
 
-            <!-- PHÂN TRANG -->
-            <div class="pagination" aria-label="Phân trang">
-                <button class="active">1</button>
-                <button>2</button>
-                <button>3</button>
-                <button aria-label="Trang sau">&raquo;</button>
-            </div>
+           <!-- PHÂN TRANG -->
+<div class="pagination" aria-label="Phân trang">
+    <a href="products.html" class="active">1</a>
+    <a href="products2.html">2</a>
+    <a href="products3.html">3</a>
+    <a href="products2.html" aria-label="Trang sau">&raquo;</a>
+</div>
         </main>
+           
 
     </div>
 
