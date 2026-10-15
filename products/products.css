@@ -94,27 +94,24 @@
 
         /* ==================== TIÊU ĐỀ TRANG ==================== */
         .products-hero {
-            background:
-                radial-gradient(circle at 88% 30%, #fdd9df 0, transparent 45%),
-                var(--blush);
+            background: #651C2D;
             padding: 64px 0 56px;
         }
         .breadcrumb {
-            font-size: 14px;
-            color: var(--muted);
-            margin-bottom: 14px;
+    display: none !important;
+}
         }
         .breadcrumb a { color: var(--rose-dark); text-decoration: none; }
         .breadcrumb a:hover { text-decoration: underline; }
         .products-hero h2 {
             font-size: clamp(34px, 5vw, 56px);
-            color: var(--berry);
+            color: #f6f4f3;
             letter-spacing: -.5px;
             margin-bottom: 14px;
         }
-        .products-hero h2 em { font-style: italic; color: var(--rose); }
+        .products-hero h2 em { font-style: italic; color: #f6f4f3; }
         .products-hero p {
-            color: var(--muted);
+            color: #F4EFE5;
             font-size: 17px;
             max-width: 52ch;
         }
