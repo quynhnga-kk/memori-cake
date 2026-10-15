@@ -23,7 +23,7 @@
             <nav aria-label="Menu chính">
                 <ul>
                     <li><a href="../index.html">Trang chủ</a></li>
-                    <li><a href="products.html" aria-current="page">Sản phẩm</a></li>
+                    <li><a href="../products/products.html" aria-current="page">Sản phẩm</a></li>
                     <li><a href="../contact/contact.html">Liên hệ</a></li>
                     <li><a href="../login-register/login.html">Đăng nhập</a></li>
                     <li><a href="../cart/cart.html">🛒 Giỏ hàng</a></li>
@@ -34,7 +34,7 @@
 
     <main class="wrap">
 
-        <p class="breadcrumb"><a href="products.html">← Quay lại sản phẩm</a></p>
+        <p class="breadcrumb"><a href="../products/products.html">← Quay lại sản phẩm</a></p>
 
         <!-- ==================== SẢN PHẨM 1: CUPCAKE ==================== -->
         <section class="product" aria-labelledby="title-cupcake">
@@ -176,6 +176,148 @@
             </div>
 
         </section>
+        <!-- ========= CARD 1 ============= -->
+        <section class="product" >
+
+            <div class="product-media">
+                <img src="../images/Images/trungthu.jpg" alt="Bánh Trung thu">
+            </div>
+
+            <div class="product-info">
+                <h2 id="trung thu">Bánh Trung Thu 2026 </h2>
+                <p class="price">50.000 VNĐ</p>
+                <p class="tagline">Bánh Trung Thu truyền thống với lớp vỏ vàng óng, mềm thơm, mang hương vị ngọt ngào của mùa đoàn viên.</p>
+
+                <div class="info-card">
+                    <h3>Thông tin sản phẩm</h3>
+                    <dl>
+                        <div>
+                            <dt>Thành phần</dt>
+                            <dd>Bột mì, đường, dầu ăn, trứng và nhân bánh Trung Thu.</dd>
+                        </div>
+                        <div>
+                            <dt>Hương vị</dt>
+                            <dd>Hương vị ngọt dịu, thơm bùi của nhân bánh hòa quyện cùng lớp vỏ mềm, mang đậm nét truyền thống của bánh Trung Thu.</dd>
+                        </div>
+                        <div>
+                            <dt>Bảo quản</dt>
+                            <dd>Ngăn mát tủ lạnh</dd>
+                        </div>
+                        <div>
+                            <dt>Thời hạn sử dụng</dt>
+                            <dd>2 ngày</dd>
+                        </div>
+                        <div>
+                            <dt>Kích thước</dt>
+                            <dd>Khoảng 8cm (phù hợp 2-3 người)</dd>
+                        </div>
+                    </dl>
+                </div>
+
+                <div class="options">
+                    <div class="field">
+                        <label for="size-tiramisu">Kích thước</label>
+                        <select id="size-trungthu" name="size">
+                     <option value="8cm">Size bánh - 8cm</option>
+                    </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="flavor-tiramisu">Hương vị</label>
+                        <select id="flavor-tiramisu" name="flavor">
+                            <option value="classic" selected>Tiramisu cổ điển</option>
+                            <option value="chocolate">Tiramisu Chocolate</option>
+                            <option value="matcha">Tiramisu Matcha</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="quantity-tiramisu">Số lượng</label>
+                        <div class="qty">
+                            <button type="button" data-step="-1" aria-label="Giảm số lượng">−</button>
+                            <input type="number" id="quantity-tiramisu" name="quantity" value="1" min="1" max="10">
+                            <button type="button" data-step="1" aria-label="Tăng số lượng">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button type="button" class="btn btn-outline">🛒 Thêm vào giỏ hàng</button>
+                    <a href="../checkout-thanks/checkout.html" class="btn">Mua ngay</a>
+                </div>
+            </div>
+
+        </section>
+        <section class="product">
+
+            <div class="product-media">
+                <img src="../images/Images/trungthu đậu đỏ trứng muối.jpg" alt="Bánh Trung thu đậu đỏ">
+            </div>
+
+            <div class="product-info">
+                <h2 id="đậu đỏ trứng muối">Bánh Trung Thu Đậu Đỏ Trứng Muối</h2>
+                <p class="price">70.000 VNĐ</p>
+                <p class="tagline">Hương vị truyền thống với nhân đậu đỏ bùi ngọt kết hợp trứng muối đậm đà, thơm ngon khó cưỡng.</p>
+
+                <div class="info-card">
+                    <h3>Thông tin sản phẩm</h3>
+                    <dl>
+                        <div>
+                            <dt>Thành phần</dt>
+                            <dd>Bột mì,đậu đỏ, trứng muối, đường, dầu ăn, lòng đỏ trứng gà </dd>
+                        </div>
+                        <div>
+                            <dt>Hương vị</dt>
+                            <dd> Đậu đỏ ngọt bùi dẻo mịn kết hợp cùng trứng muối béo ngậy, vị mặn ngọt hài hòa không gây ngán</dd>
+                        </div>
+                        <div>
+                            <dt>Bảo quản</dt>
+                            <dd>Nơi khô ráo,thoáng mát hoặc ngăn mát tủ lạnh</dd>
+                        </div>
+                        <div>
+                            <dt>Thời hạn sử dụng</dt>
+                            <dd>7-10 ngày</dd>
+                        </div>
+                        <div>
+                            <dt>Kích thước</dt>
+                            <dd>Khoảng 8cm</dd>
+                        </div>
+                    </dl>
+                </div>
+
+                <div class="options">
+                    <div class="field">
+                        <label for="size-matcha">Kích thước</label>
+                        <select id="size-matcha" name="size">
+                            <option value="small">Size bánh - 8 cm</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="flavor-matcha">Hương vị</label>
+                        <select id="flavor-matcha" name="flavor">
+                            <option value="classic" selected> Đậu đỏ trứng muối</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="quantity-matcha">Số lượng</label>
+                        <div class="qty">
+                            <button type="button" data-step="-1" aria-label="Giảm số lượng">−</button>
+                            <input type="number" id="quantity-matcha" name="quantity" value="1" min="1" max="10">
+                            <button type="button" data-step="1" aria-label="Tăng số lượng">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button type="button" class="btn btn-outline">🛒 Thêm vào giỏ hàng</button>
+                    <a href="../checkout-thanks/checkout.html" class="btn">Mua ngay</a>
+                </div>
+            </div>
+
+        </section>
+
 
     </main>
 
@@ -192,7 +334,7 @@
                 <h4>Liên kết nhanh</h4>
                 <ul>
                     <li><a href="../index.html">Trang chủ</a></li>
-                    <li><a href="products.html">Sản phẩm</a></li>
+                    <li><a href="../products/products.html">Sản phẩm</a></li>
                     <li><a href="../cart/cart.html">Giỏ hàng</a></li>
                     <li><a href="../contact/contact.html">Liên hệ</a></li>
                 </ul>
@@ -226,4 +368,5 @@
         </div>
     </footer>
 </body>
+<script src="product-detail.js"></script>
 </html>
