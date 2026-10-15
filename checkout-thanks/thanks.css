@@ -1,4 +1,12 @@
- * {
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cảm ơn bạn | Memori Cake</title>
+
+    <style>
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -288,31 +296,105 @@
             font-size: 13px;
             color: #8f7a7a;
         }
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 600px) {
-            .thankyou-card {
-                padding: 35px 22px;
-            }
+    </style>
+</head>
+<body>
 
-            .thankyou-card h1 {
-                font-size: 24px;
-            }
+<header>
+    <div class="header-top">
+        <div class="logo-area">
+            <h1>Memori Cake</h1>
+            <p class="slogan">Lưu giữ khoảnh khắc bằng những chiếc bánh ngọt</p>
+        </div>
+        <div class="account-area">
+            <a href="login.html">Đăng nhập / Đăng ký</a>
+            <a href="cart.html">🛒 Giỏ hàng</a>
+        </div>
+    </div>
 
-            .actions {
-                flex-direction: column;
-            }
+    <nav>
+        <a href="index.html">Trang chủ</a>
+        <a href="products.html">Sản phẩm</a>
+        <a href="cart.html">Giỏ hàng</a>
+        <a href="contact.html">Liên hệ</a>
+    </nav>
+</header>
 
-            .btn {
-                width: 100%;
-                text-align: center;
-            }
+<main>
+    <div class="thankyou-card">
+        <div class="success-icon">🎉</div>
 
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
+        <h1>Cảm ơn bạn đã đặt hàng!</h1>
+        <p class="subtitle">
+            Đơn hàng của bạn đã được ghi nhận thành công.<br>
+            Chúng tôi sẽ liên hệ xác nhận trong thời gian sớm nhất.
+        </p>
 
-            header {
-                padding: 15px 18px;
-            }
-        }
+        <!-- Thông tin đơn hàng (JS sẽ điền) -->
+        <div class="order-info" id="order-info">
+            <h3>Thông tin đơn hàng</h3>
+            <div id="order-details">
+                <!-- Nội dung được render bằng JS -->
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="index.html" class="btn btn-primary">Về trang chủ</a>
+            <a href="products.html" class="btn btn-outline">Tiếp tục mua sắm</a>
+        </div>
+
+        <p class="note">
+            Nếu bạn có bất kỳ thắc mắc nào, vui lòng liên hệ<br>
+            📞 09xx xxx xxx hoặc ✉️ hello@memoricake.vn
+        </p>
+    </div>
+</main>
+
+<!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Memori Cake</h3>
+                <p>Lưu giữ khoảnh khắc bằng những chiếc bánh ngọt.</p>
+                <p>Mỗi chiếc bánh là một kỷ niệm đáng nhớ.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Liên kết nhanh</h4>
+                <ul>
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="products.html">Sản phẩm</a></li>
+                    <li><a href="cart.html">Giỏ hàng</a></li>
+                    <li><a href="contact.html">Liên hệ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Hỗ trợ</h4>
+                <ul>
+                    <li><a href="#">Chính sách giao hàng</a></li>
+                    <li><a href="#">Hướng dẫn đặt bánh</a></li>
+                    <li><a href="#">Chính sách đổi trả</a></li>
+                    <li><a href="login.html">Tài khoản</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Liên hệ</h4>
+                <p>📍 120 Chùa Bộc, Phường Kim Liên, TP.Hà Nội</p>
+                <p>📞 0901 234 567</p>
+                <p>✉️ tiembanh@memoricake.vn</p>
+                <div class="social">
+                    <a href="https://web.facebook.com/profile.php?id=61584459725669">Facebook</a> · 
+                    <a href="#">Instagram</a> · 
+                    <a href="#">TikTok</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Memori Cake. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
