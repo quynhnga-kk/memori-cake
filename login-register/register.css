@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng ký | Memori Cake</title>
-    <style>
-        * {
+ * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -18,7 +11,7 @@
             justify-content: center;
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             /* ===== ẢNH NỀN (tên khác với trang đăng nhập) ===== */
-            background: url('images/Images/nền\ đăng\ nhập.jpg') center/cover no-repeat fixed;
+            background: url('../images/Images/nền đăng nhập.jpg') center/cover no-repeat fixed;
             position: relative;
         }
 
@@ -132,7 +125,7 @@
         .right-panel {
             flex: 0.85;
             /* ===== ẢNH NỀN CỘT PHẢI (tên khác) ===== */
-            background: url('images/Images/ảnh\ login.png') center/cover;
+            background: url('../..images/../..images/ảnh\ login.png') center/cover;
             color: #700751;
             display: flex;
             flex-direction: column;
@@ -209,90 +202,3 @@
                 font-size: 30px;
             }
         }
-    </style>
-</head>
-<body>
-
-    <div class="login-card">
-        <!-- Cột trái: Form đăng ký -->
-        <div class="left-panel">
-            <h1>Đăng ký tài khoản</h1>
-
-            <form action="#" method="post">
-                <div class="form-group">
-                    <input type="text" 
-                           name="name" 
-                           placeholder="Họ và tên" 
-                           required>
-                </div>
-
-                <div class="form-group">
-                    <input type="email" 
-                           name="email" 
-                           placeholder="Email" 
-                           required>
-                </div>
-
-                <div class="form-group">
-                    <input type="tel" 
-                           name="phone" 
-                           placeholder="Số điện thoại (09xxxxxxxx)">
-                </div>
-
-                <div class="form-group password-wrapper">
-                    <input type="password" 
-                           id="password" 
-                           name="password" 
-                           placeholder="Mật khẩu" 
-                           required>
-                    <button type="button" class="toggle-password" onclick="togglePassword('password', this)">
-                        👁
-                    </button>
-                </div>
-
-                <div class="form-group password-wrapper">
-                    <input type="password" 
-                           id="confirm-password" 
-                           name="confirm-password" 
-                           placeholder="Xác nhận mật khẩu" 
-                           required>
-                    <button type="button" class="toggle-password" onclick="togglePassword('confirm-password', this)">
-                        👁
-                    </button>
-                </div>
-
-                <button type="submit" class="btn-register">Đăng Ký</button>
-            </form>
-
-            <div class="login-link">
-                Đã có tài khoản? <a href="login.html">Đăng nhập ngay</a>
-            </div>
-        </div>
-
-        <!-- Cột phải: Promo -->
-        <div class="right-panel">
-            <h2>
-                Chào mừng đến
-                <span>Memori Cake</span>
-            </h2>
-            <p>Tạo tài khoản để trải nghiệm những sản phẩm tuyệt vời nhất</p>
-            <button type="button" class="btn-login-side" onclick="location.href='login.html'">
-                Đăng Nhập
-            </button>
-        </div>
-    </div>
-
-    <script>
-        function togglePassword(id, btn) {
-            const input = document.getElementById(id);
-            if (input.type === 'password') {
-                input.type = 'text';
-                btn.textContent = '🙈';
-            } else {
-                input.type = 'password';
-                btn.textContent = '👁';
-            }
-        }
-    </script>
-</body>
-</html>
