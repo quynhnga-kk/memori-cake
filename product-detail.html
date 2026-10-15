@@ -278,14 +278,15 @@
         <a href="products.html">← Quay lại sản phẩm</a>
     </p>
 
-    <!-- ==================== SẢN PHẨM 1: CUPCAKE ==================== -->
     <section>
 
         <div>
-            <img src="images/Images/cupcake.jpg" alt="Cupcake Trái Cây">
+            <img src="images/Images/cupcake.jpg"
+                 alt="Cupcake Trái Cây">
         </div>
 
         <div>
+
             <h2>Cupcake Trái Cây</h2>
 
             <p>
@@ -293,7 +294,7 @@
             </p>
 
             <p>
-                Sáu chiếc cupcake – sáu vị tươi ngon, ngọt ngào trao tay!
+                Sáu chiếc cupcake – sáu vị tươi ngon, ngọt ngào trao tay!.
             </p>
 
             <h3>Thông tin sản phẩm</h3>
@@ -303,28 +304,31 @@
                 <li>Hương vị: Kem tươi ngọt nhẹ kết hợp hương trái cây tươi đa dạng</li>
                 <li>Bảo quản: Ngăn mát tủ lạnh</li>
                 <li>Thời hạn sử dụng: 1-2 ngày</li>
-                <li>Số lượng trong hộp: 6 chiếc</li>   <!-- ← Đã thêm dòng này -->
             </ul>
 
             <hr>
 
+            <!-- Chọn hương vị -->
             <label for="flavor-cupcake">
                 <strong>Hương vị:</strong>
             </label>
+
             <select id="flavor-cupcake" name="flavor">
                 <option value="strawberry">Dâu tây</option>
                 <option value="chocolate">Chocolate</option>
                 <option value="vanilla">Vanilla</option>
                 <option value="matcha">Matcha</option>
-                <option value="blueberry">Việt Quất</option>
-                <option value="cherry">Cherry</option>
+                <option value="vanilla">Việt Quất</option>
+                <option value="matcha">Cherry</option>
             </select>
 
             <br><br>
 
+            <!-- Số lượng -->
             <label for="quantity-cupcake">
                 <strong>Số lượng:</strong>
             </label>
+
             <input type="number"
                    id="quantity-cupcake"
                    name="quantity"
@@ -334,22 +338,26 @@
 
             <br><br>
 
-            <button type="button">🛒 Thêm vào giỏ hàng</button>
-            <a href="checkout.html">
-                <button type="button">Mua ngay</button>
-            </a>
-        </div>
+            <button type="button">
+                🛒 Thêm vào giỏ hàng
+            </button>
 
+            <a href="checkout.html">
+                <button type="button">
+                    Mua ngay
+                </button>
+            </a>
+
+        </div>
     </section>
 
-    <!-- ==================== SẢN PHẨM 2: STRAWBERRY ==================== -->
-    <section style="margin-top: 40px;">
-
-        <div>
-            <img src="images/Images/strawberrycloud.jpg" alt="Strawberry Cloud Cake">
+    <section>
+            <img src="images/Images/strawberrycloud.jpg"
+                 alt="Strawberry Cloud Cake">
         </div>
 
         <div>
+
             <h2>Strawberry Cloud Cake</h2>
 
             <p>
@@ -373,10 +381,12 @@
 
             <hr>
 
+            <!-- Chọn kích thước -->
             <label for="size-strawberry">
                 <strong>Kích thước:</strong>
             </label>
-            <select id="size-strawberry" name="size">
+
+            <select id="size" name="size">
                 <option value="small">Size S - 12cm</option>
                 <option value="medium">Size M - 16cm</option>
                 <option value="large">Size L - 20cm</option>
@@ -384,9 +394,11 @@
 
             <br><br>
 
+            <!-- Chọn hương vị -->
             <label for="flavor-strawberry">
                 <strong>Hương vị:</strong>
             </label>
+
             <select id="flavor-strawberry" name="flavor">
                 <option value="strawberry">Dâu tây</option>
                 <option value="chocolate">Chocolate</option>
@@ -396,9 +408,11 @@
 
             <br><br>
 
+            <!-- Số lượng -->
             <label for="quantity-strawberry">
                 <strong>Số lượng:</strong>
             </label>
+
             <input type="number"
                    id="quantity-strawberry"
                    name="quantity"
@@ -408,10 +422,16 @@
 
             <br><br>
 
-            <button type="button">🛒 Thêm vào giỏ hàng</button>
+            <button type="button">
+                🛒 Thêm vào giỏ hàng
+            </button>
+
             <a href="checkout.html">
-                <button type="button">Mua ngay</button>
+                <button type="button">
+                    Mua ngay
+                </button>
             </a>
+
         </div>
 
     </section>
