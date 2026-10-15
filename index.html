@@ -12,9 +12,9 @@
     <style>
                 /* ==================== HERO MEMORI (ảnh phủ kín) ==================== */
         .mh-hero {
-            --mh-bg: #E9D9C8;          /* đổi cho khớp màu nền be của ảnh */
+            --mh-bg: #f0efeedf;          /* đổi cho khớp màu nền be của ảnh */
             --mh-red: #8E2227;
-            min-height: min(88vh, 820px);
+            min-height: 100vh;
             display: flex;
             align-items: center;
             padding: 0 clamp(24px, 6vw, 90px);
@@ -23,8 +23,8 @@
                 linear-gradient(90deg, var(--mh-bg) 0%, var(--mh-bg) 30%, rgba(233,217,200,0) 58%),
                 url("images/Images/hero1.png");
             background-repeat: no-repeat;
-            background-position: center, right center;
-            background-size: 100% 100%, auto 100%;
+            background-position: center, center;
+            background-size: 100% 100%, cover;
         }
 
         .mh-hero__content { max-width: 620px; }
@@ -42,10 +42,14 @@
             line-height: 1;
             letter-spacing: .02em;
             color: var(--mh-red);
-            text-shadow: 0 0 28px rgba(255,255,255,.55);
+            text-shadow:
+            0 2px 3px rgba(255, 255, 255, 0.55),
+            0 6px 18px rgba(70, 25, 30, 0.22);
         }
 
         .mh-tagline {
+            font-weight: 600;
+text-shadow: 0 1px 5px rgba(255, 245, 235, 0.9);
             margin-top: 14px;
             font-family: var(--font-display);
             font-style: italic;
@@ -559,6 +563,281 @@
             .footer-content { grid-template-columns: 1fr; }
             .cta-box { padding: 44px 22px; }
         }
+
+        /* Ẩn thanh menu khi mới vào trang */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transform: translateY(-100%);
+            transition: transform 0.4s ease;
+        }
+
+        /* Hiện menu khi cuộn lên */
+        header.show-header {
+            transform: translateY(0);
+        }
+
+            /* Khu vực danh mục bánh */
+        .cake-categories {
+            padding: 80px 5%;
+            background: #FCF7F8;
+            text-align: center;
+        }
+
+        .cake-categories h2 {
+            color: #A7485C;
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .cake-categories p {
+            color: #6E3042;
+            font-style: italic;
+            margin-bottom: 50px;
+        }
+
+        /* Khung chứa 6 ảnh */
+        .category-list {
+            display: flex;
+            gap: 8px;
+            height: 450px;
+        }
+
+        /* Mỗi thẻ bánh */
+        /* Khung từng danh mục bánh */
+        .category-card {
+            position: relative;
+            display: block;
+            flex: 1;
+            min-width: 0;
+            padding: 0;            /* Bỏ khoảng trắng bên trong khung */
+            overflow: hidden;
+            border-radius: 12px;
+            transition: flex-grow 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* Ảnh tự vừa khung */
+        /* Ảnh bánh phủ kín toàn bộ khung */
+        .category-card img {
+            width: 100%;           /* Rộng bằng khung */
+            height: 100%;          /* Cao bằng khung */
+            object-fit: cover;     /* Tự cắt ảnh để phủ kín, không bị méo */
+            display: block;
+            filter: brightness(0.65);
+            transition: filter 0.8s ease, transform 0.8s ease;
+            transform: scale(1);
+        }
+
+        /* Tên bánh viết dọc */
+        .category-card span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-90deg);
+            color: #FFF5EB;
+            font-size: 20px;
+            font-weight: bold;
+            white-space: nowrap;
+            transition: flex-grow 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* Rê chuột vào: thẻ mở rộng */
+        .category-card:hover {
+            flex: 2.5;
+        }
+
+        /* Ảnh sáng và phóng to nhẹ khi rê chuột */
+        .category-card:hover img {
+            filter: brightness(1);
+            transform: scale(1.05);
+        }
+        
+
+        /* Tên bánh chuyển ngang */
+        /* Khi ảnh mở rộng, tên bánh nằm phía dưới */
+        .category-card:hover span {
+            top: auto;                       /* Bỏ vị trí giữa ảnh */
+            bottom: 15px;                    /* Đưa chữ xuống cuối ảnh */
+            left: 50%;
+            transform: translateX(-50%) rotate(0deg);
+
+            color: #A7485C;                 /* Chữ đỏ hồng trầm */
+            background: none;               /* Bỏ dải nền màu */
+            padding: 0;                     /* Bỏ khoảng đệm */
+            border-radius: 0;
+            text-shadow: 0 1px 3px white;   /* Giúp chữ dễ đọc */
+        }
+          
+
+        /* Màn hình nhỏ */
+        @media (max-width: 768px) {
+            .category-list {
+                height: 300px;
+                gap: 4px;
+            }
+
+            .category-card span {
+                font-size: 13px;
+            }
+        } 
+
+            /* Loại bỏ khoảng trắng và viền thừa */
+        .cake-categories .category-card {
+            padding: 0;
+            margin: 0;
+            border: none;
+            background: transparent;
+}
+
+        /* Khu vực giới thiệu Memori Cake */
+.memori-about {
+    background: #FFFFFF;
+    padding: 90px 5%;
+}
+
+/* Bố cục ảnh - chữ - ảnh */
+.memori-about-container {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr 1fr;
+    align-items: center;
+    gap: 45px;
+    max-width: 1500px;
+    margin: auto;
+}
+
+/* Hai ảnh bên cạnh */
+.memori-about-image {
+    text-align: center;
+}
+
+.memori-about-image img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.6s ease;
+}
+
+/* Hiệu ứng ảnh */
+.memori-about-image img:hover {
+    transform: scale(1.03);
+}
+
+/* Chữ dưới ảnh */
+.memori-about-image span {
+    display: block;
+    margin-top: 18px;
+    color: #6E3042;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+/* Nội dung giữa */
+.memori-about-content {
+    text-align: center;
+}
+
+.memori-about-content h2 {
+    font-size: 38px;
+    color: #A7485C;
+    margin-bottom: 25px;
+}
+
+.memori-about-quote {
+    font-size: 23px;
+    font-style: italic;
+    color: #6E3042;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.memori-about-description {
+    font-size: 17px;
+    color: #806B66;
+    line-height: 1.9;
+}
+
+/* Màn hình nhỏ */
+@media (max-width: 768px) {
+    .memori-about-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .memori-about-image img {
+        height: 350px;
+    }
+}
+
+        /* Nền hồng sữa ấm áp */
+.memori-about {
+    background: linear-gradient(
+        135deg,
+        #ebe8e2 0%,
+        #f7f2ec 55%,
+        #f6f5f3 100%
+    );
+}
+
+/* Khung ảnh màu kem */
+.memori-about-image {
+    background: #FFF9F1;
+    border: 1px solid #C69A78;
+    box-shadow: 0 12px 30px rgba(121, 76, 61, 0.15);
+}
+
+/* Hiệu ứng khi rê chuột vào ảnh */
+.memori-about-image:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(121, 76, 61, 0.25);
+}
+
+/* Tiêu đề đỏ rượu vang */
+.memori-about-content h2 {
+    color: #551918;
+}
+
+/* Câu trích dẫn */
+.memori-about-quote {
+    color: #551918;
+}
+
+/* Nội dung giới thiệu */
+.memori-about-description {
+    color: #551918;
+}
+
+/* Chữ bên dưới hai ảnh */
+.memori-about-image span {
+    color: #782D3D;
+}
+
+/* Ngôi sao trang trí */
+.memori-about-content h2::after {
+    color: #C69A78;
+}
+ 
+        /* Bỏ khung bao quanh ảnh */
+.memori-about-image {
+    padding: 0;          /* Bỏ khoảng đệm */
+    background: none;    /* Bỏ nền trắng kem */
+    border: none;        /* Bỏ đường viền */
+    box-shadow: none;    /* Bỏ bóng khung */
+}
+
+/* Giữ ảnh bo góc nhẹ */
+.memori-about-image img {
+    border-radius: 12px;
+}
+
+/* Bỏ bóng khung khi rê chuột */
+.memori-about-image:hover {
+    box-shadow: none;
+}
+   
     </style>
 </head>
 
@@ -614,46 +893,78 @@
         </section>
 
         <div class="mh-divider" aria-hidden="true"><span></span><i>✦</i><span></span></div>
-               <!-- GIỚI THIỆU -->
-        <section class="block" id="about">
-            <div class="wrap about-grid">
-                <p class="about-quote">"Memori" được lấy cảm hứng từ "Memory" - những kỷ niệm và khoảnh khắc đáng nhớ trong cuộc sống.</p>
-                <div class="about-text">
-                    <h2 style="font-size: clamp(30px, 3.6vw, 42px); color: var(--berry); margin-bottom: 16px;">Về Memori Cake</h2>
-                    <p>Chúng tôi tin rằng một chiếc bánh không chỉ đơn giản là một món ăn mà còn có thể trở thành món quà gửi gắm tình cảm và lưu giữ những khoảnh khắc đặc biệt.</p>
+             
+        <!-- GIỚI THIỆU MEMORI CAKE -->
+        <section class="memori-about">
+            <div class="memori-about-container">
+
+                <!-- Ảnh bên trái -->
+                <div class="memori-about-image">
+                    <img src="images/Images/Về memori.png" alt="Bánh Memori Cake">
+                    <span>Ngọt ngào</span>
                 </div>
+
+                <!-- Nội dung ở giữa -->
+                <div class="memori-about-content">
+                    <h2>VỀ MEMORI CAKE</h2>
+
+                    <p class="memori-about-quote">
+                        “Memori” được lấy cảm hứng từ “Memory” –
+                        những kỷ niệm và khoảnh khắc đáng nhớ trong cuộc sống.
+                    </p>
+
+                    <p class="memori-about-description">
+                        Chúng tôi tin rằng một chiếc bánh không chỉ đơn giản
+                        là một món ăn mà còn có thể trở thành món quà gửi gắm
+                        tình cảm và lưu giữ những khoảnh khắc đặc biệt.
+                    </p>
+                </div>
+
+                <!-- Ảnh bên phải -->
+                <div class="memori-about-image">
+                    <img src="images/Images/Về memori1.png" alt="Bánh Memori Cake">
+                    <span>Kỷ niệm</span>
+                </div>
+
             </div>
         </section>
 
         <!-- DANH MỤC -->
-        <section class="block categories">
-            <div class="wrap">
-                <div class="section-head center">
-                    <h2>Danh mục bánh</h2>
-                    <p>Chọn loại bánh phù hợp với dịp của bạn.</p>
-                </div>
-                <ul class="category-list">
-                    <li><a href="products/products.html">
-                        <span class="cat-icon">🎂</span>
-                        <strong>Bánh sinh nhật</strong>
-                        <span class="sub">Cho ngày tuổi mới thêm ngọt ngào</span>
-                    </a></li>
-                    <li><a href="products/products.html">
-                        <span class="cat-icon">🧁</span>
-                        <strong>Bánh mini</strong>
-                        <span class="sub">Nhỏ xinh, vừa đủ cho một người</span>
-                    </a></li>
-                    <li><a href="products/products.html">
-                        <span class="cat-icon">🍓</span>
-                        <strong>Bánh theo mùa</strong>
-                        <span class="sub">Hương vị theo từng mùa trong năm</span>
-                    </a></li>
-                    <li><a href="products/products.html">
-                        <span class="cat-icon">🎁</span>
-                        <strong>Bánh làm quà</strong>
-                        <span class="sub">Gửi tặng người thân và bạn bè</span>
-                    </a></li>
-                </ul>
+         <!-- KHÁM PHÁ DANH MỤC BÁNH -->
+        <section class="cake-categories">
+            <h2>KHÁM PHÁ VỊ NGỌT</h2>
+            <p>Mỗi chiếc bánh, một khoảnh khắc đáng nhớ</p>
+
+            <div class="category-list">
+                <a href="products/products.html" class="category-card">
+                    <img src="images/Images/1.png" alt="Birthday Cake">
+                    <span>Birthday Cake</span>
+                </a>
+
+                <a href="products/products.html" class="category-card">
+                    <img src="images/Images/2.png" alt="Slice Cake">
+                    <span>Slice Cake</span>
+                </a>
+
+                <a href="products/products.html" class="category-card">
+                    <img src="images/Images/3.png" alt="Cookies & Gift">
+                    <span>Cookies & Gift</span>
+                </a>
+
+                <a href="products/products.html" class="category-card">
+                    <img src="images/Images/4.png" alt="Bread & Pastry">
+                    <span>Bread & Pastry</span>
+                </a>
+
+                <a href="products/products.html" class="category-card">
+                    <img src="images/Images/5.png" alt="Dessert">
+                    <span>Dessert</span>
+                </a>
+
+                <a href="products/products.html" class="category-card">
+                    <img src="images/Images/6.png" alt="Mooncake">
+                    <span>Mooncake</span>
+                </a>
             </div>
         </section>
 
@@ -709,6 +1020,18 @@
             </div>
         </section>
 
+        <!-- CTA -->
+        <section class="cta-section">
+            <div class="wrap">
+                <div class="cta-box">
+                    <h2>Sẵn sàng lưu giữ khoảnh khắc?</h2>
+                    <p>Hãy để Memori Cake đồng hành cùng những ngày đặc biệt của bạn.</p>
+                    <a href="products/products.html" class="btn">Đặt bánh ngay</a>
+                </div>
+            </div>
+        </section>
+       
+        
         <!-- LÝ DO CHỌN -->
         <section class="block why">
             <div class="wrap">
@@ -735,16 +1058,7 @@
             </div>
         </section>
 
-        <!-- CTA -->
-        <section class="cta-section">
-            <div class="wrap">
-                <div class="cta-box">
-                    <h2>Sẵn sàng lưu giữ khoảnh khắc?</h2>
-                    <p>Hãy để Memori Cake đồng hành cùng những ngày đặc biệt của bạn.</p>
-                    <a href="products/products.html" class="btn">Đặt bánh ngay</a>
-                </div>
-            </div>
-        </section>
+                
 
     </main>
 
@@ -795,5 +1109,18 @@
         </div>
     </footer>
 
+<script>
+      const header = document.querySelector("header");
+
+    window.addEventListener("scroll", () => {
+        // Ở đầu trang thì ẩn menu
+        if (window.scrollY === 0) {
+            header.classList.remove("show-header");
+        } else {
+            // Cuộn xuống trang thì hiện menu
+            header.classList.add("show-header");
+        }
+    });
+</script>
 </body>
 </html>
