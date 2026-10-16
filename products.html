@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tất Cả Sản Phẩm | Memori Cake</title>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
-
     <style>
         /* ==================== BIẾN MÀU & CHỮ (đồng bộ trang chủ) ==================== */
         :root {
@@ -22,33 +20,27 @@
             --butter: #f3d6a4;
             --sage: #4f7a5a;
             --line: #f0dcdf;
-
             --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
             --font-body: "Be Vietnam Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
         }
-
         /* ==================== RESET ==================== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-
         body {
             font-family: var(--font-body);
             background: var(--paper);
             color: var(--cocoa);
             line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
-        }
-
+            -webkit-font-smoothing: antialiased;}
         img { max-width: 100%; display: block; }
-        button, input, select { font-family: inherit; }
+        button, input, select { font-family: inherit; 
+             }
         a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
             outline: 3px solid var(--rose);
             outline-offset: 2px;
         }
-
         .wrap { width: min(1200px, 100% - 40px); margin-inline: auto; }
         h1, h2, h3 { font-family: var(--font-display); line-height: 1.2; }
-
         /* ==================== HEADER ==================== */
         header {
             position: sticky;
@@ -103,7 +95,6 @@
             font-weight: 600;
             margin-left: 4px;
         }
-
         /* ==================== TIÊU ĐỀ TRANG ==================== */
         .products-hero {
             background:
@@ -130,7 +121,6 @@
             font-size: 17px;
             max-width: 52ch;
         }
-
         /* ==================== LAYOUT CHÍNH ==================== */
         .container {
             display: grid;
@@ -139,7 +129,6 @@
             padding: 44px 0 20px;
             align-items: start;
         }
-
         /* ==================== SIDEBAR ==================== */
         .sidebar {
             background: #fff;
@@ -192,7 +181,6 @@
         }
         .search-box:focus { border-color: var(--rose); background: #fff; outline: none; }
         .search-box:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--blush); }
-
         /* ==================== TOOLBAR ==================== */
         .toolbar {
             display: flex;
@@ -216,14 +204,12 @@
             cursor: pointer;
         }
         .sort-select:focus { border-color: var(--rose); }
-
         /* ==================== LƯỚI SẢN PHẨM ==================== */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             gap: 26px;
         }
-
         .product-card {
             background: #fff;
             border: 1px solid var(--line);
@@ -238,7 +224,6 @@
             transform: translateY(-6px);
             box-shadow: 0 22px 44px rgba(94, 36, 49, .14);
         }
-
         .img-placeholder {
             position: relative;
             width: 100%;
@@ -254,7 +239,6 @@
             transition: transform .5s;
         }
         .product-card:hover .img-placeholder img { transform: scale(1.05); }
-
         /* Nhãn & nút yêu thích */
         .badge {
             position: absolute;
@@ -270,7 +254,6 @@
         }
         .badge.best-seller { background: var(--butter); color: var(--berry); }
         .badge.new { background: var(--sage); }
-
         .btn-wishlist {
             position: absolute;
             top: 12px;
@@ -291,7 +274,6 @@
             transition: background .2s, color .2s, transform .2s;
         }
         .btn-wishlist:hover { background: var(--rose); color: #fff; transform: scale(1.08); }
-
         .card-body {
             padding: 20px 22px 22px;
             display: flex;
@@ -312,7 +294,6 @@
             margin-bottom: 16px;
             flex-grow: 1;
         }
-
         .price-box { display: flex; align-items: baseline; gap: 10px; margin-bottom: 16px; }
         .price-current {
             font-family: var(--font-display);
@@ -321,7 +302,6 @@
             color: var(--rose-dark);
         }
         .price-old { font-size: 14px; color: #a99799; text-decoration: line-through; }
-
         .card-actions { display: flex; gap: 10px; }
         .btn-detail, .btn-add-cart {
             flex: 1;
@@ -346,14 +326,12 @@
             color: #fff;
         }
         .btn-add-cart:hover { background: var(--rose-dark); border-color: var(--rose-dark); }
-
         .pagination { 
     display: flex; 
     justify-content: center; 
     gap: 10px; 
     margin-top: 48px; 
 }
-
 .pagination a {
     width: 44px;
     height: 44px;
@@ -370,7 +348,6 @@
     text-decoration: none;
     transition: background .2s, color .2s, border-color .2s;
 }
-
 .pagination a.active,
 .pagination a:hover {
     background: var(--rose);
@@ -419,7 +396,6 @@
             font-size: 13px;
             color: #a8908f;
         }
-
         /* ==================== RESPONSIVE ==================== */
         @media (max-width: 960px) {
             .container { grid-template-columns: 1fr; gap: 28px; }
@@ -442,9 +418,7 @@
     <header>
         <div class="wrap header-inner">
             <a href="index.html" aria-label="Memori Cake - Trang chủ">
-                <img src="images/Images/logo_memoricake.png" alt="Memori Cake Logo" class="logo">
-            </a>
-
+                <img src="images/Images/logo_memoricake.png" alt="Memori Cake Logo" class="logo"></a>
             <nav aria-label="Menu chính">
                 <ul>
                     <li><a href="index.html">Trang chủ</a></li>
@@ -456,7 +430,6 @@
             </nav>
         </div>
     </header>
-
     <!-- TIÊU ĐỀ TRANG -->
     <section class="products-hero">
         <div class="wrap">
@@ -465,17 +438,14 @@
             <p>Từ những chiếc bánh sinh nhật cầu kỳ đến món tráng miệng nhỏ nhắn cho ngày ngọt ngào.</p>
         </div>
     </section>
-
     <!-- NỘI DUNG CHÍNH -->
     <div class="wrap container">
-
         <!-- SIDEBAR BỘ LỌC -->
         <aside class="sidebar" aria-label="Bộ lọc sản phẩm">
             <div class="filter-group">
                 <label class="filter-title" for="search">Tìm kiếm</label>
                 <input type="text" id="search" class="search-box" placeholder="Nhập tên bánh...">
             </div>
-
             <div class="filter-group">
                 <div class="filter-title">Danh mục bánh</div>
                 <ul class="filter-options">
@@ -490,7 +460,6 @@
                     <li><label><input type="checkbox"> Bread &amp; Pastry (10)</label></li>
                 </ul>
             </div>
-
             <div class="filter-group">
                 <div class="filter-title">Khoảng giá</div>
                 <ul class="filter-options">
@@ -500,7 +469,6 @@
                     <li><label><input type="radio" name="price"> Trên 500.000đ</label></li>
                 </ul>
             </div>
-
             <div class="filter-group">
                 <div class="filter-title">Kích thước (Size)</div>
                 <ul class="filter-options">
@@ -511,7 +479,6 @@
                 </ul>
             </div>
         </aside>
-
         <!-- KHU VỰC SẢN PHẨM -->
         <main>
             <div class="toolbar">
@@ -526,9 +493,7 @@
                     </select>
                 </div>
             </div>
-
             <div class="products-grid">
-
                 <!-- CARD 1 -->
                 <article class="product-card">
                     <span class="badge">-10%</span>
@@ -550,7 +515,6 @@
                         </div>
                     </div>
                 </article>
-
                 <!-- CARD 2 -->
                 <article class="product-card">
                     <span class="badge best-seller">Bán chạy</span>
@@ -571,7 +535,6 @@
                         </div>
                     </div>
                 </article>
-
                 <!-- CARD 3 -->
                 <article class="product-card">
                     <span class="badge new">Mới</span>
@@ -592,7 +555,6 @@
                         </div>
                     </div>
                 </article>
-
                 <!-- CARD 4 -->
                 <article class="product-card">
                     <button class="btn-wishlist" aria-label="Yêu thích">♥</button>
@@ -612,7 +574,6 @@
                         </div>
                     </div>
                 </article>
-
                 <!-- CARD 5 -->
                 <article class="product-card">
                     <span class="badge">-15%</span>
@@ -654,7 +615,6 @@
                         </div>
                     </div>
                 </article>
-
                 <!-- CARD 7 -->
                 <article class="product-card">
                     <span class="badge best-seller">Bán chạy</span>
@@ -675,7 +635,6 @@
                         </div>
                     </div>
                 </article>
-
                 <!-- CARD 8 -->
                 <article class="product-card">
                     <span class="badge new">Mới</span>
@@ -696,7 +655,6 @@
                         </div>
                     </div>
                 </article>
-
             </div>
 
            <!-- PHÂN TRANG -->
@@ -706,11 +664,8 @@
     <a href="products3.html">3</a>
     <a href="products4.html">4</a>
     <a href="products2.html" aria-label="Trang sau">&raquo;</a>
- 
 </div>
-        </main>
-           
-
+        </main>     
     </div>
 
     <!-- FOOTER -->
@@ -721,7 +676,6 @@
                 <p>Lưu giữ khoảnh khắc bằng những chiếc bánh ngọt.</p>
                 <p>Mỗi chiếc bánh là một kỷ niệm đáng nhớ.</p>
             </div>
-
             <div class="footer-col">
                 <h4>Liên kết nhanh</h4>
                 <ul>
@@ -731,7 +685,6 @@
                     <li><a href="contact.html">Liên hệ</a></li>
                 </ul>
             </div>
-
             <div class="footer-col">
                 <h4>Hỗ trợ</h4>
                 <ul>
@@ -741,7 +694,6 @@
                     <li><a href="login.html">Tài khoản</a></li>
                 </ul>
             </div>
-
             <div class="footer-col">
                 <h4>Liên hệ</h4>
                 <p>📍 120 Chùa Bộc, Phường Kim Liên, TP.Hà Nội</p>
@@ -754,11 +706,9 @@
                 </div>
             </div>
         </div>
-
         <div class="footer-bottom">
             <p>© 2026 Memori Cake. All rights reserved.</p>
         </div>
     </footer>
-
 </body>
 </html>
