@@ -4,30 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cảm ơn bạn | Memori Cake</title>
-
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="thanks.css">
+    <script src="thanks.js" defer></script>
 </head>
-<link rel="stylesheet" href="thanks.css">
 <body>
 
 <header>
-    <div class="header-top">
-        <div class="logo-area">
-            <h1>Memori Cake</h1>
-            <p class="slogan">Lưu giữ khoảnh khắc bằng những chiếc bánh ngọt</p>
-        </div>
-        <div class="account-area">
-            <a href="login.html">Đăng nhập / Đăng ký</a>
-            <a href="../cart/cart.html">🛒 Giỏ hàng</a>
-        </div>
+    <div class="wrap header-inner">
+        <a href="../index.html" aria-label="Memori Cake - Trang chủ">
+            <img src="../images/Images/logo_memoricake.png" alt="Memori Cake Logo" class="logo">
+        </a>
+        <nav aria-label="Menu chính">
+            <ul>
+                <li><a href="../index.html">Trang chủ</a></li>
+                <li><a href="../products/products.html">Sản phẩm</a></li>
+                <li><a href="../cart/cart.html">Giỏ hàng</a></li>
+                <li><a href="../contact/contact.html">Liên hệ</a></li>
+                <li><a href="../login-register/login.html" class="nav-cta">Đăng nhập / Đăng ký</a></li>
+            </ul>
+        </nav>
     </div>
-
-    <nav>
-        <a href="../index.html">Trang chủ</a>
-        <a href="../products/products.html">Sản phẩm</a>
-        <a href="../cart/cart.html">Giỏ hàng</a>
-        <a href="../contact/contact.html">Liên hệ</a>
-    </nav>
 </header>
 
 <main>
@@ -36,8 +35,8 @@
 
         <h1>Cảm ơn bạn đã đặt hàng!</h1>
         <p class="subtitle">
-            Đơn hàng của bạn đã được ghi nhận thành công.<br>
-            Chúng tôi sẽ liên hệ xác nhận trong thời gian sớm nhất.
+            Thông tin đơn hàng đã được lưu trên thiết bị này.<br>
+            Website chưa gửi đơn về cửa hàng hoặc xử lý thanh toán; vui lòng liên hệ tiệm để xác nhận.
         </p>
 
         <!-- Thông tin đơn hàng (JS sẽ điền) -->
@@ -82,10 +81,10 @@
             <div class="footer-col">
                 <h4>Hỗ trợ</h4>
                 <ul>
-                    <li><a href="#">Chính sách giao hàng</a></li>
-                    <li><a href="#">Hướng dẫn đặt bánh</a></li>
-                    <li><a href="#">Chính sách đổi trả</a></li>
-                    <li><a href="login.html">Tài khoản</a></li>
+                    <li><a href="../support/chinh-sach-giao-hang.html">Chính sách giao hàng</a></li>
+                    <li><a href="../support/huong-dan-dat-banh.html">Hướng dẫn đặt bánh</a></li>
+                    <li><a href="../support/chinh-sach-doi-tra.html">Chính sách đổi trả</a></li>
+                    <li><a href="../login-register/login.html">Tài khoản</a></li>
                 </ul>
             </div>
 
@@ -95,8 +94,8 @@
                 <p>📞 0901 234 567</p>
                 <p>✉️ tiembanh@memoricake.vn</p>
                 <div class="social">
-                    <a href="https://web.facebook.com/profile.php?id=61584459725669">Facebook</a> · 
-                    <a href="#">Instagram</a> · 
+                    <a href="https://web.facebook.com/profile.php?id=61584459725669">Facebook</a>
+                    <a href="#">Instagram</a>
                     <a href="#">TikTok</a>
                 </div>
             </div>
@@ -106,6 +105,5 @@
             <p>© 2026 Memori Cake. All rights reserved.</p>
         </div>
     </footer>
-<script src="thanks.js"></script>
 </body>
 </html>

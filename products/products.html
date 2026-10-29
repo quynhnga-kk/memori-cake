@@ -7,10 +7,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="products.css">
 </head>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="products.css">
 <body>
 
     <!-- HEADER -->
@@ -24,9 +23,9 @@
                 <ul>
                     <li><a href="../index.html">Trang chủ</a></li>
                     <li><a href="products.html" aria-current="page">Sản phẩm</a></li>
-                    <li><a href="../cart/cart.html">Liên hệ</a></li>
-                    <li><a href="../login-register/login.html">Đăng nhập</a></li>
-                    <li><a href="../cart/cart.html">🛒 Giỏ hàng <span class="cart-badge">0</span></a></li>
+                    <li><a href="../cart/cart.html">Giỏ hàng <span class="cart-badge">0</span></a></li>
+                    <li><a href="../contact/contact.html">Liên hệ</a></li>
+                    <li><a href="../login-register/login.html" class="nav-cta">Đăng nhập / Đăng ký</a></li>
                 </ul>
             </nav>
         </div>
@@ -51,18 +50,18 @@
                 <input type="text" id="search" class="search-box" placeholder="Nhập tên bánh...">
             </div>
 
-            <div class="filter-group">
+            <div class="filter-group" data-filter-group="categories">
                 <div class="filter-title">Danh mục bánh</div>
                 <ul class="filter-options">
-                    <li><label><input type="checkbox" checked> Tất cả bánh</label></li>
-                    <li><label><input type="checkbox"> Bánh sinh nhật (12)</label></li>
-                    <li><label><input type="checkbox"> Bánh Mini / Bento (10)</label></li>
-                    <li><label><input type="checkbox"> Cupcake &amp; Tart (10)</label></li>
-                    <li><label><input type="checkbox"> Bánh Mousse &amp; Cheesecakes (10)</label></li>
-                    <li><label><input type="checkbox"> Bánh Theo Mùa / Tết (4)</label></li>
-                    <li><label><input type="checkbox"> Cookies &amp; Gift (10)</label></li>
-                    <li><label><input type="checkbox"> Slice Cake (10)</label></li>
-                    <li><label><input type="checkbox"> Bread &amp; Pastry (10)</label></li>
+                    <li><label><input type="checkbox" checked data-category="all"> Tất cả bánh</label></li>
+                    <li><label><input type="checkbox" data-category="birthday"> Bánh sinh nhật (12)</label></li>
+                    <li><label><input type="checkbox" data-category="mini"> Bánh Mini / Bento (10)</label></li>
+                    <li><label><input type="checkbox" data-category="tart"> Cupcake &amp; Tart (10)</label></li>
+                    <li><label><input type="checkbox" data-category="mousse"> Bánh Mousse &amp; Cheesecakes (10)</label></li>
+                    <li><label><input type="checkbox" data-category="seasonal"> Bánh Theo Mùa / Tết (4)</label></li>
+                    <li><label><input type="checkbox" data-category="cookies"> Cookies &amp; Gift (10)</label></li>
+                    <li><label><input type="checkbox" data-category="slice"> Slice Cake (10)</label></li>
+                    <li><label><input type="checkbox" data-category="bread"> Bread &amp; Pastry (10)</label></li>
                 </ul>
             </div>
 
@@ -76,13 +75,13 @@
                 </ul>
             </div>
 
-            <div class="filter-group">
+            <div class="filter-group" data-filter-group="sizes">
                 <div class="filter-title">Kích thước (Size)</div>
                 <ul class="filter-options">
-                    <li><label><input type="checkbox"> Mini (10cm)</label></li>
-                    <li><label><input type="checkbox"> Size S (16cm)</label></li>
-                    <li><label><input type="checkbox"> Size M (20cm)</label></li>
-                    <li><label><input type="checkbox"> Size L (24cm)</label></li>
+                    <li><label><input type="checkbox" data-size="Mini (10cm)"> Mini (10cm)</label></li>
+                    <li><label><input type="checkbox" data-size="Size S (16cm)"> Size S (16cm)</label></li>
+                    <li><label><input type="checkbox" data-size="Size M (20cm)"> Size M (20cm)</label></li>
+                    <li><label><input type="checkbox" data-size="Size L (24cm)"> Size L (24cm)</label></li>
                 </ul>
             </div>
         </aside>
@@ -377,7 +376,7 @@
                 <div class="product-card">
                     <span class="badge new">Mới</span>
                     <button class="btn-wishlist">♥</button>
-                    <div class="img-placeholder"><img src="../images/Images/chocolate cupcake.jpg "
+                    <div class="img-placeholder"><img src="../images/Images/chocolate cupcake.jpg"
                         alt="Chocolate cupcake"></div>
                     <h3> Chocolate cupcake </h3>
                     <div class="rating">★★★★☆ <span>(45)</span></div>
@@ -394,7 +393,7 @@
                 <div class="product-card">
                     <span class="badge new">Mới</span>
                     <button class="btn-wishlist">♥</button>
-                    <div class="img-placeholder"><img src="../images/Images/Cupcake bông lan trứng muối.jpg "
+                    <div class="img-placeholder"><img src="../images/Images/Cupcake bông lan trứng muối.jpg"
                         alt="Cupcake bông lan trứng muối"></div>
                     <h3> Cupcake bông lan trứng muối </h3>
                     <div class="rating">★★★★☆ <span>(45)</span></div>
@@ -411,7 +410,7 @@
                 <div class="product-card">
                     <span class="badge new">Mới</span>
                     <button class="btn-wishlist">♥</button>
-                    <div class="img-placeholder"><img src="../images/Images/matcha cupcake.jpg "
+                    <div class="img-placeholder"><img src="../images/Images/matcha cupcake.jpg"
                         alt="matcha cupcake"></div>
                     <h3> matcha cupcake </h3>
                     <div class="rating">★★★★☆ <span>(45)</span></div>
@@ -649,9 +648,9 @@
             <div class="footer-col">
                 <h4>Hỗ trợ</h4>
                 <ul>
-                    <li><a href="#">Chính sách giao hàng</a></li>
-                    <li><a href="#">Hướng dẫn đặt bánh</a></li>
-                    <li><a href="#">Chính sách đổi trả</a></li>
+                    <li><a href="../support/chinh-sach-giao-hang.html">Chính sách giao hàng</a></li>
+                    <li><a href="../support/huong-dan-dat-banh.html">Hướng dẫn đặt bánh</a></li>
+                    <li><a href="../support/chinh-sach-doi-tra.html">Chính sách đổi trả</a></li>
                     <li><a href="../login-register/login.html">Tài khoản</a></li>
                 </ul>
             </div>

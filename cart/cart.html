@@ -5,32 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giỏ hàng - Memori Cake</title>
 
-   <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="cart.css">
 </head>
 
 <body>
 
-    <!-- ===== HEADER ===== -->
     <header>
-        <div class="header-top">
-            <div>
-                <div class="logo">Memori Cake</div>
-                <div class="slogan">Lưu giữ khoảnh khắc bằng những chiếc bánh ngọt</div>
-            </div>
-            <div class="header-links">
-                <a href="../login-register/register.html">Đăng nhập / Đăng ký</a>
-                <a href="cart.html">🛒 Giỏ hàng (<span id="cart-count">0</span>)</a>
-            </div>
+        <div class="wrap header-inner">
+            <a href="../index.html" aria-label="Memori Cake - Trang chủ">
+                <img src="../images/Images/logo_memoricake.png" alt="Memori Cake Logo" class="logo">
+            </a>
+            <nav aria-label="Menu chính">
+                <ul>
+                    <li><a href="../index.html">Trang chủ</a></li>
+                    <li><a href="../products/products.html">Sản phẩm</a></li>
+                    <li><a href="cart.html" aria-current="page">Giỏ hàng <span class="cart-badge" id="cart-count">0</span></a></li>
+                    <li><a href="../contact/contact.html">Liên hệ</a></li>
+                    <li><a href="../login-register/login.html" class="nav-cta">Đăng nhập / Đăng ký</a></li>
+                </ul>
+            </nav>
         </div>
-
-        <nav>
-            <ul>
-                <li><a href="../index.html">Trang chủ</a></li>
-                <li><a href="../products/products.html">Sản phẩm</a></li>
-                <li><a href="../cart.html" class="active">Giỏ hàng</a></li>
-                <li><a href="../contact/contact.html">Liên hệ</a></li>
-            </ul>
-        </nav>
     </header>
 
 
@@ -110,6 +104,11 @@
                         <span id="shipping">30.000đ</span>
                     </div>
 
+                    <div class="summary-row discount-row" id="discount-row" hidden>
+                        <span>Giảm giá</span>
+                        <span id="discount">-0đ</span>
+                    </div>
+
                     <div class="summary-row total">
                         <span>Tổng cộng</span>
                         <span id="total">0đ</span>
@@ -119,6 +118,7 @@
                         <input type="text" id="coupon-code" placeholder="Nhập mã giảm giá">
                         <button type="button" onclick="applyCoupon()">Áp dụng</button>
                     </div>
+                    <p class="coupon-message" id="coupon-message" role="status" aria-live="polite"></p>
 
                     <button class="checkout-btn" id="checkout-btn" onclick="goCheckout()">
                         Tiến hành thanh toán
@@ -141,7 +141,7 @@
                 <ul>
                     <li><a href="../index.html">Trang chủ</a></li>
                     <li><a href="../products/products.html">Sản phẩm</a></li>
-                    <li><a href="../cart.html">Giỏ hàng</a></li>
+                    <li><a href="cart.html">Giỏ hàng</a></li>
                     <li><a href="../contact/contact.html">Liên hệ</a></li>
                 </ul>
             </div>
@@ -149,10 +149,10 @@
             <div class="footer-col">
                 <h4>Hỗ trợ</h4>
                 <ul>
-                    <li><a href="#">Chính sách giao hàng</a></li>
-                    <li><a href="#">Hướng dẫn đặt bánh</a></li>
-                    <li><a href="#">Chính sách đổi trả</a></li>
-                    <li><a href="../login-register/register.html">Tài khoản</a></li>
+                    <li><a href="../support/chinh-sach-giao-hang.html">Chính sách giao hàng</a></li>
+                    <li><a href="../support/huong-dan-dat-banh.html">Hướng dẫn đặt bánh</a></li>
+                    <li><a href="../support/chinh-sach-doi-tra.html">Chính sách đổi trả</a></li>
+                    <li><a href="../login-register/login.html">Tài khoản</a></li>
                 </ul>
             </div>
 
@@ -162,8 +162,8 @@
                 <p>📞 0901 234 567</p>
                 <p>✉️ tiembanh@memoricake.vn</p>
                 <div class="social">
-                    <a href="https://web.facebook.com/profile.php?id=61584459725669">Facebook</a> · 
-                    <a href="#">Instagram</a> · 
+                    <a href="https://web.facebook.com/profile.php?id=61584459725669">Facebook</a>
+                    <a href="#">Instagram</a>
                     <a href="#">TikTok</a>
                 </div>
             </div>

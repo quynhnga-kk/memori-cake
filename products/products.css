@@ -408,3 +408,82 @@
             .products-grid { grid-template-columns: 1fr; }
             .footer-content { grid-template-columns: 1fr; }
         }
+:root {
+    --rose: #7A2A3D;
+    --rose-dark: #5C1A2B;
+    --berry: #31161d;
+    --blush: #EAE0D0;
+    --paper: #F6F1E9;
+    --cocoa: #1C1512;
+    --muted: #8A7B6E;
+    --butter: #B99A6B;
+    --line: #c1b7aa;
+    --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+    --font-body: "Be Vietnam Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.product-card[hidden] {
+    display: none !important;
+}
+
+.nav-cta {
+    padding: 8px 20px !important;
+    border: 0 !important;
+    border-radius: 999px;
+    background: var(--rose);
+    color: #fff !important;
+}
+
+.nav-cta:hover {
+    background: var(--rose-dark);
+    color: #fff !important;
+}
+
+.img-placeholder img {
+    cursor: pointer;
+}
+
+.img-placeholder img:focus-visible {
+    outline: 3px solid var(--butter);
+    outline-offset: -4px;
+}
+
+.btn-wishlist[aria-pressed="true"] {
+    background: var(--rose);
+    color: #fff;
+}
+
+.product-toast {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 200;
+    max-width: min(360px, calc(100vw - 32px));
+    padding: 13px 18px;
+    border: 1px solid rgba(255, 255, 255, .18);
+    border-radius: 999px;
+    background: var(--berry);
+    box-shadow: 0 12px 28px rgba(49, 22, 29, .22);
+    color: #fff;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(12px);
+    transition: opacity .25s ease, transform .25s ease;
+}
+
+.product-toast.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .product-card .img-placeholder img:hover {
+        transform: scale(1.05);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .product-toast {
+        transition-duration: .01ms;
+    }
+}

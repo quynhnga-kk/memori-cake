@@ -1,183 +1,246 @@
+(() => {
+    const box = document.getElementById("detail");
+    const moneyValue = (value) => Number(String(value ?? "").replace(/[^\d]/g, "")) || 0;
+    const formatMoney = (value) => `${value.toLocaleString("vi-VN")}đ`;
+    const slugify = (value) => value.trim().toLocaleLowerCase("vi-VN").replace(/\s+/g, "-");
 
-const params = new URLSearchParams(window.location.search);
-const productId = params.get("id");
-
-const products = document.querySelectorAll(".product");
-
-products.forEach((product, index) => {
-    if (productId) {
-        product.style.display =
-            index + 1 === Number(productId) ? "grid" : "none";
-    } else {
-        product.style.display = index === 0 ? "grid" : "none";
+    let product;
+    try {
+        product = JSON.parse(localStorage.getItem("memoriProduct") || "null");
+    } catch (error) {
+        console.error("Could not read the selected product.", error);
     }
-});
-(function () {
-    var box = document.getElementById('detail');
 
-    // ---- Lấy sản phẩm đã lưu khi bấm "Chi tiết" ----
-    var product = null;
-    try { product = JSON.parse(localStorage.getItem('memoriProduct')); } catch (e) {}
-
-    if (!product) {
-        box.innerHTML =
-            '<div class="detail-empty">' +
-            '<h3>Không tìm thấy sản phẩm</h3>' +
-            '<p>Vui lòng quay lại danh sách và chọn lại bánh bạn muốn xem.</p>' +
-            '<a href="../products/products.html" class="btn-add-cart detail-btn">Về trang sản phẩm</a>' +
-            '</div>';
+    if (!product || typeof product.name !== "string" || !product.name.trim()) {
+        const emptyState = document.createElement("div");
+        emptyState.className = "detail-empty";
+        const title = document.createElement("h3");
+        title.textContent = "Chưa chọn sản phẩm";
+        const message = document.createElement("p");
+        message.textContent = "Hãy chọn một chiếc bánh từ danh sách để xem chi tiết và đặt hàng.";
+        const link = document.createElement("a");
+        link.href = "../products/products.html";
+        link.className = "btn-add-cart detail-btn";
+        link.textContent = "Xem sản phẩm";
+        emptyState.append(title, message, link);
+        box?.replaceChildren(emptyState);
         return;
     }
 
-    document.title = product.name + ' | Memori Cake';
+    const basePrice = moneyValue(product.price);
+    const baseOldPrice = moneyValue(product.oldPrice);
+    if (basePrice <= 0) {
+        console.error("The selected product has an invalid price.");
+        box.textContent = "Thông tin giá sản phẩm không hợp lệ. Vui lòng quay lại danh sách bánh.";
+        return;
+    }
 
-    // ---- Thông tin thêm cho từng bánh (tùy chọn) ----
-    // Khóa = tên bánh viết thường. Bánh nào không có sẽ dùng thông tin mặc định.
-    var EXTRA = {
-        'strawberry cloud': {
-            ingredients: 'Bột mì, trứng gà, sữa tươi, kem tươi, dâu tây Đà Lạt, đường',
-            storage: 'Bảo quản ngăn mát 2–6°C, dùng ngon nhất trong 2 ngày.'
-        },
-        'chocolate dream': {
-            ingredients: 'Chocolate Bỉ, bột mì, trứng gà, bơ, kem tươi, cacao',
-            storage: 'Bảo quản ngăn mát 2–6°C, dùng trong 3 ngày.'
-        },
-        'tiramisu classic': {
-            ingredients: 'Mascarpone, cà phê Espresso, bánh Ladyfinger, trứng, bột cacao',
-            storage: 'Bảo quản ngăn mát, dùng trong 2 ngày.'
-        }
-    };
-
-    var DEFAULT_INFO = {
-        ingredients: 'Bột mì, trứng gà, sữa tươi, bơ, đường và các nguyên liệu tươi chọn lọc.',
-        storage: 'Bảo quản ngăn mát 2–6°C, nên dùng trong 1–3 ngày.'
-    };
-    var info = EXTRA[product.name.toLowerCase()] || DEFAULT_INFO;
-
-    // ---- Xử lý giá & kích thước ----
-    function toNumber(str) { return parseInt(String(str).replace(/\D/g, ''), 10) || 0; }
-    function toMoney(n) { return n.toLocaleString('vi-VN') + 'đ'; }
-
-    var basePrice = toNumber(product.price);
-    var baseOld = toNumber(product.oldPrice);
-
-    // Chỉ bánh từ 100.000đ trở lên mới có chọn size (mini/cupcake/tart thì không)
-    var hasSize = basePrice >= 100000;
-    var SIZES = [
-        { label: 'Mini (10cm)', rate: 0.5 },
-        { label: 'Size S (16cm)', rate: 1 },
-        { label: 'Size M (20cm)', rate: 1.4 },
-        { label: 'Size L (24cm)', rate: 1.8 }
+    const productName = product.name.trim();
+    const supportsSizes = basePrice >= 100000 && !/tart|cupcake|cookie|set/i.test(productName);
+    const sizes = [
+        { label: "Mini (10cm)", rate: 0.5 },
+        { label: "Size S (16cm)", rate: 1 },
+        { label: "Size M (20cm)", rate: 1.4 },
+        { label: "Size L (24cm)", rate: 1.8 },
     ];
-    var sizeIndex = 1;
-    var qty = 1;
+    let selectedSize = supportsSizes ? (sizes.findIndex((size) => size.label === product.size) >= 0
+        ? sizes.findIndex((size) => size.label === product.size)
+        : 1) : -1;
+    let quantity = 1;
 
-    // ---- Dựng giao diện ----
+    document.title = `${productName} | Memori Cake`;
+
+    function currentPrice() {
+        const rate = selectedSize < 0 ? 1 : sizes[selectedSize].rate;
+        return Math.round(basePrice * rate / 1000) * 1000;
+    }
+
+    function setQuantity(value) {
+        quantity = Math.min(99, Math.max(1, Number.parseInt(value, 10) || 1));
+        render();
+    }
+
+    function appendText(parent, tag, className, value) {
+        const element = document.createElement(tag);
+        if (className) element.className = className;
+        element.textContent = value;
+        parent.append(element);
+        return element;
+    }
+
     function render() {
-        var rate = hasSize ? SIZES[sizeIndex].rate : 1;
-        var price = Math.round(basePrice * rate / 1000) * 1000;
-        var old = baseOld ? Math.round(baseOld * rate / 1000) * 1000 : 0;
+        const article = document.createElement("article");
+        article.className = "detail-card";
 
-        var sizeHTML = '';
-        if (hasSize) {
-            sizeHTML = '<div class="option-group"><div class="filter-title">Kích thước</div><div class="size-list">';
-            SIZES.forEach(function (s, i) {
-                sizeHTML += '<button type="button" class="size-btn' + (i === sizeIndex ? ' active' : '') +
-                    '" data-size="' + i + '">' + s.label + '</button>';
+        const imageBox = document.createElement("div");
+        imageBox.className = "detail-image";
+        if (product.badge) appendText(imageBox, "span", `badge ${product.badgeClass || ""}`.trim(), product.badge);
+
+        const image = document.createElement("img");
+        image.src = product.image || "";
+        image.alt = productName;
+        image.loading = "eager";
+        image.addEventListener("error", () => {
+            image.alt = `${productName} (ảnh chưa khả dụng)`;
+        }, { once: true });
+        imageBox.append(image);
+
+        const info = document.createElement("div");
+        info.className = "detail-info";
+        appendText(info, "h1", "", productName);
+        appendText(info, "div", "rating", `${product.stars || "★★★★★"} (${product.reviews || "0"} đánh giá)`);
+
+        const priceBox = document.createElement("div");
+        priceBox.className = "price-box";
+        appendText(priceBox, "span", "price-current detail-price", formatMoney(currentPrice()));
+        if (baseOldPrice) {
+            const oldPrice = Math.round(baseOldPrice * (selectedSize < 0 ? 1 : sizes[selectedSize].rate) / 1000) * 1000;
+            appendText(priceBox, "span", "price-old", formatMoney(oldPrice));
+        }
+        info.append(priceBox);
+        appendText(info, "p", "detail-desc", product.desc || "Bánh tươi được làm thủ công từ nguyên liệu chọn lọc.");
+
+        if (supportsSizes) {
+            const sizeGroup = document.createElement("div");
+            sizeGroup.className = "option-group";
+            appendText(sizeGroup, "div", "filter-title", "Kích thước");
+            const sizeList = document.createElement("div");
+            sizeList.className = "size-list";
+            sizes.forEach((size, index) => {
+                const button = document.createElement("button");
+                button.type = "button";
+                button.className = `size-btn${index === selectedSize ? " active" : ""}`;
+                button.textContent = size.label;
+                button.setAttribute("aria-pressed", String(index === selectedSize));
+                button.addEventListener("click", () => {
+                    selectedSize = index;
+                    render();
+                });
+                sizeList.append(button);
             });
-            sizeHTML += '</div></div>';
+            sizeGroup.append(sizeList);
+            info.append(sizeGroup);
         }
 
-        box.innerHTML =
-            '<article class="detail-card">' +
-                '<div class="detail-image">' +
-                    (product.badge ? '<span class="badge ' + product.badgeClass + '">' + product.badge + '</span>' : '') +
-                    '<img src="' + product.image + '" alt="' + product.name + '">' +
-                '</div>' +
-                '<div class="detail-info">' +
-                    '<h1>' + product.name + '</h1>' +
-                    '<div class="rating">' + product.stars + ' <span>(' + product.reviews + ' đánh giá)</span></div>' +
-                    '<div class="price-box">' +
-                        '<span class="price-current detail-price">' + toMoney(price * 1) + '</span>' +
-                        (old ? '<span class="price-old">' + toMoney(old) + '</span>' : '') +
-                    '</div>' +
-                    '<p class="detail-desc">' + product.desc + '</p>' +
-                    sizeHTML +
-                    '<div class="option-group">' +
-                        '<div class="filter-title">Số lượng</div>' +
-                        '<div class="qty-box">' +
-                            '<button type="button" id="qtyMinus" aria-label="Giảm">−</button>' +
-                            '<input type="number" id="qty" value="' + qty + '" min="1" max="99">' +
-                            '<button type="button" id="qtyPlus" aria-label="Tăng">+</button>' +
-                        '</div>' +
-                    '</div>' +
-                    '<p class="detail-total">Tạm tính: <strong>' + toMoney(price * qty) + '</strong></p>' +
-                    '<div class="card-actions detail-actions">' +
-                        '<button type="button" class="btn-detail detail-btn" id="btnBuy">Mua ngay</button>' +
-                        '<button type="button" class="btn-add-cart detail-btn" id="btnAdd">Thêm vào giỏ</button>' +
-                    '</div>' +
-                    '<ul class="detail-meta">' +
-                        '<li><strong>Thành phần:</strong> ' + info.ingredients + '</li>' +
-                        '<li><strong>Bảo quản:</strong> ' + info.storage + '</li>' +
-                        '<li><strong>Giao hàng:</strong> Nội thành Hà Nội trong ngày, đặt trước 1 ngày với bánh sinh nhật.</li>' +
-                    '</ul>' +
-                '</div>' +
-            '</article>';
+        const quantityGroup = document.createElement("div");
+        quantityGroup.className = "option-group";
+        appendText(quantityGroup, "div", "filter-title", "Số lượng");
+        const quantityBox = document.createElement("div");
+        quantityBox.className = "qty-box";
+        const decrease = document.createElement("button");
+        decrease.type = "button";
+        decrease.setAttribute("aria-label", "Giảm số lượng");
+        decrease.textContent = "−";
+        decrease.addEventListener("click", () => setQuantity(quantity - 1));
+        const quantityInput = document.createElement("input");
+        quantityInput.type = "number";
+        quantityInput.id = "qty";
+        quantityInput.min = "1";
+        quantityInput.max = "99";
+        quantityInput.value = String(quantity);
+        quantityInput.setAttribute("aria-label", "Số lượng bánh");
+        quantityInput.addEventListener("change", () => setQuantity(quantityInput.value));
+        const increase = document.createElement("button");
+        increase.type = "button";
+        increase.setAttribute("aria-label", "Tăng số lượng");
+        increase.textContent = "+";
+        increase.addEventListener("click", () => setQuantity(quantity + 1));
+        quantityBox.append(decrease, quantityInput, increase);
+        quantityGroup.append(quantityBox);
+        info.append(quantityGroup);
 
-        bindEvents(price);
+        const total = document.createElement("p");
+        total.className = "detail-total";
+        total.append(document.createTextNode("Tạm tính: "));
+        appendText(total, "strong", "", formatMoney(currentPrice() * quantity));
+        info.append(total);
+
+        const actions = document.createElement("div");
+        actions.className = "card-actions detail-actions";
+        const buyButton = document.createElement("button");
+        buyButton.type = "button";
+        buyButton.className = "btn-detail detail-btn";
+        buyButton.textContent = "Mua ngay";
+        buyButton.addEventListener("click", () => {
+            if (addToCart()) window.location.href = "../cart/cart.html";
+        });
+        const addButton = document.createElement("button");
+        addButton.type = "button";
+        addButton.className = "btn-add-cart detail-btn";
+        addButton.textContent = "Thêm vào giỏ";
+        addButton.addEventListener("click", () => {
+            if (addToCart()) window.alert(`Đã thêm ${productName} vào giỏ hàng.`);
+        });
+        actions.append(buyButton, addButton);
+        info.append(actions);
+
+        const meta = document.createElement("ul");
+        meta.className = "detail-meta";
+        appendText(meta, "li", "", `Thành phần: ${product.ingredients || "Bột mì, trứng, sữa, bơ và nguyên liệu tươi chọn lọc."}`);
+        appendText(meta, "li", "", `Bảo quản: ${product.storage || "Bảo quản ngăn mát, dùng ngon nhất trong 1–3 ngày."}`);
+        appendText(meta, "li", "", "Giao hàng: Nội thành Hà Nội; vui lòng đặt trước để tiệm chuẩn bị bánh tươi.");
+        info.append(meta);
+
+        article.append(imageBox, info);
+        box.replaceChildren(article);
     }
 
-    function bindEvents(price) {
-        document.querySelectorAll('.size-btn').forEach(function (b) {
-            b.addEventListener('click', function () {
-                sizeIndex = parseInt(b.dataset.size, 10);
-                render();
-            });
-        });
-
-        var qtyInput = document.getElementById('qty');
-        function setQty(v) {
-            qty = Math.min(99, Math.max(1, v || 1));
-            render();
+    function addToCart() {
+        let cart;
+        try {
+            cart = JSON.parse(localStorage.getItem("memoriCart") || "[]");
+            if (!Array.isArray(cart)) throw new TypeError("Cart data is not an array.");
+        } catch (error) {
+            console.error("Could not read the cart.", error);
+            window.alert("Giỏ hàng đang lỗi dữ liệu. Vui lòng tải lại trang hoặc xóa dữ liệu giỏ hàng.");
+            return false;
         }
-        document.getElementById('qtyMinus').addEventListener('click', function () { setQty(qty - 1); });
-        document.getElementById('qtyPlus').addEventListener('click', function () { setQty(qty + 1); });
-        qtyInput.addEventListener('change', function () { setQty(parseInt(qtyInput.value, 10)); });
 
-        document.getElementById('btnAdd').addEventListener('click', function () {
-            addToCart(price);
-            alert('Đã thêm "' + product.name + '" vào giỏ hàng!');
-        });
-        document.getElementById('btnBuy').addEventListener('click', function () {
-            addToCart(price);
-            window.location.href = '../cart/cart.html';
-        });
-    }
+        const size = selectedSize < 0 ? "" : sizes[selectedSize].label;
+        const id = `${slugify(productName)}::${size.toLocaleLowerCase("vi-VN")}`;
+        const existing = cart.find((item) => item.id === id
+            || item.name?.toLocaleLowerCase("vi-VN") === productName.toLocaleLowerCase("vi-VN")
+                && (item.size || "") === size);
 
-    // ---- Giỏ hàng (localStorage) ----
-    function getCart() {
-        try { return JSON.parse(localStorage.getItem('memoriCart')) || []; } catch (e) { return []; }
-    }
-
-    function addToCart(price) {
-        var cart = getCart();
-        var size = hasSize ? SIZES[sizeIndex].label : '';
-        var found = cart.find(function (i) { return i.name === product.name && i.size === size; });
-
-        if (found) {
-            found.qty += qty;
+        if (existing) {
+            existing.id = id;
+            existing.name = productName;
+            existing.detail = size ? `Kích thước: ${size}` : "";
+            existing.size = size;
+            existing.price = currentPrice();
+            existing.quantity = Number(existing.quantity ?? existing.qty ?? 0) + quantity;
         } else {
-            cart.push({ name: product.name, image: product.image, size: size, price: price, qty: qty });
+            cart.push({
+                id,
+                name: productName,
+                detail: size ? `Kích thước: ${size}` : "",
+                size,
+                price: currentPrice(),
+                quantity,
+                image: product.image || "",
+            });
         }
-        localStorage.setItem('memoriCart', JSON.stringify(cart));
-        updateBadge();
+
+        try {
+            localStorage.setItem("memoriCart", JSON.stringify(cart));
+            const badge = document.getElementById("cartBadge");
+            if (badge) badge.textContent = String(cart.reduce((sum, item) => sum + Number(item.quantity ?? item.qty ?? 0), 0));
+            return true;
+        } catch (error) {
+            console.error("Could not save the cart.", error);
+            window.alert("Không thể lưu giỏ hàng. Hãy kiểm tra dung lượng lưu trữ của trình duyệt.");
+            return false;
+        }
     }
 
-    function updateBadge() {
-        var total = getCart().reduce(function (s, i) { return s + i.qty; }, 0);
-        document.getElementById('cartBadge').textContent = total;
-    }
-
-    updateBadge();
     render();
+    try {
+        const cart = JSON.parse(localStorage.getItem("memoriCart") || "[]");
+        const badge = document.getElementById("cartBadge");
+        if (badge && Array.isArray(cart)) {
+            badge.textContent = String(cart.reduce((sum, item) => sum + Number(item.quantity ?? item.qty ?? 0), 0));
+        }
+    } catch (error) {
+        console.error("Could not update cart badge.", error);
+    }
 })();
