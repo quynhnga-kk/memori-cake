@@ -43,26 +43,34 @@ pageButtons.forEach((button, index) => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     });
 });
-// Tự động liên kết sản phẩm với trang chi tiết
-const detailProducts = {
-    "strawberry cloud": 2,
-    "bánh trung thu 2026": 3,
-    "bánh trung thu đậu đỏ trứng muối": 4
-};
 
-document.querySelectorAll(".product-card").forEach(card => {
-    const name = card.querySelector("h3")?.textContent.trim().toLowerCase();
-    const detailButton = card.querySelector(".btn-detail");
+// Bấm "Chi tiết" -> lưu dữ liệu card -> sang trang chi tiết
+document.querySelectorAll('.product-card').forEach(function (card) {
+    var link = card.querySelector('.btn-detail');
+    if (!link) return;
 
-    if (!detailButton) return;
+    link.addEventListener('click', function (e) {
+        e.preventDefault();
 
-    if (detailProducts[name]) {
-        detailButton.href =
-            `../product-detail/product-detail.html?id=${detailProducts[name]}`;
-    } else {
-        detailButton.addEventListener("click", event => {
-            event.preventDefault();
-            alert("Sản phẩm này chưa có trang chi tiết.");
-        });
-    }
+        var img = card.querySelector('.img-placeholder img');
+        var oldPrice = card.querySelector('.price-old');
+        var badge = card.querySelector('.badge');
+        var ratingEl = card.querySelector('.rating');
+        var reviews = ratingEl.querySelector('span');
+
+        var product = {
+            name: card.querySelector('h3').textContent.trim(),
+            image: img.getAttribute('src').trim(),
+            desc: card.querySelector('.desc').textContent.replace(/[“”"]/g, '').trim(),
+            price: card.querySelector('.price-current').textContent.trim(),
+            oldPrice: oldPrice ? oldPrice.textContent.trim() : '',
+            badge: badge ? badge.textContent.trim() : '',
+            badgeClass: badge ? badge.className.replace('badge', '').trim() : '',
+            stars: ratingEl.childNodes[0].textContent.trim(),
+            reviews: reviews ? reviews.textContent.replace(/[()]/g, '') : '0'
+        };
+
+        localStorage.setItem('memoriProduct', JSON.stringify(product));
+        window.location.href = link.getAttribute('href');
+    });
 });
