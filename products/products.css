@@ -100,7 +100,6 @@
         .breadcrumb {
     display: none !important;
 }
-        }
         .breadcrumb a { color: var(--rose-dark); text-decoration: none; }
         .breadcrumb a:hover { text-decoration: underline; }
         .products-hero h2 {
