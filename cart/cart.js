@@ -1,207 +1,125 @@
-// ==================== CART LOGIC ====================
-        // Dữ liệu mẫu (khi chưa có gì trong localStorage)
-        const sampleProducts = [
-            {
-                id: 1,
-                name: "Strawberry Cake",
-                detail: "Size: 16cm | Vị: Dâu",
-                price: 250000,
-                quantity: 1,
-                image: ""          // để trống hoặc điền link ảnh
-            },
-            {
-                id: 2,
-                name: "Chocolate Cake",
-                detail: "Size: 18cm | Vị: Chocolate",
-                price: 280000,
-                quantity: 2,
-                image: ""
-            }
-        ];
+const DELIVERY_FEE = 30000;
+let shippingFee = DELIVERY_FEE;
+let discount = 0;
 
-        // Lấy giỏ hàng từ localStorage
-        function getCart() {
-            const cart = localStorage.getItem("memoriCart");
-            if (cart) {
-                return JSON.parse(cart);
-            }
-            // Nếu chưa có thì dùng dữ liệu mẫu + lưu lại
-            localStorage.setItem("memoriCart", JSON.stringify(sampleProducts));
-            return sampleProducts;
-        }
+function getCart() {
+    try {
+        const stored = JSON.parse(localStorage.getItem("memoriCart") || "[]");
+        return Array.isArray(stored) ? stored : [];
+    } catch (error) {
+        console.error("Không thể đọc giỏ hàng:", error);
+        return [];
+    }
+}
 
-        // Lưu giỏ hàng
-        function saveCart(cart) {
-            localStorage.setItem("memoriCart", JSON.stringify(cart));
-        }
+function saveCart(cart) {
+    localStorage.setItem("memoriCart", JSON.stringify(cart));
+}
 
-        // Format tiền
-        function formatPrice(num) {
-            return num.toLocaleString("vi-VN") + "đ";
-        }
+function formatPrice(value) {
+    return `${Number(value).toLocaleString("vi-VN")}đ`;
+}
 
-        // Render lại toàn bộ giỏ hàng
-        function renderCart() {
-            const cart = getCart();
-            const container = document.getElementById("cart-items");
-            const emptyEl = document.getElementById("empty-cart");
-            const headerEl = document.getElementById("cart-header");
-            const bottomEl = document.getElementById("cart-bottom");
-            const countEl = document.getElementById("cart-count");
+function renderCart() {
+    const cart = getCart();
+    const container = document.getElementById("cart-items");
+    const empty = document.getElementById("empty-cart");
+    const header = document.getElementById("cart-header");
+    const bottom = document.getElementById("cart-bottom");
+    document.getElementById("cart-count").textContent = cart.reduce((total, item) => total + Number(item.quantity || 0), 0);
 
-            // Cập nhật số lượng trên header
-            const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
-            countEl.textContent = totalQty;
+    empty.hidden = cart.length > 0;
+    header.hidden = cart.length === 0;
+    bottom.hidden = cart.length === 0;
+    if (!cart.length) {
+        container.innerHTML = "";
+        return;
+    }
 
-            if (cart.length === 0) {
-                container.innerHTML = "";
-                emptyEl.style.display = "block";
-                headerEl.style.display = "none";
-                bottomEl.style.display = "none";
-                return;
-            }
+    container.innerHTML = cart.map((item) => `
+        <div class="cart-item" data-id="${item.id}">
+            <div class="product-info">
+                <div class="product-image">${item.image ? `<img src="${item.image}" alt="${item.name}">` : "Ảnh bánh"}</div>
+                <div><div class="product-name">${item.name}</div><div class="product-detail">${item.detail || "Bánh Memori Cake"}</div></div>
+            </div>
+            <div class="price">${formatPrice(item.price)}</div>
+            <div class="quantity"><button type="button" aria-label="Giảm số lượng" data-action="decrease">−</button><span>${item.quantity}</span><button type="button" aria-label="Tăng số lượng" data-action="increase">+</button></div>
+            <div class="price">${formatPrice(item.price * item.quantity)}</div>
+            <button type="button" class="remove-btn" data-action="remove">Xóa</button>
+        </div>
+    `).join("");
+    updateSummary();
+}
 
-            emptyEl.style.display = "none";
-            headerEl.style.display = "grid";
-            bottomEl.style.display = "flex";
+function updateSummary() {
+    const subtotal = getCart().reduce((total, item) => total + item.price * item.quantity, 0);
+    document.getElementById("subtotal").textContent = formatPrice(subtotal);
+    document.getElementById("shipping").textContent = shippingFee ? formatPrice(shippingFee) : "Miễn phí";
+    document.getElementById("discount").textContent = `-${formatPrice(discount)}`;
+    document.getElementById("discount-row").hidden = discount === 0;
+    document.getElementById("total").textContent = formatPrice(Math.max(0, subtotal + shippingFee - discount));
+    document.getElementById("checkout-btn").disabled = subtotal === 0;
+}
 
-            container.innerHTML = cart.map(item => `
-                <div class="cart-item" data-id="${item.id}">
-                    <div class="product-info">
-                        <div class="product-image">
-                            ${item.image 
-                                ? `<img src="${item.image}" alt="${item.name}">` 
-                                : "Ảnh bánh"}
-                        </div>
-                        <div>
-                            <div class="product-name">${item.name}</div>
-                            <div class="product-detail">${item.detail}</div>
-                        </div>
-                    </div>
+function changeQty(id, delta) {
+    const cart = getCart();
+    const item = cart.find((product) => String(product.id) === String(id));
+    if (!item) return;
+    item.quantity = Math.max(1, Number(item.quantity) + delta);
+    saveCart(cart);
+    renderCart();
+}
 
-                    <div class="price">${formatPrice(item.price)}</div>
+document.getElementById("cart-items").addEventListener("click", (event) => {
+    const button = event.target.closest("button[data-action]");
+    if (!button) return;
+    const id = button.closest(".cart-item").dataset.id;
+    if (button.dataset.action === "remove") saveCart(getCart().filter((item) => String(item.id) !== id));
+    if (button.dataset.action === "increase") changeQty(id, 1);
+    if (button.dataset.action === "decrease") changeQty(id, -1);
+    renderCart();
+});
 
-                    <div class="quantity">
-                        <button onclick="changeQty(${item.id}, -1)">−</button>
-                        <span>${item.quantity}</span>
-                        <button onclick="changeQty(${item.id}, 1)">+</button>
-                    </div>
+document.querySelectorAll('input[name="delivery"]').forEach((input) => {
+    input.addEventListener("change", () => {
+        shippingFee = input.value === "delivery" ? DELIVERY_FEE : 0;
+        document.querySelectorAll(".delivery-option").forEach((option) => option.classList.toggle("active", option.querySelector("input").checked));
+        updateSummary();
+    });
+});
 
-                    <div class="price">${formatPrice(item.price * item.quantity)}</div>
+document.getElementById("coupon-btn").addEventListener("click", () => {
+    const message = document.getElementById("coupon-message");
+    const code = document.getElementById("coupon-code").value.trim().toUpperCase();
+    if (code === "MEMORI10") {
+        const subtotal = getCart().reduce((total, item) => total + item.price * item.quantity, 0);
+        discount = Math.round(subtotal * 0.1);
+        message.textContent = "Đã áp dụng ưu đãi 10%.";
+    } else {
+        discount = 0;
+        message.textContent = code ? "Mã giảm giá chưa hợp lệ." : "";
+    }
+    updateSummary();
+});
 
-                    <button class="remove-btn" onclick="removeItem(${item.id})">Xóa</button>
-                </div>
-            `).join("");
+document.getElementById("checkout-btn").addEventListener("click", () => {
+    if (!getCart().length) return;
+    localStorage.setItem("memoriCheckout", JSON.stringify({
+        note: document.getElementById("shop-note").value,
+        delivery: document.querySelector('input[name="delivery"]:checked').value,
+        shippingFee,
+        discount
+    }));
+    window.location.href = "../checkout-thanks/checkout.html";
+});
 
-            updateSummary();
-        }
+window.addToCart = function addToCart(product) {
+    const cart = getCart();
+    const existing = cart.find((item) => item.id === product.id);
+    if (existing) existing.quantity += 1;
+    else cart.push({ ...product, quantity: 1 });
+    saveCart(cart);
+    renderCart();
+};
 
-        // Thay đổi số lượng
-        function changeQty(id, delta) {
-            let cart = getCart();
-            const item = cart.find(p => p.id === id);
-            if (!item) return;
-
-            item.quantity += delta;
-            if (item.quantity < 1) item.quantity = 1;
-
-            saveCart(cart);
-            renderCart();
-        }
-
-        // Xóa sản phẩm
-        function removeItem(id) {
-            let cart = getCart();
-            cart = cart.filter(p => p.id !== id);
-            saveCart(cart);
-            renderCart();
-        }
-
-        // Tính tổng + phí ship
-        let shippingFee = 30000;
-
-        function updateShipping() {
-            const delivery = document.querySelector('input[name="delivery"]:checked').value;
-            shippingFee = delivery === "delivery" ? 30000 : 0;
-
-            // Active class
-            document.getElementById("opt-delivery").classList.toggle("active", delivery === "delivery");
-            document.getElementById("opt-pickup").classList.toggle("active", delivery === "pickup");
-
-            updateSummary();
-        }
-
-        function updateSummary() {
-            const cart = getCart();
-            const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-            const total = subtotal + shippingFee;
-
-            document.getElementById("subtotal").textContent = formatPrice(subtotal);
-            document.getElementById("shipping").textContent = shippingFee === 0 ? "Miễn phí" : formatPrice(shippingFee);
-            document.getElementById("total").textContent = formatPrice(total);
-
-            // Disable nút thanh toán nếu giỏ trống
-            document.getElementById("checkout-btn").disabled = cart.length === 0;
-        }
-
-        // Mã giảm giá (demo)
-        function applyCoupon() {
-            const code = document.getElementById("coupon-code").value.trim().toUpperCase();
-            if (code === "MEMORI10") {
-                alert("Áp dụng thành công mã giảm 10%!");
-                // Bạn có thể mở rộng logic giảm giá ở đây
-            } else if (code) {
-                alert("Mã giảm giá không hợp lệ!");
-            }
-        }
-
-        // Chuyển sang trang thanh toán
-        function goCheckout() {
-            const cart = getCart();
-            if (cart.length === 0) return;
-
-            // Lưu thêm ghi chú + phương thức nhận hàng
-            const note = document.getElementById("shop-note").value;
-            const delivery = document.querySelector('input[name="delivery"]:checked').value;
-
-            localStorage.setItem("memoriCheckout", JSON.stringify({
-                note,
-                delivery,
-                shippingFee
-            }));
-
-            window.location.href = "../checkout/checkout.html";
-        }
-
-        // ==================== HÀM DÙNG CHO TRANG SẢN PHẨM ====================
-        // Gọi hàm này từ products.html khi bấm "Thêm vào giỏ"
-        function addToCart(product) {
-            /*
-                product = {
-                    id: số,
-                    name: "Tên bánh",
-                    detail: "Size: ... | Vị: ...",
-                    price: 250000,
-                    image: "đường dẫn ảnh (có thể để trống)"
-                }
-            */
-            let cart = getCart();
-            const existing = cart.find(p => p.id === product.id);
-
-            if (existing) {
-                existing.quantity += 1;
-            } else {
-                cart.push({ ...product, quantity: 1 });
-            }
-
-            saveCart(cart);
-            // Nếu đang ở trang giỏ hàng thì render lại
-            if (document.getElementById("cart-items")) {
-                renderCart();
-            }
-        }
-
-        // Khởi tạo khi load trang
-        document.addEventListener("DOMContentLoaded", () => {
-            renderCart();
-        });
+renderCart();
