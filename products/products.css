@@ -275,6 +275,7 @@
             transition: background .2s, color .2s, transform .2s;
         }
         .btn-wishlist:hover { background: var(--rose); color: #fff; transform: scale(1.08); }
+        .btn-wishlist.active { background: var(--rose); color: #fff; }
 
         .card-body {
             padding: 20px 22px 22px;
