@@ -3,325 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chi tiết sản phẩm | Memori Cake</title>
+    <title>Chi Tiết Sản Phẩm | Memori Cake</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="../products/products.css">
+    <link rel="stylesheet" href="product-detail.css">
 </head>
-<link rel="stylesheet" href="product-detail.css">
 <body>
 
-    <!-- HEADER -->
     <header>
         <div class="wrap header-inner">
             <a href="../index.html" aria-label="Memori Cake - Trang chủ">
                 <img src="../images/Images/logo_memoricake.png" alt="Memori Cake Logo" class="logo">
             </a>
-
             <nav aria-label="Menu chính">
                 <ul>
                     <li><a href="../index.html">Trang chủ</a></li>
                     <li><a href="../products/products.html" aria-current="page">Sản phẩm</a></li>
-                    <li><a href="../contact/contact.html">Liên hệ</a></li>
+                    <li><a href="../cart/cart.html">Liên hệ</a></li>
                     <li><a href="../login-register/login.html">Đăng nhập</a></li>
-                    <li><a href="../cart/cart.html">🛒 Giỏ hàng</a></li>
+                    <li><a href="../cart/cart.html">🛒 Giỏ hàng <span class="cart-badge" id="cartBadge">0</span></a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main class="wrap">
+    <section class="products-hero">
+        <div class="wrap">
+            <h2>Chi tiết <em>sản phẩm</em></h2>
+            <p>Cùng xem kỹ hơn chiếc bánh bạn đang để ý nhé.</p>
+        </div>
+    </section>
 
-        <p class="breadcrumb"><a href="../products/products.html">← Quay lại sản phẩm</a></p>
+    <div class="wrap">
+        <p class="detail-back"><a href="../products/products.html">← Quay lại danh sách sản phẩm</a></p>
+        <div id="detail"></div>
+    </div>
 
-        <!-- ==================== SẢN PHẨM 1: CUPCAKE ==================== -->
-        <section class="product" aria-labelledby="title-cupcake">
-
-            <div class="product-media">
-                <img src="../images/Images/cupcake.jpg" alt="Cupcake Trái Cây">
-            </div>
-
-            <div class="product-info">
-                <h2 id="title-cupcake">Cupcake Trái Cây</h2>
-                <p class="price">300.000 VNĐ</p>
-                <p class="tagline">Sáu chiếc cupcake – sáu vị tươi ngon, ngọt ngào trao tay!</p>
-
-                <div class="info-card">
-                    <h3>Thông tin sản phẩm</h3>
-                    <dl>
-                        <div>
-                            <dt>Thành phần</dt>
-                            <dd>Bột mì, trứng, sữa, kem tươi, đường, trái cây tươi (dâu tây, việt quất, cherry, nho xanh, sung, …), bánh quy, pretzel</dd>
-                        </div>
-                        <div>
-                            <dt>Hương vị</dt>
-                            <dd>Kem tươi ngọt nhẹ kết hợp hương trái cây tươi đa dạng</dd>
-                        </div>
-                        <div>
-                            <dt>Bảo quản</dt>
-                            <dd>Ngăn mát tủ lạnh</dd>
-                        </div>
-                        <div>
-                            <dt>Thời hạn sử dụng</dt>
-                            <dd>1-2 ngày</dd>
-                        </div>
-                        <div>
-                            <dt>Số lượng trong hộp</dt>
-                            <dd>6 chiếc</dd>
-                        </div>
-                    </dl>
-                </div>
-
-                <div class="options">
-                    <div class="field">
-                        <label for="flavor-cupcake">Hương vị</label>
-                        <select id="flavor-cupcake" name="flavor">
-                            <option value="strawberry">Dâu tây</option>
-                            <option value="chocolate">Chocolate</option>
-                            <option value="vanilla">Vanilla</option>
-                            <option value="matcha">Matcha</option>
-                            <option value="blueberry">Việt Quất</option>
-                            <option value="cherry">Cherry</option>
-                        </select>
-                    </div>
-
-                    <div class="field">
-                        <label for="quantity-cupcake">Số lượng</label>
-                        <div class="qty">
-                            <button type="button" data-step="-1" aria-label="Giảm số lượng">−</button>
-                            <input type="number" id="quantity-cupcake" name="quantity" value="1" min="1" max="6">
-                            <button type="button" data-step="1" aria-label="Tăng số lượng">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="actions">
-                    <button type="button" class="btn btn-outline">🛒 Thêm vào giỏ hàng</button>
-                    <a href="../checkout-thanks/checkout.html" class="btn">Mua ngay</a>
-                </div>
-            </div>
-
-        </section>
-
-        <!-- ==================== SẢN PHẨM 2: STRAWBERRY ==================== -->
-        <section class="product" aria-labelledby="title-strawberry">
-
-            <div class="product-media">
-                <img src="../images/Images/strawberrycloudcake.jpg" alt="Strawberry Cloud Cake">
-            </div>
-
-            <div class="product-info">
-                <h2 id="title-strawberry">Strawberry Cloud Cake</h2>
-                <p class="price">320.000 VNĐ</p>
-                <p class="tagline">Chiếc bánh dâu tây mềm mịn với lớp kem tươi và những quả dâu tươi, phù hợp cho sinh nhật, kỷ niệm hoặc những buổi gặp gỡ đặc biệt.</p>
-
-                <div class="info-card">
-                    <h3>Thông tin sản phẩm</h3>
-                    <dl>
-                        <div>
-                            <dt>Thành phần</dt>
-                            <dd>Bột mì, trứng, sữa, kem tươi, dâu tây</dd>
-                        </div>
-                        <div>
-                            <dt>Hương vị</dt>
-                            <dd>Dâu tây</dd>
-                        </div>
-                        <div>
-                            <dt>Bảo quản</dt>
-                            <dd>Ngăn mát tủ lạnh</dd>
-                        </div>
-                        <div>
-                            <dt>Thời hạn sử dụng</dt>
-                            <dd>2 ngày</dd>
-                        </div>
-                    </dl>
-                </div>
-
-                <div class="options">
-                    <div class="field">
-                        <label for="size-strawberry">Kích thước</label>
-                        <select id="size-strawberry" name="size">
-                            <option value="small">Size S - 12cm</option>
-                            <option value="medium">Size M - 16cm</option>
-                            <option value="large">Size L - 20cm</option>
-                        </select>
-                    </div>
-
-                    <div class="field">
-                        <label for="flavor-strawberry">Hương vị</label>
-                        <select id="flavor-strawberry" name="flavor">
-                            <option value="strawberry">Dâu tây</option>
-                            <option value="chocolate">Chocolate</option>
-                            <option value="vanilla">Vanilla</option>
-                            <option value="matcha">Matcha</option>
-                        </select>
-                    </div>
-
-                    <div class="field">
-                        <label for="quantity-strawberry">Số lượng</label>
-                        <div class="qty">
-                            <button type="button" data-step="-1" aria-label="Giảm số lượng">−</button>
-                            <input type="number" id="quantity-strawberry" name="quantity" value="1" min="1" max="10">
-                            <button type="button" data-step="1" aria-label="Tăng số lượng">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="actions">
-                    <button type="button" class="btn btn-outline">🛒 Thêm vào giỏ hàng</button>
-                    <a href="../checkout-thanks/../checkout-thanks/checkout.html" class="btn">Mua ngay</a>
-                </div>
-            </div>
-
-        </section>
-        <!-- ========= CARD 1 ============= -->
-        <section class="product" >
-
-            <div class="product-media">
-                <img src="../images/Images/trungthu.jpg" alt="Bánh Trung thu">
-            </div>
-
-            <div class="product-info">
-                <h2 id="trung thu">Bánh Trung Thu 2026 </h2>
-                <p class="price">50.000 VNĐ</p>
-                <p class="tagline">Bánh Trung Thu truyền thống với lớp vỏ vàng óng, mềm thơm, mang hương vị ngọt ngào của mùa đoàn viên.</p>
-
-                <div class="info-card">
-                    <h3>Thông tin sản phẩm</h3>
-                    <dl>
-                        <div>
-                            <dt>Thành phần</dt>
-                            <dd>Bột mì, đường, dầu ăn, trứng và nhân bánh Trung Thu.</dd>
-                        </div>
-                        <div>
-                            <dt>Hương vị</dt>
-                            <dd>Hương vị ngọt dịu, thơm bùi của nhân bánh hòa quyện cùng lớp vỏ mềm, mang đậm nét truyền thống của bánh Trung Thu.</dd>
-                        </div>
-                        <div>
-                            <dt>Bảo quản</dt>
-                            <dd>Ngăn mát tủ lạnh</dd>
-                        </div>
-                        <div>
-                            <dt>Thời hạn sử dụng</dt>
-                            <dd>2 ngày</dd>
-                        </div>
-                        <div>
-                            <dt>Kích thước</dt>
-                            <dd>Khoảng 8cm (phù hợp 2-3 người)</dd>
-                        </div>
-                    </dl>
-                </div>
-
-                <div class="options">
-                    <div class="field">
-                        <label for="size-tiramisu">Kích thước</label>
-                        <select id="size-trungthu" name="size">
-                     <option value="8cm">Size bánh - 8cm</option>
-                    </select>
-                    </div>
-
-                    <div class="field">
-                        <label for="flavor-tiramisu">Hương vị</label>
-                        <select id="flavor-tiramisu" name="flavor">
-                            <option value="classic" selected>Tiramisu cổ điển</option>
-                            <option value="chocolate">Tiramisu Chocolate</option>
-                            <option value="matcha">Tiramisu Matcha</option>
-                        </select>
-                    </div>
-
-                    <div class="field">
-                        <label for="quantity-tiramisu">Số lượng</label>
-                        <div class="qty">
-                            <button type="button" data-step="-1" aria-label="Giảm số lượng">−</button>
-                            <input type="number" id="quantity-tiramisu" name="quantity" value="1" min="1" max="10">
-                            <button type="button" data-step="1" aria-label="Tăng số lượng">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="actions">
-                    <button type="button" class="btn btn-outline">🛒 Thêm vào giỏ hàng</button>
-                    <a href="../checkout-thanks/checkout.html" class="btn">Mua ngay</a>
-                </div>
-            </div>
-
-        </section>
-        <section class="product">
-
-            <div class="product-media">
-                <img src="../images/Images/trungthu đậu đỏ trứng muối.jpg" alt="Bánh Trung thu đậu đỏ">
-            </div>
-
-            <div class="product-info">
-                <h2 id="đậu đỏ trứng muối">Bánh Trung Thu Đậu Đỏ Trứng Muối</h2>
-                <p class="price">70.000 VNĐ</p>
-                <p class="tagline">Hương vị truyền thống với nhân đậu đỏ bùi ngọt kết hợp trứng muối đậm đà, thơm ngon khó cưỡng.</p>
-
-                <div class="info-card">
-                    <h3>Thông tin sản phẩm</h3>
-                    <dl>
-                        <div>
-                            <dt>Thành phần</dt>
-                            <dd>Bột mì,đậu đỏ, trứng muối, đường, dầu ăn, lòng đỏ trứng gà </dd>
-                        </div>
-                        <div>
-                            <dt>Hương vị</dt>
-                            <dd> Đậu đỏ ngọt bùi dẻo mịn kết hợp cùng trứng muối béo ngậy, vị mặn ngọt hài hòa không gây ngán</dd>
-                        </div>
-                        <div>
-                            <dt>Bảo quản</dt>
-                            <dd>Nơi khô ráo,thoáng mát hoặc ngăn mát tủ lạnh</dd>
-                        </div>
-                        <div>
-                            <dt>Thời hạn sử dụng</dt>
-                            <dd>7-10 ngày</dd>
-                        </div>
-                        <div>
-                            <dt>Kích thước</dt>
-                            <dd>Khoảng 8cm</dd>
-                        </div>
-                    </dl>
-                </div>
-
-                <div class="options">
-                    <div class="field">
-                        <label for="size-matcha">Kích thước</label>
-                        <select id="size-matcha" name="size">
-                            <option value="small">Size bánh - 8 cm</option>
-                        </select>
-                    </div>
-
-                    <div class="field">
-                        <label for="flavor-matcha">Hương vị</label>
-                        <select id="flavor-matcha" name="flavor">
-                            <option value="classic" selected> Đậu đỏ trứng muối</option>
-                        </select>
-                    </div>
-
-                    <div class="field">
-                        <label for="quantity-matcha">Số lượng</label>
-                        <div class="qty">
-                            <button type="button" data-step="-1" aria-label="Giảm số lượng">−</button>
-                            <input type="number" id="quantity-matcha" name="quantity" value="1" min="1" max="10">
-                            <button type="button" data-step="1" aria-label="Tăng số lượng">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="actions">
-                    <button type="button" class="btn btn-outline">🛒 Thêm vào giỏ hàng</button>
-                    <a href="../checkout-thanks/checkout.html" class="btn">Mua ngay</a>
-                </div>
-            </div>
-
-        </section>
-
-
-    </main>
-
-    <!-- FOOTER -->
     <footer>
         <div class="footer-content">
             <div class="footer-col">
@@ -329,17 +50,15 @@
                 <p>Lưu giữ khoảnh khắc bằng những chiếc bánh ngọt.</p>
                 <p>Mỗi chiếc bánh là một kỷ niệm đáng nhớ.</p>
             </div>
-
             <div class="footer-col">
                 <h4>Liên kết nhanh</h4>
                 <ul>
                     <li><a href="../index.html">Trang chủ</a></li>
                     <li><a href="../products/products.html">Sản phẩm</a></li>
                     <li><a href="../cart/cart.html">Giỏ hàng</a></li>
-                    <li><a href="../contact/contact.html">Liên hệ</a></li>
+                    <li><a href="../cart/cart.html">Liên hệ</a></li>
                 </ul>
             </div>
-
             <div class="footer-col">
                 <h4>Hỗ trợ</h4>
                 <ul>
@@ -349,7 +68,6 @@
                     <li><a href="../login-register/login.html">Tài khoản</a></li>
                 </ul>
             </div>
-
             <div class="footer-col">
                 <h4>Liên hệ</h4>
                 <p>📍 120 Chùa Bộc, Phường Kim Liên, TP.Hà Nội</p>
@@ -362,11 +80,11 @@
                 </div>
             </div>
         </div>
-
         <div class="footer-bottom">
             <p>© 2026 Memori Cake. All rights reserved.</p>
         </div>
     </footer>
+
+    <script src="product-detail.js"></script>
 </body>
-<script src="product-detail.js"></script>
 </html>

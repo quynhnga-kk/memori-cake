@@ -1,250 +1,70 @@
-  * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            /* ===== ẢNH NỀN ===== */
-           background: url('../images/Images/nền đăng nhập.jpg') center/cover no-repeat fixed;
-            position: relative;
-        }
-        .login-card {
-            position: relative;
-            z-index: 1;
-            width: 900px;
-            max-width: 95%;
-            height: 540px;
-            background: #fff;
-            border-radius: 20px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
-            display: flex;
-            overflow: hidden;
-        }
-
-        /* ===== CỘT TRÁI - FORM ĐĂNG NHẬP ===== */
-        .left-panel {
-            flex: 1;
-            padding: 48px 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .left-panel h1 {
-            font-size: 32px;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 32px;
-            text-align: center;
-        }
-
-        .form-group {
-            margin-bottom: 16px;
-        }
-
-        .form-group input[type="email"],
-        .form-group input[type="password"] {
-            width: 100%;
-            padding: 14px 18px;
-            border: none;
-            border-radius: 12px;
-            background: #f0f0f0;
-            font-size: 15px;
-            color: #333;
-            outline: none;
-            transition: background 0.2s;
-        }
-
-        .form-group input:focus {
-            background: #e8e8e8;
-        }
-
-        .password-wrapper {
-            position: relative;
-        }
-
-        .password-wrapper input {
-            padding-right: 48px;
-        }
-
-        .toggle-password {
-            position: absolute;
-            right: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #888;
-            font-size: 18px;
-            padding: 0;
-        }
-
-        .options-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 12px 0 24px;
-            font-size: 14px;
-        }
-
-        .options-row label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #444;
-            cursor: pointer;
-        }
-
-        .options-row a {
-            color: #666;
-            text-decoration: none;
-        }
-
-        .options-row a:hover {
-            text-decoration: underline;
-        }
-
-        .btn-login {
-            width: 100%;
-            padding: 14px;
-            background: #9b1c1c;
-            color: white;
-            border: none;
-            border-radius: 30px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .btn-login:hover {
-            background: #7f1616;
-        }
-
-        .social-section {
-            margin-top: 28px;
-            text-align: center;
-        }
-
-        .social-section p {
-            font-size: 14px;
-            color: #555;
-            margin-bottom: 16px;
-        }
-
-        .social-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-        }
-
-        .social-btn {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            border: 1px solid #ddd;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            font-weight: 700;
-            color: #333;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .social-btn:hover {
-            background: #f5f5f5;
-            border-color: #bbb;
-        }
-
-        /* ===== CỘT PHẢI - PROMO ===== */
-        .right-panel {
-            flex: 1;
-            /* ===== ẢNH NỀN CỘT PHẢI ===== */
-            background: linear-gradient(135deg, #ff81e4 0%, #c02b62 50%, #e73cbc 100%);
-            background: url('..images/..images/ảnh\ login.png') center/cover; 
-            color: #700751;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 40px 32px;
-            position: relative;
-        }
-
-        .right-panel h2 {
-            font-size: 36px;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 8px;
-            color: #720531;
-            position: relative;
-        }
-
-        .right-panel h2 span {
-            display: block;
-            font-size: 42px;
-            letter-spacing: 1px;
-        }
-
-        .right-panel p {
-            font-size: 15px;
-            margin: 20px 0 32px;
-            opacity: 0.9;
-            max-width: 260px;
-            line-height: 1.5;
-        }
-
-        .btn-register {
-            padding: 12px 40px;
-            background: transparent;
-            border: 2px solid #68042f;
-            color: #63023a;
-            border-radius: 30px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.25s;
-            position: relative;
-        }
-
-        .btn-register:hover {
-            background: white;
-            color: #8b1a1a;
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            .login-card {
-                flex-direction: column;
-                height: auto;
-                max-width: 420px;
-            }
-
-            .left-panel,
-            .right-panel {
-                padding: 36px 28px;
-            }
-
-            .right-panel {
-                order: -1; /* đưa phần promo lên trên trên mobile */
-            }
-
-            .right-panel h2 {
-                font-size: 28px;
-            }
-
-            .right-panel h2 span {
-                font-size: 32px;
-            }
-        }
+@charset "UTF-8";
+:root{--wine:#a13750;--ink:#56313d;--font-body:'Be Vietnam Pro','Segoe UI',Arial,sans-serif;--font-display:'Playfair Display','Times New Roman',serif}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;min-height:100svh;display:grid;place-items:center;padding:40px 24px;background:linear-gradient(120deg,#fff9f03d,#fff0f340),url('../images/Images/đăng nhập.png') center/cover fixed;font-family:var(--font-body);color:var(--ink)}
+button,input{font:inherit}
+button,a{touch-action:manipulation}
+button{cursor:pointer}
+a{color:var(--wine)}
+.auth-card{position:relative;isolation:isolate;width:min(840px,100%);height:520px;background:#fffefd;border-radius:26px;overflow:hidden;box-shadow:0 20px 55px #b66d7c26;border:1px solid #ead8d4}
+.form-panel{position:absolute;inset:0 auto 0 0;width:50%;padding:28px 36px;display:flex;flex-direction:column;justify-content:center;text-align:center;transition:transform .7s cubic-bezier(.65,0,.2,1),opacity .35s,visibility .7s}
+.form-panel h1{font:600 34px/1.35 var(--font-display);margin:6px 0 20px;letter-spacing:normal}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--wine);margin:0}
+.register-panel{transform:translateX(100%);opacity:0;visibility:hidden;pointer-events:none}
+.is-register .login-panel{transform:translateX(100%);opacity:0;visibility:hidden;pointer-events:none}
+.is-register .register-panel{opacity:1;visibility:visible;pointer-events:auto}
+form{display:grid;gap:12px}
+input:not([type=checkbox]){width:100%;height:46px;border:1px solid #ead4d7;border-radius:12px;padding:0 14px;background:#fff6f4;color:var(--ink);transition:border-color .2s,box-shadow .2s}
+input::placeholder{color:#7e7074;opacity:1}
+input:focus{outline:none;border-color:var(--wine);box-shadow:0 0 0 3px #8e263918;background:#fff}
+.password-field{position:relative}
+.password-field input{padding-right:50px}
+.toggle-password{position:absolute;right:3px;top:1px;width:44px;height:44px;border:0;background:none;color:#80636b;display:grid;place-items:center}
+.toggle-password svg{width:21px;height:21px}
+.options{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px;margin:4px 0 8px}
+.options label{display:flex;align-items:center;gap:5px}
+input[type=checkbox]{accent-color:var(--wine)}
+.options button{border:0;background:none;color:var(--wine);padding:7px 0;font-size:12px}
+.primary,.switch{min-height:47px;border-radius:30px;font-weight:700;font-size:14px;letter-spacing:.3px;transition:background .2s,box-shadow .2s,transform .2s}
+.primary{border:0;background:var(--wine);color:#fff;padding:12px 24px;margin-top:5px}
+.primary:hover{background:#89283f;box-shadow:0 5px 16px #a1375026}
+.primary:active,.switch:active{transform:scale(.97)}
+.social-section{margin-top:18px}
+.social-section p{font-size:13px;color:#78626a;margin:0 0 12px}
+.social-buttons{display:flex;justify-content:center;gap:18px}
+.social{border:1px solid #e5dbd8;border-radius:50%;width:45px;height:45px;background:#fff;color:var(--ink);font-size:22px;font-weight:700;box-shadow:0 3px 6px #43242d0d}
+.social:hover{background:#f6e9e8}
+.promo{position:absolute;z-index:2;inset:0 0 0 auto;width:50%;background:linear-gradient(135deg,#fff9ed0d,#ffe9de1f),url('../images/Images/đăng ký.png') center/cover;transform:translateX(0);transition:transform .7s cubic-bezier(.65,0,.2,1);color:#6d2f42}
+.is-register .promo{transform:translateX(-100%)}
+.promo-content{position:absolute;inset:0;padding:36px 30px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transition:opacity .3s,visibility .3s}
+.promo h2{font:600 38px/1.3 var(--font-display);letter-spacing:normal;margin:16px 0}
+.promo h2 span{display:block}
+.promo p{font:400 14px/1.7 var(--font-body);max-width:290px;margin:6px 0 26px;color:#6b4653}
+.promo .eyebrow{font:700 11px/1.6 var(--font-body);color:#915164}
+.switch{display:grid;place-items:center;text-decoration:none;border:1.5px solid #91465d;color:#81364d;background:#ffffffb3;width:85%;padding:12px 20px}
+.switch:hover{background:#f8e9ed}
+.promo-register{opacity:0;visibility:hidden}
+.is-register .promo-login{opacity:0;visibility:hidden}
+.is-register .promo-register{opacity:1;visibility:visible}
+.status{font-size:12px;line-height:1.5;color:var(--wine);margin:12px 0 0}
+.status:empty{display:none}
+:focus-visible{outline:3px solid #bd8053;outline-offset:4px}
+@media(max-width:650px){body{padding:24px 16px;background-attachment:scroll}
+.auth-card{height:730px;max-width:400px;border-radius:24px}
+.form-panel{top:220px;bottom:0;width:100%;padding:24px;transition:opacity .3s,visibility .3s,transform .5s}
+.register-panel{transform:translateX(20px)}
+.is-register .register-panel{transform:none}
+.is-register .login-panel{transform:translateX(-20px)}
+.promo{top:0;left:0;width:100%;height:220px;transition:none}
+.is-register .promo{transform:none}
+.promo-content{padding:16px 22px}
+.promo h2{font-size:27px;letter-spacing:normal;margin:8px 0}
+.promo h2 span{display:inline}
+.promo p{font-size:14px;line-height:1.4;margin:0 0 14px}
+.promo .eyebrow{font-size:10px}
+.switch{min-height:40px;width:210px;font-size:13px;padding:8px}
+.form-panel h1{font-size:32px;margin-bottom:20px}
+.social-section{margin-top:18px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}
+}
