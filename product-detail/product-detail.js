@@ -45,6 +45,46 @@ products.forEach((product, index) => {
         'tiramisu classic': {
             ingredients: 'Mascarpone, cà phê Espresso, bánh Ladyfinger, trứng, bột cacao',
             storage: 'Bảo quản ngăn mát, dùng trong 2 ngày.'
+        },
+        'santa matcha forest': {
+            ingredients: 'Cốt bánh, bột matcha, trứng, bột mì, kem tươi, sữa và đường',
+            storage: 'Bảo quản ngăn mát 2–6°C, dùng ngon nhất trong 2 ngày.'
+        },
+        'santa matcha berry': {
+            ingredients: 'Cốt bánh matcha, kem tươi, dâu tây, quả mọng, trứng, bột mì và sữa',
+            storage: 'Bảo quản ngăn mát 2–6°C, dùng ngon nhất trong 2 ngày.'
+        },
+        'choco berry puppy': {
+            ingredients: 'Chocolate, cacao, bột mì, trứng, kem tươi và dâu tây',
+            storage: 'Bảo quản ngăn mát 2–6°C, dùng trong 2 ngày.'
+        },
+        'earl grey teddy pudding': {
+            ingredients: 'Sữa, kem tươi, trứng, đường và trà Earl Grey',
+            storage: 'Bảo quản ngăn mát 2–6°C, dùng trong 1–2 ngày.'
+        },
+        'choco strawberry crepe': {
+            ingredients: 'Bánh crepe chocolate, kem tươi, cacao, sữa, trứng và dâu tây',
+            storage: 'Bảo quản ngăn mát 2–6°C, dùng ngon nhất trong 2 ngày.'
+        },
+        'berry bear basque cheesecake': {
+            ingredients: 'Phô mai kem, kem tươi, trứng, đường và quả mọng',
+            storage: 'Bảo quản ngăn mát 2–6°C, dùng trong 2–3 ngày.'
+        },
+        'puppy roll': {
+            ingredients: 'Bột mì, trứng, sữa, kem tươi, bơ và đường',
+            storage: 'Bảo quản ngăn mát 2–6°C, dùng trong 2 ngày.'
+        },
+        'earl grey teddy roll': {
+            ingredients: 'Cốt bánh trà Earl Grey, trứng, bột mì, sữa và kem tươi',
+            storage: 'Bảo quản ngăn mát 2–6°C, dùng trong 2 ngày.'
+        },
+        'mango bear cream bun': {
+            ingredients: 'Bột mì, sữa, trứng, bơ, kem tươi và xoài',
+            storage: 'Bảo quản ngăn mát, dùng ngon nhất trong ngày.'
+        },
+        'bear souffle pancake': {
+            ingredients: 'Trứng, sữa, bột mì, đường, bơ và si-rô dùng kèm',
+            storage: 'Dùng ngon nhất ngay sau khi chế biến.'
         }
     };
 
