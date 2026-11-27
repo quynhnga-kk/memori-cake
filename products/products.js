@@ -230,8 +230,6 @@ productCards.forEach((card) => {
 document.querySelectorAll(".product-card").forEach((card) => {
     const link = card.querySelector(".btn-detail");
     link?.addEventListener("click", (event) => {
-        event.preventDefault();
-
         const img = card.querySelector(".img-placeholder img");
         const rating = card.querySelector(".rating");
         const badge = card.querySelector(".badge");
