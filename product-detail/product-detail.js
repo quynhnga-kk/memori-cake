@@ -156,25 +156,37 @@ products.forEach((product, index) => {
 
     // ---- Giỏ hàng (localStorage) ----
     function getCart() {
-        try { return JSON.parse(localStorage.getItem('memoriCart')) || []; } catch (e) { return []; }
+        try {
+            var cart = JSON.parse(localStorage.getItem('memoriCart')) || [];
+            return Array.isArray(cart) ? cart : [];
+        } catch (e) { return []; }
     }
 
     function addToCart(price) {
         var cart = getCart();
         var size = hasSize ? SIZES[sizeIndex].label : '';
-        var found = cart.find(function (i) { return i.name === product.name && i.size === size; });
+        var found = cart.find(function (i) { return i.name === product.name && (i.size || '') === size; });
 
         if (found) {
-            found.qty += qty;
+            found.quantity = Number(found.quantity ?? found.qty ?? 0) + qty;
+            delete found.qty;
         } else {
-            cart.push({ name: product.name, image: product.image, size: size, price: price, qty: qty });
+            cart.push({
+                id: product.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
+                name: product.name,
+                detail: size,
+                image: product.image,
+                size: size,
+                price: price,
+                quantity: qty
+            });
         }
         localStorage.setItem('memoriCart', JSON.stringify(cart));
         updateBadge();
     }
 
     function updateBadge() {
-        var total = getCart().reduce(function (s, i) { return s + i.qty; }, 0);
+        var total = getCart().reduce(function (s, i) { return s + Number(i.quantity ?? i.qty ?? 0); }, 0);
         document.getElementById('cartBadge').textContent = total;
     }
 

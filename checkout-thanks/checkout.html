@@ -4,34 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thanh toán | Memori Cake</title>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="checkout.css">
 </head>
-<link rel="stylesheet" href="checkout.css">
 <body>
 
 <header>
-    <div class="header-top">
-        <div class="logo-area">
-            <h1>Memori Cake</h1>
-            <p class="slogan">Lưu giữ khoảnh khắc bằng những chiếc bánh ngọt</p>
-        </div>
-        <div class="account-area">
-            <a href="login.html">Đăng nhập / Đăng ký</a>
-            <a href="../cart/cart.html">🛒 Giỏ hàng</a>
-        </div>
+    <div class="wrap header-inner">
+        <a href="../index.html" aria-label="Memori Cake - Trang chủ">
+            <img src="../images/Images/logo_memoricake.png" alt="Memori Cake" class="logo">
+        </a>
+        <nav aria-label="Menu chính">
+            <ul>
+                <li><a href="../index.html">Trang chủ</a></li>
+                <li><a href="../products/products.html">Sản phẩm</a></li>
+                <li><a href="../cart/cart.html">Giỏ hàng <span class="cart-badge" id="cart-badge">0</span></a></li>
+                <li><a href="../contact/contact.html">Liên hệ</a></li>
+                <li><a href="../login-register/login.html">Đăng nhập</a></li>
+            </ul>
+        </nav>
     </div>
-
-    <nav>
-        <a href="../index.html">Trang chủ</a>
-        <a href="../products/products.html">Sản phẩm</a>
-        <a href="../cart/cart.html">Giỏ hàng</a>
-        <a href="../contact/contact.html">Liên hệ</a>
-    </nav>
 </header>
 
 <main>
     <div class="page-title">
-        <h2>Thanh toán</h2>
+        <h1>Thanh toán</h1>
         <p>Vui lòng điền thông tin để hoàn tất đơn hàng</p>
     </div>
 
@@ -135,7 +134,7 @@
 
                 <div class="payment-list">
                     <label class="payment-option">
-                        <input type="radio" name="payment" value="bank" checked onchange="showQR()">
+                        <input type="radio" name="payment" value="bank" checked>
                         <div class="payment-icon">💳</div>
                         <div class="payment-text">
                             <strong>Chuyển khoản ngân hàng</strong>
@@ -144,7 +143,7 @@
                     </label>
 
                     <label class="payment-option">
-                        <input type="radio" name="payment" value="card" onchange="showQR()">
+                        <input type="radio" name="payment" value="card">
                         <div class="payment-icon">💳</div>
                         <div class="payment-text">
                             <strong>Thẻ tín dụng / ghi nợ</strong>
@@ -153,7 +152,7 @@
                     </label>
 
                     <label class="payment-option">
-                        <input type="radio" name="payment" value="momo" onchange="showQR()">
+                        <input type="radio" name="payment" value="momo">
                         <div class="payment-icon">💰</div>
                         <div class="payment-text">
                             <strong>Ví điện tử</strong>
@@ -162,7 +161,7 @@
                     </label>
 
                     <label class="payment-option">
-                        <input type="radio" name="payment" value="cod" onchange="showQR()">
+                        <input type="radio" name="payment" value="cod">
                         <div class="payment-icon">💵</div>
                         <div class="payment-text">
                             <strong>Thanh toán khi nhận hàng</strong>
@@ -171,13 +170,12 @@
                     </label>
                 </div>
 
-                <!-- QR -->
+                <!-- Thông tin chuyển khoản -->
                 <div class="qr-box" id="qrBox">
                     <div class="qr-content">
-                        <img src="../images/qr-thanh-toan.png" alt="Mã QR thanh toán" class="qr-image"
-                             onerror="this.style.display='none'">
+                        <div class="payment-placeholder" aria-hidden="true">MB<br> BANK</div>
                         <div class="qr-info">
-                            <strong>Quét mã QR để thanh toán</strong><br>
+                            <strong>Thông tin chuyển khoản</strong><br>
                             Ngân hàng: <strong>MB Bank</strong><br>
                             Tên TK: <strong>MEMORI CAKE</strong><br>
                             Số TK: <strong>1234 5678 910</strong><br>
@@ -189,12 +187,12 @@
 
             <!-- GHI CHÚ -->
             <section class="form-section">
-                <div class="section-title">Ghi chú cho tiệm</div>
+                <label class="section-title" for="note">Ghi chú cho tiệm</label>
                 <textarea id="note" rows="3"
                           placeholder="Ví dụ: Giao trước 16h, ghi lời chúc khi giao,..."></textarea>
             </section>
 
-            <button type="button" class="confirm-button" id="confirm-btn" onclick="confirmOrder()">
+            <button type="button" class="confirm-button" id="confirm-btn">
                 Xác nhận đặt hàng
             </button>
         </div>
@@ -233,8 +231,9 @@
                 <div class="coupon-title">Mã giảm giá</div>
                 <div class="coupon-form">
                     <input type="text" id="coupon-code" placeholder="Nhập mã giảm giá...">
-                    <button type="button" onclick="applyCoupon()">Áp dụng</button>
+                    <button type="button" id="coupon-btn">Áp dụng</button>
                 </div>
+                <p class="coupon-message" id="coupon-message" role="status" aria-live="polite"></p>
             </div>
         </div>
     </div>
@@ -265,7 +264,7 @@
                     <li><a href="#">Chính sách giao hàng</a></li>
                     <li><a href="#">Hướng dẫn đặt bánh</a></li>
                     <li><a href="#">Chính sách đổi trả</a></li>
-                    <li><a href="login.html">Tài khoản</a></li>
+                    <li><a href="../login-register/login.html">Tài khoản</a></li>
                 </ul>
             </div>
 
@@ -286,5 +285,6 @@
             <p>© 2026 Memori Cake. All rights reserved.</p>
         </div>
     </footer>
+    <script src="checkout.js"></script>
 </body>
 </html>

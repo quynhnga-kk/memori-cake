@@ -4,43 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cảm ơn bạn | Memori Cake</title>
-
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="thanks.css">
 </head>
-<link rel="stylesheet" href="thanks.css">
 <body>
 
 <header>
-    <div class="header-top">
-        <div class="logo-area">
-            <h1>Memori Cake</h1>
-            <p class="slogan">Lưu giữ khoảnh khắc bằng những chiếc bánh ngọt</p>
-        </div>
-        <div class="account-area">
-            <a href="login.html">Đăng nhập / Đăng ký</a>
-            <a href="../cart/cart.html">🛒 Giỏ hàng</a>
-        </div>
+    <div class="wrap header-inner">
+        <a href="../index.html" aria-label="Memori Cake - Trang chủ">
+            <img src="../images/Images/logo_memoricake.png" alt="Memori Cake" class="logo">
+        </a>
+        <nav aria-label="Menu chính">
+            <ul>
+                <li><a href="../index.html">Trang chủ</a></li>
+                <li><a href="../products/products.html">Sản phẩm</a></li>
+                <li><a href="../cart/cart.html">Giỏ hàng</a></li>
+                <li><a href="../contact/contact.html">Liên hệ</a></li>
+                <li><a href="../login-register/login.html">Đăng nhập</a></li>
+            </ul>
+        </nav>
     </div>
-
-    <nav>
-        <a href="../index.html">Trang chủ</a>
-        <a href="../products/products.html">Sản phẩm</a>
-        <a href="../cart/cart.html">Giỏ hàng</a>
-        <a href="../contact/contact.html">Liên hệ</a>
-    </nav>
 </header>
 
 <main>
-    <div class="thankyou-card">
-        <div class="success-icon">🎉</div>
-
+    <section class="page-hero">
+        <div class="hero-content">
+        <p class="success-label"><span aria-hidden="true">✓</span> ĐẶT HÀNG THÀNH CÔNG</p>
+        <div class="success-icon" aria-hidden="true">🎉</div>
         <h1>Cảm ơn bạn đã đặt hàng!</h1>
         <p class="subtitle">
             Đơn hàng của bạn đã được ghi nhận thành công.<br>
             Chúng tôi sẽ liên hệ xác nhận trong thời gian sớm nhất.
         </p>
-
-        <!-- Thông tin đơn hàng (JS sẽ điền) -->
+        </div>
+    </section>
+    <div class="thankyou-wrap">
+      <div class="thankyou-card">
         <div class="order-info" id="order-info">
             <h3>Thông tin đơn hàng</h3>
             <div id="order-details">
@@ -52,11 +53,11 @@
             <a href="../index.html" class="btn btn-primary">Về trang chủ</a>
             <a href="../products/products.html" class="btn btn-outline">Tiếp tục mua sắm</a>
         </div>
-
         <p class="note">
             Nếu bạn có bất kỳ thắc mắc nào, vui lòng liên hệ<br>
             📞 09xx xxx xxx hoặc ✉️ hello@memoricake.vn
         </p>
+      </div>
     </div>
 </main>
 
@@ -85,7 +86,7 @@
                     <li><a href="#">Chính sách giao hàng</a></li>
                     <li><a href="#">Hướng dẫn đặt bánh</a></li>
                     <li><a href="#">Chính sách đổi trả</a></li>
-                    <li><a href="login.html">Tài khoản</a></li>
+                    <li><a href="../login-register/login.html">Tài khoản</a></li>
                 </ul>
             </div>
 
@@ -107,5 +108,6 @@
         </div>
     </footer>
 <script src="thanks.js"></script>
+    <script src="thanks.js"></script>
 </body>
 </html>

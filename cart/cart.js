@@ -5,7 +5,12 @@ let discount = 0;
 function getCart() {
     try {
         const stored = JSON.parse(localStorage.getItem("memoriCart") || "[]");
-        return Array.isArray(stored) ? stored : [];
+        if (!Array.isArray(stored)) return [];
+        return stored.map((item) => ({
+            ...item,
+            quantity: Number(item.quantity ?? item.qty ?? 1),
+            detail: item.detail || item.size || ""
+        }));
     } catch (error) {
         console.error("Không thể đọc giỏ hàng:", error);
         return [];
